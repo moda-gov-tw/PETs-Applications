@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="upload.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<title>文件上傳下載</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.upload>span:first-child{   
+				color:rgb(248, 242, 242);
+				border-radius: 5px;
+				padding: 5px 10px;
+				background-color: rgb(60, 6, 148);
+			}
+			.upload>span:first-child:hover{
+				background-color: rgb(15, 15, 15);
+				color: rgb(226, 223, 24);
+			}
+			/* add by leo */
+			.upload>span:last-child{
+				display: none;
+				width: 30px;
+				height: 30px;
+				vertical-align: bottom;
+			}
+			/* @keyframes svgAnimation{
+				from { transform:rotate(0deg);}
+				to {transform:rotate(360deg);}
+			} */
+			.upload>span:last-child:hover{
+				animation-name: svgAnimation;
+				animation-duration: 0.1s;
+				
+			}
+			#loading-mask{
+						display: flex;
+						position: fixed;
+						height: 100%;
+						width: 100%;
+						background-color: rgba(0,0,0,0.75);
+						justify-content: center;
+						align-items: center;
+						display: none;
+					}
+					.loader{
+						display: block;
+						position: relative;
+						height: 32px;
+						width: 200px;
+						background: #fff;
+						border:2px solid #fff;
+						color: red;
+						overflow: hidden;
+					}
+					#bar{
+						content: '';
+						background: red;
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 0;
+						height: 100%;
+					}
+					#text{
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						text-align: center;
+						font-size: 24px;
+						line-height: 32px;
+						color: rgb(0,255,255);
+						mix-blend-mode: difference;
+					}
+			</style>
+	</head>
+	<body class="is-preload">
+		<div id="loading-mask">
+			<span class="loader">
+				<span id="bar" />
+				<span id="text">0%</span>
+			</span>
+		</div>
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><p>TFHE-POLICE</p>
+							
+						</h1>
+					</header>
+
+				<!-- Menu -->
+				
+				
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>使用說明</h2>
+								1. 上傳CC、KEY、RFKEY、KSKEY、ENCDATA.ZIP，假如沒有要換key或更換資料庫，其中CC、KEY、RFKEY、KSKEY、ENCDATA.ZIP只要上傳過一次即可
+								<br><br>
+								2. 之後選擇下拉式選單要執行的選項，然後依據選單所提示要上傳的CTS.ZIP或INSERT.ZIP並按下UPLOAD&RUN按鈕並"耐心"等待
+								<br><br>
+								3. 上傳完執行之後按下下載按鈕即可下載所需要的檔案
+								<br><br>
+								<h2>資料上傳</h2>
+								
+								  <form action="/uploads" method="post" enctype="multipart/form-data"id="form" name="form1">
+									<label class="upload" id="CC" >
+										<span class="custom_button" >
+										  Upload CC
+										</span>
+										<input type="file" name = "CC" style="visibility:hidden; width: 0;"id="fileInput1"onchange="checkFileInput(1)">
+										<span></span>
+										<span></span>
+									  </label>
+									  <label class="upload" id="key">
+										<span class="custom_button" >
+										  Upload Key
+										</span>
+										<input type="file" name="key" style="visibility:hidden; width: 0;" id="fileInput2"onchange="checkFileInput(2)">
+										<span></span>
+										<span></span>
+									  </label>
+									  <label class="upload" id="rfkey">
+										<span class="custom_button" >
+										  Upload RFKey
+										</span>
+										<input type="file" name="rfkey" style="visibility:hidden; width: 0;" id="fileInput5"onchange="checkFileInput(5)">
+										<span></span>
+										<span></span>
+									  </label>
+									  <label class="upload" id="kskey">
+										<span class="custom_button" >
+										  Upload KSKey
+										</span>
+										<input type="file" name="kskey" style="visibility:hidden; width: 0;" id="fileInput6"onchange="checkFileInput(6)">
+										<span></span>
+										<span></span>
+									  </label>
+									<label class="upload"id="encdata">
+									  <span class="custom_button" >
+										Upload EncData.zip
+									  </span>
+									  <input type="file" name="encData.zip" style="visibility:hidden; width: 0;"id="fileInput3"onchange="checkFileInput(3)">
+									  <span></span>
+									  <span></span>
+									</label>
+									<p></p>
+									<select id="myComboBox" onchange="handleSelectChange()">
+										<option value="query" selected>Query</option>
+										<option value="count">Count</option>
+										<option value="insert">Insert</option>
+									</select>
+									<p>
+									<p>
+									<label class="upload" id="CTS">
+									  <span class="custom_button" id = insert.zip>
+										Upload CTS.zip
+									  </span>
+									  <input type="file" name="cts.zip" style="visibility:hidden; width: 0;" id="fileInput4"onchange="checkFileInput(4)">
+									  <span></span>
+									  <span></span>
+									</label>									
+									</form>
+									<button id="upload" type = "button" disabled >
+										upload&run
+									</button>
+									<script>
+										window.addEventListener('load', ()=>{
+											document.querySelectorAll('.upload>input').forEach( input => {
+											  let textSpan = input.nextElementSibling
+											  let closeBtn = input.nextElementSibling.nextElementSibling
+											  closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>'
+											  
+											  input.addEventListener('change', ({target})=>{
+												if(target.files.length===0) return
+												textSpan.innerText = target.files[0].name
+												closeBtn.style.display = 'inline-block'
+											  })
+											  closeBtn.addEventListener("click", (e)=>{
+												e.preventDefault()
+												input.value = ''
+												textSpan.innerText = ""
+												closeBtn.style.display = 'none'
+												input.dispatchEvent(new Event('change'))
+											  })
+											})
+										})
+										</script>
+
+									<script>
+									  let count = [0,0,0,0,0,0];
+									  let select = document.getElementById("myComboBox");     
+									  function checkFileInput(inputNumber) {
+										var selectedOption = select.options[select.selectedIndex].value;
+										let fileInput = document.getElementById("fileInput" + inputNumber); 
+										let upload = document.getElementById("upload");      
+										if (fileInput.files.length > 0) {
+										  count[inputNumber-1] = 1;         
+										}
+										if(selectedOption == "query")
+										{
+										  upload.disabled = false;
+										  if (count[3] != 1) 
+										  {
+											upload.disabled = true;
+										  }
+										  else
+										  {
+											upload.disabled = false;
+										  }
+										}
+										else if(selectedOption == "count")
+										{
+										  if (count[3] != 1) 
+										  {
+											upload.disabled = true;
+										  }
+										  else
+										  {
+											upload.disabled = false;
+										  }
+										}
+										else
+										{
+
+										  if(count[3] == 1 || (count[2] == 1 && count[3] == 1))
+										  {
+											upload.disabled = false;
+										  }
+										  else
+										  {
+											upload.disabled = true;
+										  }
+										}
+									  }
+									  </script>     
+									<script>
+									  window.addEventListener('load', ()=>{
+										document.querySelectorAll('.upload>input').forEach( element => {
+										  element.addEventListener('change', ({target})=>{
+											if(!target.files) return
+											let nextEl = target.nextElementSibling
+											nextEl.innerText = target.files[0].name
+										  })
+										})
+									  })
+									</script>
+								<script>
+								  function handleSelectChange() {
+									
+									
+									var select = document.getElementById("myComboBox");
+									var selectedOption = select.options[select.selectedIndex].value;
+								
+									var fileInput1 = document.getElementById("fileInput1");
+									var fileInput2 = document.getElementById("fileInput2");
+									var fileInput3 = document.getElementById("fileInput3");
+									var fileInput4 = document.getElementById("fileInput4");
+									var fileInput5 = document.getElementById("fileInput5");
+									var fileInput6 = document.getElementById("fileInput6");
+									let upload = document.getElementById("upload");
+									let labelCC = document.getElementById("CC");
+									let labelkey = document.getElementById("key");
+									let labelrfkey = document.getElementById("rfkey");
+									let labelkskey = document.getElementById("kskey");
+							
+									let downloadButton = document.getElementById("downloadBtn");
+									const customButton = document.getElementById("insert.zip")
+									if (selectedOption === "query") {
+										downloadBtn.disabled = true;
+										upload.disabled = false;
+										customButton.textContent = 'upload cts.zip';
+										if (fileInput4.files.length > 0)
+										{
+											upload.disabled = false;
+										}
+										else
+										{
+											upload.disabled = true;
+										}
+										labelCC.style.visibility = "visible";
+										labelkey.style.visibility = "visible";
+										labelrfkey.style.visibility = "visible";
+										labelkskey.style.visibility = "visible";
+									
+										fileInput1.disabled = false;
+										fileInput2.disabled = false;
+										fileInput3.disabled = false;
+										fileInput4.disabled = false;
+										fileInput5.disabled = false;
+										fileInput6.disabled = false;
+									} else if (selectedOption === "count") {
+										downloadBtn.disabled = true;
+															
+										customButton.textContent = 'upload cts.zip';
+
+										
+										if (fileInput4.files.length > 0)
+										{
+											upload.disabled = false;
+										}
+										else
+										{
+											upload.disabled = true;
+										}
+										labelCC.style.visibility = "visible";
+										labelkey.style.visibility = "visible";
+										labelrfkey.style.visibility = "visible";
+										labelkskey.style.visibility = "visible";
+									
+										fileInput1.disabled = false;
+										fileInput2.disabled = false;
+										fileInput3.disabled = false;
+										fileInput4.disabled = false;
+										fileInput5.disabled = false;
+										fileInput6.disabled = false;
+									} else if (selectedOption === "insert") {
+										customButton.textContent = 'upload Insert.zip';
+										downloadBtn.disabled = true;
+					
+										if (fileInput4.files.length > 0)
+										{
+											upload.disabled = false;
+										}
+										else
+										{
+											upload.disabled = true;
+										}
+										labelCC.style.visibility = "hidden";
+										labelkey.style.visibility = "hidden";
+										labelrfkey.style.visibility = "hidden";
+										labelkskey.style.visibility = "hidden";
+								
+										fileInput1.disabled = true;
+										fileInput2.disabled = true;
+										fileInput3.disabled = false;
+										fileInput4.disabled = false;
+										fileInput5.disabled = true;
+										fileInput6.disabled = true;
+									}
+								  }
+								</script>
+							</div>
+							<div class="inner">
+								<br>
+								<h2>資料下載</h2>
+								<p></p>
+								<button id="downloadBtn" disabled>download </button>
+								<script>
+								let submitButton = document.getElementById("upload");
+								
+								let downloadBtn = document.getElementById('downloadBtn')
+								
+								submitButton.addEventListener('click', () => {
+									let combobox = document.getElementById('myComboBox').value;
+									downloadBtn.addEventListener('click', ()=>{
+										if(combobox == "query")
+										{
+											window.location.href = '/downloadquery'
+										}
+										else if(combobox == "count")
+										{
+											window.location.href = '/downloadcount'
+										}
+									})						
+								});
+								</script>
+								</div>					
+						</header>
+						
+
+						<!-- Content -->
+							
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

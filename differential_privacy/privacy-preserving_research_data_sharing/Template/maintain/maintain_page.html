@@ -1,0 +1,40 @@
+{% extends "maintain/maintain_base.vue" %}
+{% load i18n %}
+{% block title %}maintain{% endblock title %}
+
+{% block content %}
+    <div class="header_word">
+        <font>{% trans '說明： 預計於 X/X X:X 時重新啟動伺服器，感謝您的等候' %}</font>
+    </div>
+    
+    <div style="padding-top:20px">
+        <font class="header_word">{% trans '操作列表' %}</font>
+    </div>
+    <table class="content_word" style="width:25%;">
+        <tr valign="top">
+            <td style="width:50%;">
+                <a href="javascript:void(0)" onclick="toggle_update_log()" style="color:#0062AD">
+                    <font id="update_log_button">{% trans '更新預覽' %}</font>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div id="update_log_text" style="display:none; margin-top:20px">
+        {% include 'general/update_log_text.html' %}
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        function toggle_update_log() {
+            update_log = $('#update_log_text');
+            update_log.toggle();
+            if (update_log.css('display') == 'none') {
+                $('#update_log_button').text("{% trans '更新預覽' %}");
+            }
+            else {
+                $('#update_log_button').text("{% trans '關閉預覽' %}");                
+            }
+        }
+    </script>
+{% endblock script %}

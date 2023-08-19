@@ -1,0 +1,486 @@
+{% extends "general/parallel_template.html" %}
+{% load i18n %}
+{% block title %}parameter custom{% endblock title %}
+
+{% block hint %}
+    <div class="header_word hint-body">
+        <font id="hint_parameter" name="hint_level_1" onclick="hint_click('hint_parameter', 1)">{% trans '說明' %} ▼</font>
+        <div id="hint_parameter_page" name="level_1_page" class="header_word" style="display:none">
+            <div class="hint-level-1 en_little_content" style="padding-top:0px">
+                <div>
+                    <font>{% trans '1.請確認左邊的參數設定，進行下一步的調整' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '2.請確認右邊的檔案預覽，是否為您想要去識別化的檔案' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '3.將滑鼠懸停於被截斷的內容上，可看到完整的文字' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '4.將滑鼠懸停於配對關係選項之上，可看到選項說明' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '5.設定關係時，紅色代表尚未設定完成、藍色代表設定完成、灰色代表無法使用' %}</font>
+                </div>
+                {% if custom_mode == 'json_parser' %}
+                    <div>
+                        <font>{% trans '6.使用統一填入功能時，「自行設定資料關係」功能將無法選擇' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '7.「自行設定資料關係」功能，在選擇指定字串後即可開啟此功能，將出現設定資料關係介面' %}</font>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if advanced_settings %}
+        <div class="header_word hint-body">
+            <font id="hint_advance_parameter" name="hint_level_1" onclick="hint_click('hint_advance_parameter', 1)">{% trans '進階設定說明' %} ▼</font>
+            <div id="hint_advance_parameter_page" name="level_1_page" class="header_word" style="display:none">
+                <div class="hint-level-1 en_little_content" style="padding-top:0px">
+                    <div>
+                        <font>{% trans '1.進階設定時，選擇「資料為數值型資料」可進行手動設定區間大小' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '2.若在基礎設定時，已選擇了「資料為數值型資料」，可藉由再次選擇目標資料，以進行手動設定' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '3.使用統一填入功能後，可藉由再次選擇目標資料以進行手動設定' %}</font>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if almost_number_dict %}
+        <div class="header_word hint-body">
+            <font id="hint_number_string" name="hint_level_1" onclick="hint_click('hint_number_string', 1)">{% trans '數值字串設定說明' %} ▼</font>
+            <div id="hint_number_string_page" name="level_1_page" class="header_word" style="display:none">
+                <div class="hint-level-1 en_little_content" style="padding-top:0px">
+                    <div>
+                        <font>{% trans '1.出現此設定的原因為，檢測出數值欄位中含有字串' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '2.若該字串的含意為空值，請選擇「資料中含有空值」，並將空值勾選，例如：?、nan、null' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '3.如果該字串為有意義的欄位，則選擇「資料中無空值」，例如 more、3+、3↑等字串' %}</font>
+                    </div>
+                    <div>
+                        <font>{% trans '4.使用統一填入功能時，「資料中含有空值」功能將無法選擇' %}</font>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock hint %}
+
+{% block left_container %}
+    <div class="form-group col-md-6" style="padding:0px; margin:0px;">
+        {% if custom_mode == 'DPView' %}
+            <div class="header_word">
+                <font>{% trans '數字參數設定' %}</font>
+            </div>            
+            <div style="padding-top:15px">
+                {% include 'general/number_preprocessing.html' %}
+            </div>
+        {% elif custom_mode == 'json_parser' %}
+            <div class="header_word">
+                <font>{% trans '文字參數設定' %}</font>
+            </div>            
+            <div style="padding-top:15px">
+                {% include 'json_parser/json_title.html' %}
+            </div>
+            {% if advanced_settings %}
+                <div class="header_word">
+                    <font>{% trans '數字參數設定' %}</font>
+                </div>            
+                <div style="padding-top:15px">
+                    {% include 'general/number_preprocessing.html' %}
+                </div>
+            {% endif %}
+        {% else %}
+            <h2>{% trans 'custom_mode錯誤，{{custom_mode}}不符合預期，請通知開發人員' %}</h2>
+        {% endif %}
+        
+        {% if almost_number_dict %}
+            <div class="header_word">
+                <font>{% trans '數值字串設定' %}</font>
+            </div>            
+            <div style="padding-top:15px">
+                {% include 'general/almost_number_title.html' %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock left_container %}
+
+{% block right_container %}
+    <div id="preview_file" class="form-group col-md-6" style="padding:0px; margin:0px;">
+        {% trans '檔案預覽' as preview_file %}
+        {% include 'general/display_file.html' with title=preview_file display_url=upload_display_url id="preview" %}
+    </div>
+    {% if custom_mode == 'json_parser' %}
+        <div id="string_container" class="form-group col-md-6" style="padding:0px; margin:0px; display:none;">
+            {% include 'json_parser/json_pair.html' %}
+        </div>
+    {% endif %}
+    {% if advanced_settings %}
+        <div id="number_container" class="form-group col-md-6" style="padding:0px; margin:0px; display:none;">
+            {% include 'general/advanced_number_preprocessing.html' %}
+        </div>
+    {% endif %}
+    {% if almost_number_dict %}
+        <div id="almost_number_container" class="form-group col-md-6" style="padding:0px; margin:0px; display:none;">
+            {% include 'general/almost_number_pair.html' %}
+        </div>
+    {% endif %}
+{% endblock right_container %}
+
+{% block button %}
+    <td>
+        <a id="execute" href="javascript:void(0)" style="color:#FF0000">
+            <font>{% trans '繼續執行' %}</font>
+        </a>
+    </td>
+    {% if not advanced_settings %}
+        <td>
+            <a href="javascript:void(0)" onclick="advanced_settings()" style="color:#0062AD">
+                <font>{% trans '進階設定' %}</font>
+            </a>
+        </td>
+    {% else %}
+        <td>
+            <a href="javascript:void(0)" onclick="base_settings()" style="color:#0062AD">
+                <font>{% trans '基礎設定' %}</font>
+            </a>
+        </td>
+    {% endif %}
+    <td>
+        <a href="{{ previous_page_url }}" style="color:#0062AD">
+            <font>{% trans '重選檔案' %}</font>
+        </a>
+    </td>
+    <td>
+        <a href="{% url 'home' %}" style="color:#0062AD">
+            <font>{% trans '返回首頁' %}</font>
+        </a>
+    </td>    
+{% endblock button %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '參數設定' %}";
+        navbar_highlight('{{ caller }}');
+    </script> 
+    
+    <script>
+        var title_id_pair = {};
+        var wait_reason = '';
+        var ready = true; // change in display_file and left_container
+        
+        {% if title_id_pair %}
+            title_id_pair = {{ title_id_pair|safe }};
+        {% endif %}
+        
+        function initize() {
+            document.getElementById('preview_file').style.display = 'none';    
+            {% if custom_mode == 'json_parser' %}
+                document.getElementById('string_container').style.display = 'none';
+            {% endif %}
+            {% if advanced_settings %}
+                document.getElementById('number_container').style.display = 'none';
+            {% endif %}
+            {% if almost_number_dict %}
+                document.getElementById('almost_number_container').style.display = 'none';
+            {% endif %}
+        }
+        
+        function base_settings() {
+            if (!ready) {
+                danger_alert(wait_reason);
+                return;
+            }
+            var url = "{{ base_settings_url }}";
+            var data = {
+                'title_id_pair' : JSON.stringify(title_id_pair),
+                'interval_dict' : JSON.stringify(interval_dict),
+            };
+            {% if almost_number_dict %}
+                data['almost_number_is_empty_dict'] = JSON.stringify(almost_number_is_empty_dict);            
+            {% endif %}
+            {% if custom_mode == 'json_parser' %}
+                data['structure_dict'] = JSON.stringify(structure_dict);            
+            {% endif %}
+            post_to_url(url, data);
+        }
+        
+        function advanced_settings() {
+            if (!ready) {
+                danger_alert(wait_reason);
+                return;
+            }
+            var url = "{{ advanced_settings_url }}";
+            var data = {
+                'title_id_pair' : JSON.stringify(title_id_pair),
+            };
+            {% if interval_dict %}
+                data['interval_dict'] = JSON.stringify({{ interval_dict|safe }});
+            {% endif %}
+            {% if almost_number_dict %}
+                data['almost_number_is_empty_dict'] = JSON.stringify(almost_number_is_empty_dict);            
+            {% endif %}
+            {% if custom_mode == 'json_parser' %}
+                data['structure_dict'] = JSON.stringify(structure_dict);            
+            {% endif %}
+            post_to_url(url, data);
+        }
+    
+        function relationship_set(type, element) {
+            relationship = get_select_result(type, element);
+            introduction = document.getElementById(type+'_introduction');
+            if (type == 'string') {
+                initize();
+                if (relationship == 'custom') {
+                    document.getElementById('string_container').style.display = 'block';
+                    introduction.textContent = "{% trans '資料關係可自行輸入，使用下拉式選單時，也可以藉由輸入內容來查詢所要的選項，但要選擇其他選項時，需刪除先前所輸入的內容' %}";
+                    create_string_pair(element);
+                } else {
+                    document.getElementById('preview_file').style.display = 'block';
+                }
+            }
+            
+            {% if advanced_settings %}
+                if (type == 'number') {
+                    initize();
+                    if (relationship == 'number') {
+                        document.getElementById('number_container').style.display = 'block';
+                        introduction.textContent = "{% trans '直接輸入數字即可設定，新增區間時將自動平分數值，請先設定所要的區間數再微調' %}";
+                        create_number_interval(element);
+                    } else {
+                        document.getElementById('preview_file').style.display = 'block';
+                    }
+                }
+            {% endif %}
+            
+            {% if almost_number_dict %}
+                if(type == 'almost_number'){
+                    initize();
+                    if (relationship == 'have_empty') {
+                        document.getElementById('almost_number_container').style.display = 'block';
+                        introduction.textContent = "{% trans '請勾選代表空值的字串' %}";
+                        create_almost_number_checkbox(element);
+                    } else {
+                        document.getElementById('preview_file').style.display = 'block';
+                    }
+                }                
+            {% endif %}
+        }
+        
+        function get_select_result(type, element) {
+            var select = $('#'+ type + '_relationship_select_pair');
+            var index;
+            if (element in title_id_pair) {
+                index = title_id_pair[element];
+            } else {
+                return null;
+            }
+            return select.children().eq(index).val();
+        }
+                        
+        $(function () {
+            var url = "{{ title_check }}";
+            var data = {
+                'csv_name' : '{{ file_name }}',
+            };
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: data,
+                success: function (result) {
+                    if (result) {
+                        warning_alert(result.message);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var jsonObj = JSON.parse(xhr.responseText);
+                    danger_alert(jsonObj.message);
+                }
+            });
+        })
+    </script>
+    
+    {% if custom_mode == 'DPView' %}
+        <script>
+            $(function () {
+                $('#execute').on('click', function () {
+                    if (!ready) {
+                        danger_alert(wait_reason);
+                        return;
+                    }
+                    
+                    var number_title_list = {{ number_title_list|safe }};
+                    var number_title_pair_dict = {};
+                    for (var number_title of number_title_list) {
+                        var type = get_select_result('number', number_title);
+                        if(!type) {
+                            danger_alert(number_title+"{% trans '尚未選擇資料類型' %}");
+                            return;
+                        }
+                        number_title_pair_dict[number_title] = type;
+                    }
+                    
+                    var url = "{{ create_json }}";
+                    var data = {
+                        'csrfmiddlewaretoken' : '{{ csrf_token }}',
+                        'csv_name' : '{{ file_name }}',
+                        'number_title_pair_dict' : JSON.stringify(number_title_pair_dict),
+                    };
+                    
+                    {% if advanced_settings %}
+                        for (var number_title in interval_dict) {
+                            var temp = [];
+                            for (var number of interval_dict[number_title]) {
+                                temp.push(parseFloat(number));
+                            }
+                            interval_dict[number_title] = temp;
+                        }
+                        data['interval_dict'] = JSON.stringify(interval_dict);
+                        data['type_pair'] = JSON.stringify({{ type_pair|safe }});
+                    {% endif %}
+                    {% if almost_number_dict %}
+                        var almost_number_dict = {{ almost_number_dict|safe }};
+                        for (var column_title in almost_number_dict) {
+                            var type = get_select_result('almost_number', column_title);
+                            if(!type) {
+                                danger_alert(column_title+"{% trans '尚未選擇資料類型' %}");
+                                return;
+                            }
+                        }
+                        data['almost_number_is_empty_dict'] = JSON.stringify(almost_number_is_empty_dict);
+                        data['almost_number_dict'] = JSON.stringify(almost_number_dict);
+                    {% endif %}
+                    
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: data,
+                        success: function () {
+                            window.location = '{{ execute_url }}';
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            var jsonObj = JSON.parse(xhr.responseText);
+                            danger_alert(jsonObj.message);
+                        }
+                    });
+                })
+            })
+        </script>
+    {% elif custom_mode == 'json_parser' %}
+        <script>
+            $(function () {
+                $('#execute').on('click', function () {
+                    if (!ready) {
+                        danger_alert(wait_reason);
+                        return;
+                    }
+                    
+                    var string_element_dict = {{ string_element_dict|safe }};
+                    
+                    var structure_mode = {};
+                    for (var column_title in string_element_dict) {
+                        var relationship = get_select_result('string', column_title);
+                        
+                        if(!relationship) {
+                            danger_alert(column_title+"{% trans '尚未選擇欄位處理方式' %}");
+                            return;
+                        }
+                        
+                        if (relationship == 'address') {
+                            structure_mode[column_title] = 'tw_address';
+                        } else {
+                            structure_mode[column_title] = relationship;
+                        }
+                    }
+                    
+                    for (var column_title in structure_mode) {
+                        if (structure_mode[column_title] == 'custom') {
+                            if (column_title in structure_dict) {
+                                element_pair_dict = structure_dict[column_title];
+                                for (var element in element_pair_dict) {
+                                    if (!element_pair_dict[element] || element_pair_dict[element] == "") {
+                                        danger_alert(column_title + " {% trans '尚有對應關係還沒填寫，請點擊下拉式選單，以開啟自訂介面' %}");
+                                        return
+                                    }
+                                }
+                            }
+                        } else {
+                            var string_element_dict = {{ string_element_dict|safe }};
+                            var string_element_list = string_element_dict[column_title];
+                            temp = {};
+                            for (var element of string_element_list) {
+                                temp[element] = null;
+                            }
+                            structure_dict[column_title] = temp;
+                        }
+                    }
+                    
+                    var url = "{{ create_json }}";
+                    data = {
+                        'csrfmiddlewaretoken' : '{{ csrf_token }}',
+                        'csv_name' : '{{ file_name }}',
+                        'structure_mode' : JSON.stringify(structure_mode),
+                        'structure_dict' : JSON.stringify(structure_dict),
+                    };
+                    {% if advanced_settings %}
+                        var number_title_list = {{ number_title_list|safe }};
+                        var number_title_pair_dict = {};
+                        for (var number_title of number_title_list) {
+                            var type = get_select_result('number', number_title);
+                            if(!type) {
+                                danger_alert(number_title+"{% trans '尚未選擇資料類型' %}");
+                                return;
+                            }
+                            number_title_pair_dict[number_title] = type;
+                        }
+                        data['number_title_pair_dict'] = JSON.stringify(number_title_pair_dict);  
+                        
+                        for (var number_title in interval_dict) {
+                            var temp = [];
+                            for (var number of interval_dict[number_title]) {
+                                temp.push(parseFloat(number));
+                            }
+                            interval_dict[number_title] = temp;
+                        }
+                        data['interval_dict'] = JSON.stringify(interval_dict);
+                        data['type_pair'] = JSON.stringify({{ type_pair|safe }});
+                    {% endif %}
+                    {% if almost_number_dict %}
+                        var almost_number_dict = {{ almost_number_dict|safe }};
+                        for (var column_title in almost_number_dict) {
+                            var type = get_select_result('almost_number', column_title);
+                            if(!type) {
+                                danger_alert(column_title+"{% trans '尚未選擇資料類型' %}");
+                                return;
+                            }
+                        }
+                        data['almost_number_is_empty_dict'] = JSON.stringify(almost_number_is_empty_dict);
+                        data['almost_number_dict'] = JSON.stringify(almost_number_dict);
+                    {% endif %}
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: data,
+                        success: function () {
+                            window.location = '{{ execute_url }}';
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            var jsonObj = JSON.parse(xhr.responseText);
+                            danger_alert(jsonObj.message);
+                        }
+                    });
+                })
+            })
+        </script>
+    {% else %}
+        alert('{% blocktrans %}custom_mode 錯誤，{{ custom_mode }}不符合預期，請通知開發人員{% endblocktrans %}')
+    {% endif %}
+{% endblock script %}

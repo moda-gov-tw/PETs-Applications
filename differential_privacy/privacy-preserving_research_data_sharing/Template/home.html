@@ -1,0 +1,141 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}home{% endblock title %}
+
+{% block content %}
+    <div>
+        <table>
+            <tbody>
+                <!--
+                    <tr valign="bottom">
+                        <td>
+                            <a href="{% url 'update_log' %}">
+                                <font class="header_word" style="color:#0062AD">{% trans '更新公告' %}</font>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="content_word">
+                                <font>{% trans '將於 X/X X:X 時關閉伺服器進行系統更新' %}</font>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <td width="210"></td>
+                        <td>
+                            <table>
+                                <tr valign="top">
+                                    <td nowrap="nowrap">
+                                        <div class="content_word">
+                                            <font>{% trans '說明：' %}</font>
+                                        </div>
+                                    </td>
+                                    <td style="padding-bottom: 20px">
+                                        <div class="en_little_content">
+                                            <div>
+                                                <font>{% trans '系統將會停止所有正在執行中的檔案，請您不要執行過大的檔案，以免被終止，預計於 X:X 時重新啟動伺服器，感謝您的使用' %}</font>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                -->
+                <tr valign="bottom">
+                    <td>
+                        <a href="{% url 'DPView:home' %}">
+                            <font class="header_word" style="color:#0062AD">DPVIEW</font>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="content_word">
+                            <font>{% trans '以差分隱私提供合成資料集' %}</font>
+                        </div>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="210"></td>
+                    <td>
+                        <table>
+                            <tr valign="top">
+                                <td nowrap="nowrap">
+                                    <div class="content_word">
+                                        <font>{% trans '說明：' %}</font>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 20px">
+                                    <div class="en_little_content">
+                                        <div>
+                                            <font>{% trans '差分隱私適用於資料筆數較大的資料集' %}</font>
+                                        </div>
+                                        <div>
+                                            <font>{% trans '建議至少含有一萬筆紀錄且維度也會受資料筆數影響不能太高' %}</font>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr valign="bottom">
+                    <td>
+                        <!-- href="{% url 't_Closeness:home' %}" -->
+                        <a href="{% url 't_Closeness:home' %}">
+                            <font class="header_word" style="color:#0062AD">k-Anonymity</font>
+                        </a>
+                    </td>
+                    <td>
+                        <div class="content_word">
+                            <font>{% trans '藉由 k-匿名進行資料集的去識別化' %}</font>
+                        </div>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="210"></td>
+                    <td>
+                        <table>
+                            <tr valign="top">
+                                <td nowrap="nowrap">
+                                    <div class="content_word">
+                                        <font>{% trans '說明：' %}</font>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 20px">
+                                    <div class="en_little_content">
+                                        <font>{% trans '資料集較小時，能以較快的速度得出結果' %}</font>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '歡迎使用本系統' %}";
+        navbar_highlight('home');
+    </script>
+
+    <script>
+        $(function () {
+            var url = "{% url 'check_file_status' %}"
+            $.getJSON(url, function (request) {
+                if (request == null) {
+                    url = "{% url 'initialize' %}";
+                    $.get(url);
+                } else if (request.finish == true) {
+                    window.location = "{% url 'file_finish' %}";
+                } else if (request.finish == false) {
+                    window.location = "{% url 'file_running' %}";
+                } else {
+                    alert("{% trans 'home.html finish不符合預期，請通知開發人員，finish = ' %}"+request.finish);
+                }
+            })
+        })
+    </script>
+{% endblock script %}

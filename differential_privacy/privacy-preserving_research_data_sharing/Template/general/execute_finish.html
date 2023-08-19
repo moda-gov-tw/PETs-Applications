@@ -1,0 +1,66 @@
+{% extends "general/parallel_template.html" %}
+{% load i18n %}
+{% block title %}finish{% endblock title %}
+
+{% block hint %}
+    <div class="header_word hint-body">
+        <font id="hint_finish" name="hint_level_1" onclick="hint_click('hint_finish', 1)">{% trans '說明' %} ▼</font>
+        <div id="hint_finish_page" name="level_1_page" class="header_word" style="display:none">
+            <div class="hint-level-1 en_little_content" style="padding-top:0px">
+                <div>
+                    <font>{% trans '1：左邊為原始檔案，右邊為去識別化檔案' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '2：檔案預覽完畢後，可以選擇存檔或進行後續的可用度檢測' %}</font>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock hint %}
+
+{% block left_container %}
+    <div class="form-group col-md-6" style="padding:0px; margin:0px;">
+        {% trans '原始檔案' as origin_file %}
+        {% include 'general/display_file.html' with title=origin_file display_url=upload_display_url id="origin" %}
+    </div>
+{% endblock left_container %}
+
+{% block right_container %}
+    <div class="form-group col-md-6" style="padding:0px; margin:0px;">
+        {% trans '去識別化檔案' as de_identification_file %}
+        {% include 'general/display_file.html' with title=de_identification_file display_url=output_display_url id="finish" %}
+    </div>
+{% endblock right_container %}
+
+{% block button %}
+    <td>
+        <a href="{{ download_output_url }}" style="color:#0062AD">
+            <font>{% trans '下載成果' %}</font>
+        </a>
+    </td>
+    <td>
+        <a href="{{ utility_page_url }}" style="color:#0062AD">
+            <font>{% trans '性能測量' %}</font>
+        </a>
+    </td>
+    <td>
+        <a href="{{ execute_page_url }}" style="color:#0062AD">
+            <font>{% trans '再次執行' %}</font>
+        </a>
+    </td>
+    <td>
+        <a href="{% url 'home' %}" style="color:#0062AD">
+            <font>{% trans '返回首頁' %}</font>
+        </a>
+    </td>
+{% endblock button %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '去識別化結果' %}";
+        navbar_highlight('{{ caller }}');
+        
+        var wait_reason = '';
+        var ready = true; // change in display_file and left_container
+    </script>
+{% endblock script %}

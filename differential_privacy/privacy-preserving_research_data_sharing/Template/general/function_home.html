@@ -1,0 +1,133 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}function home{% endblock title %}
+
+{% block content %}
+    <div class="header_word hint-body">
+        <font id="hint_upload" name="hint_level_1" onclick="hint_click('hint_upload', 1)">{% trans '上傳前須知' %} ▼</font>
+        <div id="hint_upload_page" name="level_1_page" class="header_word" style="display:none">
+            <div class="hint-level-1">
+                <font id="hint_system" name="hint_level_2" onclick="hint_click('hint_system', 2)">{% trans '系統限制' %} ▼</font>
+                <div id="hint_system_page" name="level_2_page" class="en_little_content hint-level-2" style="display:none">
+                    {% block system_hint %}{% endblock system_hint %}
+                </div>
+            </div>
+            
+            <div class="hint-level-1">
+                <font id="hint_file" name="hint_level_2" onclick="hint_click('hint_file', 2)">{% trans '檔案限制' %} ▼</font>
+                <div id="hint_file_page" name="level_2_page" class="en_little_content hint-level-2" style="display:none">
+                    {% block file_hint %}{% endblock file_hint %}                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="loading" class="row" style="display:none; margin:0px;">            
+            <div class="col-md-1" style="padding:0px">
+                <div class="spinner-border"></div>
+            </div>
+            <font id="loading_text" class="col-md-11 content_word" style="padding:0px">{% trans '檔案上傳中請稍後' %}</font>
+        </div>
+        <form id="form_file" enctype="multipart/form-data" style="width:50%;">
+            {% csrf_token %}
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="file" id="customFile_csv" accept=".csv" >
+                <label class="custom-file-label" for="customFile_csv">{% trans '請選擇將要去識別化的 CSV 檔案 (.csv)' %}</label>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '檔案上傳' %}";
+        navbar_highlight('{{ caller }}');
+    </script>
+    
+    <script>
+        $(function () {
+            var url = "{% url 'check_file_status' %}";
+            $.getJSON(url, function (request) {
+                if (request == null) {
+                    var url = "{% url 'initialize' %}";
+                    $.get(url);
+                } else if (request.finish == true) {
+                    window.location = "{% url 'file_finish' %}";
+                } else if (request.finish == false) {
+                    window.location = "{% url 'file_running' %}";
+                } else {
+                    alert("{% trans 'function_home.html finish不符合預期，請通知開發人員，finish = ' %}"+request.finish);
+                }
+            })
+        })        
+        
+        function isValidFile(file) {
+            var type = "." + file.value.split(".")[1];
+            if (type == file.accept) {
+                return true;
+            }
+            return false;
+        }
+        
+        function oversize(file) {
+            if (file.files[0].size > 4*1024*1024) {
+                return true;
+            }
+            return false;
+        }
+        
+        function reset() {
+            $("#customFile_csv").val('');
+        }
+            
+        $("#customFile_csv").on("change", function() {
+            var csv_name = $(this).val().split("\\").pop();
+            var loading_jquery = $('#loading');
+            loading_jquery.show();
+            
+            window.setTimeout(function() {
+                $("#loading_text").text("{% trans '檔案較為龐大，需要較多上傳時間，請稍候' %}");
+            }, 5000);
+            
+            close_alert();
+            $(this).siblings(".custom-file-label").addClass("selected").html(csv_name);
+            
+            if (!csv_name) {
+                danger_alert("{% trans '請先選擇檔案' %}");
+                loading_jquery.hide();
+                return;
+            }
+            
+            if (!isValidFile(document.getElementById('customFile_csv'))) {
+                danger_alert("{% trans '檔案類型錯誤' %}");
+                loading_jquery.hide();
+                return;
+            }
+            
+            if (oversize(document.getElementById('customFile_csv'))) {
+                danger_alert("{% trans '檔案過大，不能超過 4 MB' %}");
+                loading_jquery.hide();
+                return;
+            }
+            
+            let formData = new FormData($('#form_file').get(0));
+            $.ajax({
+                url: "{{ file_upload_url }}",
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function () {
+                    reset();
+                    window.location = '{{ custom_url }}'+csv_name+'/';
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var jsonObj = JSON.parse(xhr.responseText);
+                    danger_alert(jsonObj.message);
+                    loading_jquery.hide();
+                }
+            });
+        });
+    </script>
+{% endblock script %}

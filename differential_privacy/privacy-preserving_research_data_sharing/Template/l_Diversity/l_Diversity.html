@@ -1,0 +1,18 @@
+{% extends "general/function.html" %}
+{% load i18n %}
+{% block title %}l-Diversity {{ block.super }}{% endblock title %}
+
+{% block hint %}
+    <div>
+        <font>{% trans '1：執行速度較快，但去識別化後的檔案不一定具備可用性' %}</font>
+    </div>
+    <div>
+        <font>{% trans '2：k 的值不能小於1，不能大於資料總筆數' %}</font>
+    </div>
+    <div>
+        <font>{% trans '3：l 的值不能小於1，不能大於 k，也不能大於資料集的元素個數' %}</font>
+    </div>
+    <div>
+        <font>{% trans '4：將游標懸浮至參數上可獲得參數進一步的說明' %}</font>
+    </div>
+{% endblock hint %}

@@ -1,0 +1,69 @@
+{% load i18n %}
+{% load static %}
+<div class="header_word">
+    <font id="almost_number_name">被配對對象名稱</font>
+</div> 
+<div class="modal-body" style="padding:15px 0px 0px 0px;">
+    <div>
+        <font id="almost_number_introduction" class="en_little_content"></font>
+    </div>
+    <table class="content_word" style="margin:5px 0px 0px 0px; width:100%">
+        <tbody id="almost_number_checkbox_tbody">
+        </tbody>
+    </table>
+</div>
+
+<script type="application/javascript">
+    var almost_number_is_empty_dict = {};
+    
+    {% if almost_number_is_empty_dict %}
+        almost_number_is_empty_dict = {{ almost_number_is_empty_dict|safe }};
+    {% endif %}
+
+
+    function create_almost_number_checkbox(number_title) {
+        $('#almost_number_name').html(number_title);
+        set_checkbox(number_title);
+    }
+    
+    function set_checkbox(number_title) {
+        var checkbox_area = document.getElementById('almost_number_checkbox_tbody');
+        var almost_number_dict = {{ almost_number_dict|safe }};
+        var almost_number_list = almost_number_dict[number_title];
+        
+        if (!(number_title in almost_number_is_empty_dict)) {
+            almost_number_is_empty_dict[number_title] = [];
+        }
+        
+        var empty_list = almost_number_is_empty_dict[number_title];
+        
+        var checkbox_quantity = almost_number_list.length;
+        checkbox_area.innerHTML = "";
+        for (i=0; i<checkbox_quantity; i++) {
+            var element = almost_number_list[i];
+            tr = checkbox_area.insertRow(-1);
+            td = tr.insertCell(-1);
+            td.innerHTML = '<font>"' + element + '"</font>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:50%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input type="checkbox" value="' + element + '"></input>';
+            td.style = "padding-bottom:5px; width:50%;"
+            
+            $('input:checkbox[value="'+element+'"]').click(function() {
+                if (this.checked) {
+                    empty_list.push($(this).val());
+                } else {
+                    var index = empty_list.indexOf($(this).val());
+                    if (index > -1) {
+                        empty_list.splice(index, 1);
+                    }
+                }
+                almost_number_is_empty_dict[number_title] = empty_list;
+            })
+        }
+        for (var element of empty_list) {
+            $('input:checkbox[value="'+element+'"]').attr('checked','true');
+        }
+    }
+</script>

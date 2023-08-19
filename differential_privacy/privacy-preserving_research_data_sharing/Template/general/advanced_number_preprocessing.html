@@ -1,0 +1,232 @@
+{% load i18n %}
+{% load static %}
+<div class="header_word">
+    <font id="number_name">被配對對象名稱</font>
+</div> 
+<div class="modal-body" style="padding:15px 0px 0px 0px;">
+    <div>
+        <font id="number_introduction" class="en_little_content"></font>
+    </div>
+    <table class="content_word" style="margin:5px 0px 0px 0px; width:100%">
+        <tbody id="number_interval_tbody">
+        </tbody>
+    </table>
+</div>
+
+<script type="application/javascript">
+    var interval_dict = {};
+    
+    {% if interval_dict %}
+        interval_dict = {{ interval_dict|safe }};
+    {% endif %}
+
+    function create_number_interval(number_title) {
+        $('#number_name').html(number_title);
+        set_interval(number_title);
+    }
+    
+    function set_interval(number_title) {
+        var interval_area = document.getElementById('number_interval_tbody');
+                
+        if (!(number_title in interval_dict)) {
+            var base = {{ min_value_dict | safe }};
+            var max = {{ max_value_dict | safe }};
+            interval_dict[number_title] = [base[number_title], max[number_title]];
+        }
+        
+        var interval_list = interval_dict[number_title];        
+        var interval_quantity = interval_list.length - 1;
+        interval_area.innerHTML = "";
+        for (i=0; i<interval_quantity; i++) {
+            tr = interval_area.insertRow(-1);
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input type="number" step="any" value="'+interval_list[i]+'" class="remove-input-arrow interval_'+i+' custom_font" style="width:100%" required>';            
+            td.style = "padding-bottom:5px; padding-right:5px; width:45%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<font>─</font>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:5%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input type="number" step="any" value="'+interval_list[i+1]+'" class="remove-input-arrow interval_'+(i+1)+' custom_font" style="width:100%" required>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:45%;"
+            
+            td = tr.insertCell(-1);
+            temp = '';
+            if (i==interval_quantity-1) {
+                temp += '<img id="icon_'+i+'" src="{% static "img/plus.png" %}" alt="{% trans "新增區間" %}" width="40" onclick="add_interval(\''+number_title+'\')"/>';
+            } else {
+                temp += '<img id="icon_'+i+'" src="{% static "img/minus.png" %}" alt="{% trans "刪減區間" %}" width="40" onclick="delete_interval(\''+number_title+'\', '+i+')"/>';
+            }
+            td.innerHTML = temp;
+            td.style = "padding-bottom:5px;";
+        }
+        for (i=0; i<interval_quantity+1; i++) {
+            var interval_temp_list = document.
+                getElementsByClassName('interval_'+i);
+            for (j=0; j<interval_temp_list.length; j++) {
+                interval_temp_list[j].addEventListener('change', interval_check.bind(this, interval_temp_list[j], number_title, i), false);
+            }
+        }
+    }
+    
+    function add_interval(number_title) {
+        var interval_area = document.getElementById('number_interval_tbody');
+        var interval_quantity = interval_area.rows.length+1;
+        var number_type_pair = {{ number_type_pair | safe }};
+        var base = {{ min_value_dict | safe }};
+        var max = {{ max_value_dict | safe }};
+        
+        base = base[number_title];
+        bias = (max[number_title] - base)/interval_quantity;
+        
+        var i;
+        var j;
+        var temp;
+        var tr;
+        var td;
+        var interval_list = [];
+        
+        interval_area.innerHTML = "";
+        
+        for (i=0; i<interval_quantity; i++) {
+            var now_value = base+(bias*i);
+            var next_value  = base+(bias*(i+1));
+            
+            if (number_type_pair[number_title] == 'int') {
+                now_value = Math.round(now_value);
+                next_value = Math.round(next_value);
+            }
+            
+            interval_list.push(now_value);
+            if (i == interval_quantity-1) {
+                interval_list.push(next_value);
+            }
+            
+            tr = interval_area.insertRow(-1);            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input type="number" step="any" value="'+now_value+'" class="remove-input-arrow interval_'+i+'" style="width:100%" required>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:45%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<font>─</font>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:5%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input type="number" step="any" value="'+next_value+'" class="remove-input-arrow interval_'+(i+1)+'" style="width:100%" required>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:45%;"
+            
+            td = tr.insertCell(-1);
+            temp = '';
+            if (i==interval_quantity-1) {
+                temp += '<img id="icon_'+i+'" src="{% static "img/plus.png" %}" alt="{% trans "新增區間" %}" width="40" onclick="add_interval(\''+number_title+'\')"/>';
+            } else {
+                temp += '<img id="icon_'+i+'" src="{% static "img/minus.png" %}" alt="{% trans "刪減區間" %}" width="40" onclick="delete_interval(\''+number_title+'\', '+i+')"/>';
+            }
+            td.style = "padding-bottom:5px;"
+            td.innerHTML = temp;
+        }
+        interval_dict[number_title] = interval_list;
+        for (i=0; i<interval_quantity+1; i++) {
+            var interval_temp_list = document.
+                getElementsByClassName('interval_'+i);
+            for (j=0; j<interval_temp_list.length; j++) {
+                interval_temp_list[j].addEventListener('change', interval_check.bind(this, interval_temp_list[j], number_title, i), false);
+            }
+        }
+    }
+    
+    function delete_interval(number_title, delete_id) {
+        var interval_area = document.getElementById('number_interval_tbody');
+        var interval_list = interval_dict[number_title];
+        
+        for (var i=delete_id+1; i<interval_area.rows.length; i++) {
+            now_element = document.getElementsByClassName('interval_'+i);
+            next_element = document.getElementsByClassName('interval_'+(i+1))[0];
+            interval_list[i] = next_element.value;
+            for (var j=0; j<now_element.length; j++) {
+                now_element[j].defaultValue = next_element.value;
+                now_element[j].value = next_element.value;
+            }
+        }
+        interval_dict[number_title] = interval_list;
+        
+        interval_area.deleteRow(-1);
+        var new_last_icon = document.getElementById('icon_'+(interval_area.rows.length-1));
+        new_last_icon.src = '{% static "img/plus.png" %}';
+        new_last_icon.alt = '{% trans "新增區間" %}';
+        new_last_icon.setAttribute('onclick', 'add_interval(\''+number_title+'\')');
+    }
+    
+    function interval_check(interval_temp, number_title, i) {
+        var number_type_pair = {{ number_type_pair | safe }};
+        var value;
+        var previous_value;
+        var next_value;
+        var error_message;
+        var interval_list = interval_dict[number_title];        
+        var interval_quantity = document.getElementById('number_interval_tbody').rows.length;
+        
+        if (number_type_pair[number_title] == 'int') {
+            value = parseInt(interval_temp.value);
+            if (i != 0) {
+                previous_value = parseInt(document.getElementsByClassName('interval_'+(i-1))[0].value);
+            }
+            if (i != interval_quantity) {
+                next_value = parseInt(document.getElementsByClassName('interval_'+(i+1))[0].value);
+            }
+        }
+        else if (number_type_pair[number_title] == 'float') {
+            value = parseFloat(interval_temp.value);
+            if (i != 0) {
+                previous_value = parseFloat(document.getElementsByClassName('interval_'+(i-1))[0].value);
+            }
+            if (i != interval_quantity) {
+                next_value = parseFloat(document.getElementsByClassName('interval_'+(i+1))[0].value);
+            }
+        }
+        else {
+            error_message = "number_type_pair + {% trans '錯誤，請聯絡開發人員' %} + : " + number_type_pair[number_title];
+        }
+        
+        if (i == 0) {
+            var min_value = {{ min_value_dict | safe }};
+            min_value = min_value[number_title];
+            if (next_value >= min_value) {
+                next_value = min_value;
+                error_message = "{% trans '無法大於欄位最小值' %}";
+            }
+        } else if (i == interval_quantity) {
+            var max_value = {{ max_value_dict | safe }};
+            max_value = max_value[number_title];
+            if (previous_value <= max_value) {
+                previous_value = max_value;
+                error_message = "{% trans '無法小於欄位最大值' %}";
+            }
+        }
+        
+        close_alert();
+        if (next_value && value > next_value) {
+            interval_temp.value = next_value;
+            if (!error_message) {
+                error_message = "{% trans '已達最大值' %}";
+            }
+            danger_alert(error_message);
+        }
+        if (previous_value && value < previous_value) {
+            interval_temp.value = previous_value;
+            if (!error_message) {
+                error_message = "{% trans '已達最小值' %}";
+            }
+            danger_alert(error_message);
+        }
+        
+        var interval_temp_list = document.
+            getElementsByClassName('interval_'+i);
+        for (var j=0; j<interval_temp_list.length; j++) {
+            interval_temp_list[j].value = interval_temp.value;
+        }
+        interval_list[i] = interval_temp.value;
+        interval_dict[number_title] = interval_list;
+    }
+</script>

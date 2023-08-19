@@ -1,0 +1,9 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}404 not found{% endblock title %}
+
+{% block content %}
+    <div class="header_word">
+        <font>{% trans '說明： 伺服器出現錯誤，請聯絡開發人員重現操作步驟以排除問題，感謝您的協助' %}</font>
+    </div>
+{% endblock content %}

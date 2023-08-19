@@ -1,0 +1,141 @@
+{% load i18n %}
+<div>
+    <form>
+        {% if not number_title_list %}
+            <div class="content_word">
+                <font>{% trans '無需預先設定的參數' %}</font>
+            </div>
+        {% else %}
+            <div class="form-row" style="margin:0px">
+                <div class="form-check col-md-6 left-element">
+                    <select id="number_title_select" class="form-control content_word select-arrow" style="padding:0px; height:100%; color:#707070;" data-toggle="tooltip" title="{% trans '紅色為尚未設定完成、藍色為已設定完成' %}">
+                        <option selected disabled value="need_number_setting" style="color:#707070;">
+                            <font>
+                                {% trans '需設定數字關係' %}
+                            </font>
+                        </option>
+                        <option value="all_number_title" style="color:#000000;" data-toggle="tooltip" title="{% trans '僅能做粗淺的設定，詳細設定依舊需要個別點入設定' %}{% trans '，例如進階設定模式時，可調整數字區間範圍' %}">
+                            <font>
+                                {% trans '將全部欄位皆設定為' %}
+                            </font>
+                        </option>
+                        {% for column_title in number_title_list %}
+                            <option id="{{ column_title }}_title" value="{{ column_title }}" style="color:#FF0000;">
+                                <font>
+                                    {{ column_title }}
+                                </font>
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-check col-md-6 left-element">
+                    <select class="form-control content_word select-arrow" id="number_relationship_select_pair" style="padding:0px; height:100%; color:#707070;" data-toggle="tooltip" title="{% trans '選項若為灰色，代表無法在當前模式下使用' %}{% trans '，請切換「需設定數字關係」下拉式選單內的值' %}">
+                        <option selected disabled value="number_setting" style="color:#707070;" data-toggle="tooltip" title="{% trans '請選擇符合資料的選項' %}">
+                            <font>
+                                {% trans '資料關係' %}
+                            </font>
+                        </option>
+                        <option value="number" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '欄位為數學意義上的數字，例如身高、分數，進階設定時可以自行設定區間' %}">
+                            <font>
+                                {% trans '資料為數值型資料' %}
+                            </font>
+                        </option>
+                        <option value="single" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '欄位的所有數值都相同' %}">
+                            <font>
+                                {% trans '資料只有唯一值' %}
+                            </font>
+                        </option>
+                        <option value="category" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '欄位的數字是文字意義上的數字，例如電池型號、班級編號' %}">
+                            <font>
+                                {% trans '資料為類別型資料' %}
+                            </font>
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br>
+        {% endif %}
+    </form>
+</div>
+
+<script type="application/javascript">
+    $(function () {
+        for (var column_title of {{ number_title_list|safe }}) {
+            if (column_title in title_id_pair) {
+                document.getElementById(column_title+'_title').style.color = '#0062AD';
+                if (title_id_pair[column_title] == 1) {
+                    relationship_set('number', column_title);
+                    initize();
+                    document.getElementById('preview_file').style.display = 'block'; 
+                }
+            }
+        }
+    })
+    
+    $(function () {        
+        $('#number_title_select').click(function() {        
+            var value = $(this).val();            
+            var option_list = $('#number_relationship_select_pair option');
+            var number_relationship_select_pair = $('#number_relationship_select_pair');
+            var option_color = $(this).children(":selected")[0].style.color;
+            
+            $(this).css('color', option_color);
+            if (value && value != 'need_number_setting') {
+                option_list.attr('disabled', false);
+                option_list.css('color','#000000');
+                option_list[0].disabled = true;
+                option_list[0].style.color = '#707070';
+                if (value != 'all_number_title') {                
+                    if (value in title_id_pair) {
+                        var index = title_id_pair[value];
+                        option_list[index].selected = true;
+                        if (index != 0) {
+                            number_relationship_select_pair.css('color', '#000000');
+                        }
+                        if (index == 1) {                            
+                            relationship_set('number', value);
+                        }
+                    } else {
+                        option_list[0].selected = true;
+                        number_relationship_select_pair.css('color', '#707070');
+                    }
+                } else {                    
+                    option_list[0].selected = true;
+                    number_relationship_select_pair.css('color', '#707070');
+                }
+            } else {
+                option_list.attr('disabled', true);
+            }
+        });
+        
+        $('#number_relationship_select_pair').click(function() {
+            var element = $('#number_title_select').val();
+            var id = $(this).children(":selected").index();
+            var option_color = $(this).children(":selected")[0].style.color;
+            
+            $(this).css('color', option_color);
+            if (element && element != 'need_number_setting') {
+                if (id != 0) {
+                    wait_reason = "{% trans '資料設定中，請稍後' %}";
+                    ready = false;
+                    if (element==='all_number_title') {
+                        for (var column_title of {{ number_title_list|safe }}) {
+                            title_id_pair[column_title] = id;
+                            $('#number_title_select').children('[value='+column_title+']')[0].style.color = '#0062AD';
+                            relationship_set('number', column_title);
+                            initize();
+                            document.getElementById('preview_file').style.display = 'block'; 
+                        }
+                    } else {
+                        title_id_pair[element] = id;
+                        relationship_set('number', element);
+                        $('#number_title_select').children('[value='+element+']')[0].style.color = '#0062AD';
+                        $('#number_title_select').css('color', '#0062AD');
+                    }
+                    wait_reason = '';
+                    ready = true;
+                }
+            }
+        });
+    })
+</script>

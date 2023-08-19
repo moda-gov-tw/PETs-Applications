@@ -1,0 +1,143 @@
+{% load i18n %}
+<div>
+    <form>
+        {% if not string_element_dict.items and not number_title_list %}
+            <div class="content_word">
+                <font>{% trans '無需預先設定的參數' %}</font>
+            </div>
+        {% else %}
+            <div class="form-row" style="margin:0px">
+                <div class="form-check col-md-6 left-element">
+                    <select id="string_title_select" class="form-control content_word select-arrow" style="padding:0px; height:100%; color:#707070;" data-toggle="tooltip" title="{% trans '紅色為尚未設定完成、藍色為已設定完成' %}">
+                        <option selected disabled value="need_string_setting" style="color:#707070;">
+                            <font>
+                                {% trans '需設定字串關係' %}
+                            </font>
+                        </option>
+                        <option value="all_string_title" style="color:#000000;" data-toggle="tooltip" title="{% trans '僅能做粗淺的設定，詳細設定依舊需要個別點入設定' %}{% trans '，例如設定字串從屬關係' %}">
+                            <font>
+                                {% trans '將全部欄位皆設定為' %}
+                            </font>
+                        </option>
+                        {% for column_title in string_element_dict %}
+                            <option id="{{ column_title }}_title" value="{{ column_title }}" style="color:#FF0000;">
+                                <font>
+                                    {{ column_title }}
+                                </font>
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-check col-md-6 left-element">
+                    <select class="form-control content_word select-arrow" id="string_relationship_select_pair" style="padding:0px; height:100%; color:#707070;" data-toggle="tooltip" title="{% trans '選項若為灰色，代表無法在當前模式下使用' %}{% trans '，請切換「需設定字串關係」下拉式選單內的值' %}">
+                        <option selected disabled value="string_setting" style="color:#707070;" data-toggle="tooltip" title="{% trans '請選擇符合字串的選項' %}">
+                            <font>
+                                {% trans '字串關係' %}
+                            </font>
+                        </option>
+                        <option value="custom" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '配對檔案裡文字的上下關係，例如：gmail 屬於 google、服務生屬於外場人員等' %}">
+                            <font>
+                                {% trans '自行設定資料關係' %}
+                            </font>
+                        </option>
+                        <option value="address" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '限於台灣地址，將會以縣市鄉鎮等自動劃分層級' %}">
+                            <font>
+                                {% trans '資料為地址' %}
+                            </font>
+                        </option>
+                        <option value="unrelated" style="color:#707070;" disabled data-toggle="tooltip" title="{% trans '欄位內容互相無上下關係，例如「鉛筆、彩色筆、水彩」或「電腦、電視、冰箱」' %}">
+                            <font>
+                                {% trans '資料間無關聯' %}
+                            </font>
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br>
+        {% endif %}
+    </form>
+</div>
+
+<script type="application/javascript">
+    $(function () {
+        for (var column_title in {{ string_element_dict|safe }}) {
+            if (column_title in title_id_pair) {
+                document.getElementById(column_title+'_title').style.color = '#0062AD';
+                if (title_id_pair[column_title] == 1) {
+                    relationship_set('string', column_title);
+                    initize();
+                    document.getElementById('preview_file').style.display = 'block'; 
+                }
+            }
+        }
+    })
+    
+    $(function () {        
+        $('#string_title_select').click(function() {        
+            var value = $(this).val();            
+            var option_list = $('#string_relationship_select_pair option');
+            var string_relationship_select_pair = $('#string_relationship_select_pair');
+            var option_color = $(this).children(":selected")[0].style.color;
+            
+            $(this).css('color', option_color);
+            if (value && value != 'need_string_setting') {
+                option_list.attr('disabled', false);
+                option_list.css('color','#000000');
+                option_list[0].disabled = true;
+                option_list[0].style.color = '#707070';
+                if (value != 'all_string_title') {                
+                    if (value in title_id_pair) {
+                        var index = title_id_pair[value];
+                        option_list[index].selected = true;
+                        if (index != 0) {
+                            string_relationship_select_pair.css('color', '#000000');
+                        }
+                        if (index == 1) {                            
+                            relationship_set('string', value);
+                        }
+                    } else {
+                        option_list[0].selected = true;
+                        string_relationship_select_pair.css('color', '#707070');
+                    }
+                } else {
+                    option_list[1].disabled = true;
+                    option_list[1].style.color = '#707070';
+                    option_list[0].selected = true;
+                    string_relationship_select_pair.css('color', '#707070');
+                }
+            } else {
+                option_list.attr('disabled', true);
+            }
+        });
+        
+        $('#string_relationship_select_pair').click(function() {
+            var element = $('#string_title_select').val();
+            var id = $(this).children(":selected").index();
+            var option_color = $(this).children(":selected")[0].style.color;
+            
+            $(this).css('color', option_color);
+            if (element && element != 'need_string_setting') {
+                if (id != 0) {
+                    wait_reason = "{% trans '資料設定中，請稍後' %}";
+                    ready = false;
+                    if (element == 'all_string_title') {
+                        for (var column_title in {{ string_element_dict|safe }}) {
+                            title_id_pair[column_title] = id;
+                            $('#string_title_select').children('[value='+column_title+']')[0].style.color = '#0062AD';
+                            relationship_set('string', column_title);
+                            initize();
+                            document.getElementById('preview_file').style.display = 'block'; 
+                        }
+                    } else {
+                        title_id_pair[element] = id;
+                        relationship_set('string', element);
+                        $('#string_title_select').children('[value='+element+']')[0].style.color = '#0062AD';
+                        $('#string_title_select').css('color', '#0062AD');
+                    }
+                    wait_reason = '';
+                    ready = true;
+                }
+            }
+        });
+    })
+</script>

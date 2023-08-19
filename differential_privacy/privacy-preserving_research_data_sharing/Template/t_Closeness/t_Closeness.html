@@ -1,0 +1,12 @@
+{% extends "general/function.html" %}
+{% load i18n %}
+{% block title %}k-Anonymity {{ block.super }}{% endblock title %}
+
+{% block hint %}
+    <div>
+        <font>{% trans '1：k 的值不能小於1' %}</font>
+    </div>
+    <div>
+        <font>{% trans '2：將游標懸浮至參數上可獲得參數進一步的說明' %}</font>
+    </div>
+{% endblock hint %}

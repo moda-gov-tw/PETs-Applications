@@ -1,0 +1,49 @@
+<style>
+{% if LANGUAGE_CODE == 'en-us' %}
+    .footer_header{
+        font-family: Helvetica;
+    }
+    .footer_content{
+        font-size: 16px;
+    }
+{% endif %}
+</style>
+
+{% load i18n %}
+
+<footer class="section bg-image" style="background: #FFFFFF; border-top-style:dotted; border-width:1px; border-color:#707070; padding-top:10px">
+    <div>
+		<div class="row" style="margin:0px">
+			<div class="col-md-6" style="padding:0px">
+				<div class="pr-xl-4">
+                    <div class="footer_header" style="padding-bottom:5px">
+                        <font>{% trans '貢獻人員：' %}</font>
+                    </div>
+                    <div class="footer_content" style="padding-bottom:5px">
+                        <font>{% trans '林志訓' %}、{% trans '林晏丞' %}、{% trans '陳鐿文' %}、{% trans '王力慶' %}、{% trans '林柏維' %}</font>
+                    </div>
+					<!-- Rights-->
+                    <div class="footer_header" style="padding-bottom:5px">
+                        <font><span>©  </span><span class="copyright-year">2020</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span></font>
+                    </div>
+				</div>
+			</div>
+			<div class="col-md-6" style="padding:0px">
+                <div class="footer_header">
+                    <font>{% trans '聯絡方式：' %}</font>
+                </div>
+				<dl class="contact-list footer_content">
+					<dd>
+                        <font>{% trans '交通大學資訊管理與財務金融學系' %}</font>
+                    </dd>
+                    <dd>
+                        <font>{% trans '游家牧助理教授' %}</font>
+                    </dd>
+				</dl>
+                <div class="footer_header">
+                    <font>Email: chiamuyu@gmail.com</a></font>
+                </div>
+			</div>
+		</div>
+	</div>
+</footer>

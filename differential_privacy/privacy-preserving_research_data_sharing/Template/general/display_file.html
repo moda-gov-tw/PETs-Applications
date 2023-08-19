@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="header_word">
+    <font>{{ title }}{% trans '(前200筆)' %}</font>
+</div> 
+<div class="modal-body" style="padding:15px 10px 0px 0px;">
+    <div id={{ id }} class="content_word scroll-bar" style="height:180px; overflow:scroll; border:1px black solid;">
+        <div class="row" style="margin:0px;">            
+            <div class="col-md-1" style="padding:0px">
+                <div class="spinner-border"></div>
+            </div>
+            <font id="loading_text" class="col-md-11 content_word" style="padding:0px">{% trans '讀取中請稍後' %}</font>
+        </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+    $(function () {
+        var display_table = $('#{{ id }}');
+        var url = '{{ display_url }}';
+        wait_reason = "{% trans '檔案讀取中，請稍後' %}";
+        ready = false;
+        
+        $.getJSON(url, {
+                'File' : '{{ file_name }}',
+                'caller' : '{{ caller }}',
+            }, function (table) {
+                wait_reason = '';
+                ready = true;
+                display_table.html(table);
+            }
+        )
+    })
+</script>

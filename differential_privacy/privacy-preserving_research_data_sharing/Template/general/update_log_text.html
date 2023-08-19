@@ -1,0 +1,525 @@
+{% load i18n %}
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_25" name="hint_level_1" onclick="hint_click('hint_upload_log_25', 1)">{% trans '最新更新'%} {% trans '12/24 ver 2.0.2' %} ▼</font>
+    <div id="hint_upload_log_25_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 去識別化表單增加最小值限制' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '2. 在參數配對頁面，增加更多懸浮提示' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '3. 加入檔案過大時防護機制，當預覽頁面尚未跑完、變數數值尚未設定完成時，無法進行後續操作' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 資料為空值，不做任何選擇代表全為非空值 → 一定要選擇選項' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修正點擊「需設定關係」下拉式選單後，不選擇任何項目，將會錯誤開啟「資料關係」的下拉式選單' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_24" name="hint_level_1" onclick="hint_click('hint_upload_log_24', 1)">{% trans '12/18 ver 2.0.1' %} ▼</font>
+    <div id="hint_upload_log_24_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. k-Anonymity 維修完成' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_23" name="hint_level_1" onclick="hint_click('hint_upload_log_23', 1)">{% trans '12/17 ver 2.0' %} ▼</font>
+    <div id="hint_upload_log_23_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 更改整體介面呈現' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_22" name="hint_level_1" onclick="hint_click('hint_upload_log_22', 1)">{% trans '9/16 ver 1.8.5' %} ▼</font>
+    <div id="hint_upload_log_22_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復在密碼確認頁面/是否接續去識別化執行頁面中，切換語言將會引發錯誤的 bug' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 將參數提示變為懸浮時提示 (DPView 原先就無參數提示，因此懸浮時將不會有提示)' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_21" name="hint_level_1" onclick="hint_click('hint_upload_log_21', 1)">{% trans '9/15 ver 1.8.4' %} ▼</font>
+    <div id="hint_upload_log_21_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 在本機檢查檔案大小是否符合條件，加速判斷速度' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_20" name="hint_level_1" onclick="hint_click('hint_upload_log_20', 1)">{% trans '9/15 ver 1.8.3' %} ▼</font>
+    <div id="hint_upload_log_20_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復刪除帳號無法執行的 bug' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_19" name="hint_level_1" onclick="hint_click('hint_upload_log_19', 1)">{% trans '9/14 ver 1.8.2' %} ▼</font>
+    <div id="hint_upload_log_19_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復 k_Anonymity 頁面無法正常跳轉的 bug' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 詢問內容不再使用confirm，而是以頁面跳轉的方式詢問' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 輸入內容不再使用prompt，而是以頁面跳轉的方式要求使用者填入' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_18" name="hint_level_1" onclick="hint_click('hint_upload_log_18', 1)">{% trans '9/11 ver 1.8.1' %} ▼</font>
+    <div id="hint_upload_log_18_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 現在網址列將不再出現 ip 位置，而是網域名稱' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_17" name="hint_level_1" onclick="hint_click('hint_upload_log_17', 1)">{% trans '9/11 ver 1.8' %} ▼</font>
+    <div id="hint_upload_log_17_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 新增不要將逗號作為欄位內容的提示' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 移除全選欄位中的「資料中含有空值」，因為空值內容需要使用者親自配對' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_16" name="hint_level_1" onclick="hint_click('hint_upload_log_16', 1)">{% trans '9/9 ver 1.7' %} ▼</font>
+    <div id="hint_upload_log_16_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 新增維修中頁面' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 新增伺服器停止運作頁面' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_15" name="hint_level_1" onclick="hint_click('hint_upload_log_15', 1)">{% trans '9/8 ver 1.6' %} ▼</font>
+    <div id="hint_upload_log_15_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 新增上傳檔案 domain 大小須為 50 以下的限制' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修正字串從屬關係配對時，按下新增按鈕會觸發的錯誤' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 自訂欄位現在將生成於當前視窗旁邊，不用回到頁面頂端也能設定' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 修復切換語言的摺疊功能' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_14" name="hint_level_1" onclick="hint_click('hint_upload_log_14', 1)">{% trans '9/7 ver 1.5' %} ▼</font>
+    <div id="hint_upload_log_14_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 加入欄位空值設定，避免數字欄位被誤判為文字欄位' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 新增檔名檢查，檔名最後面有空白時將會跳出提示阻攔上傳' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修正檔名為非英文語系時，下載時的檔名不會正常顯示的問題' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_13" name="hint_level_1" onclick="hint_click('hint_upload_log_13', 1)">{% trans '9/3 ver 1.4.4' %} ▼</font>
+    <div id="hint_upload_log_13_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 更改欄位類型判斷機制，從只檢查第一筆資料改為全欄位都檢查類型' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修正當整數欄位有空值時，DPView 生成的檔案會變成浮點數' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_12" name="hint_level_1" onclick="hint_click('hint_upload_log_12', 1)">{% trans '9/2 ver 1.4.3' %} ▼</font>
+    <div id="hint_upload_log_12_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復非地址的欄位，在選擇欄位關係為地址後，沒有出現警告的問題' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修復連續觸發 alert 時，淡出效果不會重置的問題' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 修復當欄位中有空值時，區間設定將會錯誤運作' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '4. 修復自動生成區間時，會導致整數類型的欄位被解讀為浮點數' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_11" name="hint_level_1" onclick="hint_click('hint_upload_log_11', 1)">{% trans '9/1 ver 1.4.2' %} ▼</font>
+    <div id="hint_upload_log_11_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復 DPView 選擇進階設定後，再選擇數值型資料，會出現 URL 過長的 bug' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修復 k_Anonymity 選擇基礎設定執行後，json 沒有生成區間的 bug' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_10" name="hint_level_1" onclick="hint_click('hint_upload_log_10', 1)">{% trans '9/1 ver 1.4.1' %} ▼</font>
+    <div id="hint_upload_log_10_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 修復選擇數值型資料時，如果欄位有空值，將導致 json 生成錯誤的 bug' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_9" name="hint_level_1" onclick="hint_click('hint_upload_log_9', 1)">{% trans '8/31 ver 1.4' %} ▼</font>
+    <div id="hint_upload_log_9_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 加入載入圓圈，提示檔案上傳或載入中' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '2. 加入全填入用的下拉式選單，目前不需逐項填入' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '3. 檔案可用性檢測加入模型目標選擇，除了原先的分類預測模型外，可多選擇回歸預測模型' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 檔案讀取方式改為UTF-8，以接受多國語言的檔案' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 文字欄位與數字欄位判斷方式變更' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 修正切換基礎與進階選項時，自動填入功能帶有的一項錯誤' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_8" name="hint_level_1" onclick="hint_click('hint_upload_log_8', 1)">{% trans '8/27 ver 1.3' %} ▼</font>
+    <div id="hint_upload_log_8_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 切換基礎/進階設定時，不需重新設定已經設定完成的內容' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '2. 新增進階設定操作說明提示欄' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 字型大小統一' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_7" name="hint_level_1" onclick="hint_click('hint_upload_log_7', 1)">{% trans '8/27 ver 1.2' %} ▼</font>
+    <div id="hint_upload_log_7_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 以滑鼠懸停於選項時，將出現說明提示' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 改進 firefox 瀏覽器的使用者體驗' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 修正在進階選項的使用者自訂頁面時，側邊欄無法正常出現 highlight' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 消除 Vue 誤判所造成的錯誤訊息' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_6" name="hint_level_1" onclick="hint_click('hint_upload_log_6', 1)">{% trans '8/26 ver 1.1' %} ▼</font>
+    <div id="hint_upload_log_6_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 移除每個頁面都會出現的百分比進度條' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 移除左方尚無功能的搜尋列' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 修正接續先前執行時，頁面將錯誤跳轉至底部的問題' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '4. 左上角標題更改，security lab → Data Anonymization System' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '5. 修正在更新日誌切換語言時會引發錯誤的問題' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_5" name="hint_level_1" onclick="hint_click('hint_upload_log_5', 1)">{% trans '8/25 ver 1.0' %} ▼</font>
+    <div id="hint_upload_log_5_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 更改整體介面呈現' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_4" name="hint_level_1" onclick="hint_click('hint_upload_log_4', 1)">{% trans '8/5 ver 0.3.1' %} ▼</font>
+    <div id="hint_upload_log_4_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 程式資源取得方式更改：CDN → 直接載入' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_3" name="hint_level_1" onclick="hint_click('hint_upload_log_3', 1)">{% trans '8/4 ver 0.3' %} ▼</font>
+    <div id="hint_upload_log_3_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 字串關係配對顯示方式更改：瀑布式排列 → 折疊式排列' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 數字自訂區間顯示方式更改：瀑布式排列 → 折疊式排列' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 新增/刪除按鈕顯示方式更改：文字 → 圖片' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '4. 字串關係配對，刪除欄位方式最佳化：只能刪除最後一列 → 可任意刪除任意列' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '5. 數字自訂區間，設定區間方式最佳化：先輸入區間數量後產生區間 → 直接產生區間，並使用新增區間按鈕來增加區間' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_2" name="hint_level_1" onclick="hint_click('hint_upload_log_2', 1)">{% trans '7/29 ver 0.2' %} ▼</font>
+    <div id="hint_upload_log_2_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 去識別化進度記錄，現在只需按下執行，就可以關閉網頁，下次進入網站時，將會引導到目前所執行的進度' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 等候提示：文字 → 轉圈圈' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 進度條%數顯示：完成度粗分 → 細分' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 錯誤提示方式：彈出式視窗 → 置頂公告' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '4. 執行頁面bug修復，排除特定情況下進度條倒退、執行失敗等bug' %}</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header_word hint-body">
+    <font id="hint_upload_log_1" name="hint_level_1" onclick="hint_click('hint_upload_log_1', 1)">{% trans '7/21 ver 0.1' %} ▼</font>
+    <div id="hint_upload_log_1_page" name="level_1_page" class="header_word" style="display:none">
+        <div class="hint-level-1 en_little_content" style="padding-top:0px">
+            <div>
+                <font style="color:green">{% trans '新增項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '1. 公佈欄' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '2. 更新日誌' %}</font>
+            </div>
+            <div>
+                <font style="color:green">{% trans '3. 更改密碼功能' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '調整項目：' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '1. 檔案上傳限制：無上限 → 4MB' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '2. 勾選框操作：勾選時其餘選項鎖定 → 可自由切換勾選的內容' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '3. 字串關係配對：循環配對時，將引起程式卡死 → 檢測到循環就跳出視窗提示' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '4. 字串關係配對：配對時最高層關係沒配對自己，引起程式錯誤 → 程式將自動配對最高層關係' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '5. 字串關係配對：刪除自訂欄位時，如果自訂欄位沒有輸入內容則會刪除失敗 → 可在任意狀況下刪除' %}</font>
+            </div>
+            <div>
+                <font style="color:red">{% trans '6. 可用度檢測：選擇所用方法後就會立刻執行 → 需按下確認後才會執行' %}</font>
+            </div>
+        </div>
+    </div>
+</div>

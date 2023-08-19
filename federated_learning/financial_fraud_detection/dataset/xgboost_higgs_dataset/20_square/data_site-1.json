@@ -1,0 +1,89 @@
+{
+    "data_path": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/HIGGS.csv",
+    "data_index": {
+        "valid": {
+            "start": 0,
+            "end": 1000000
+        },
+        "site-1": {
+            "start": 1000000,
+            "end": 1003484
+        },
+        "site-2": {
+            "start": 1003484,
+            "end": 1017421
+        },
+        "site-3": {
+            "start": 1017421,
+            "end": 1048779
+        },
+        "site-4": {
+            "start": 1048779,
+            "end": 1104528
+        },
+        "site-5": {
+            "start": 1104528,
+            "end": 1191636
+        },
+        "site-6": {
+            "start": 1191636,
+            "end": 1317071
+        },
+        "site-7": {
+            "start": 1317071,
+            "end": 1487802
+        },
+        "site-8": {
+            "start": 1487802,
+            "end": 1710798
+        },
+        "site-9": {
+            "start": 1710798,
+            "end": 1993027
+        },
+        "site-10": {
+            "start": 1993027,
+            "end": 2341459
+        },
+        "site-11": {
+            "start": 2341459,
+            "end": 2763061
+        },
+        "site-12": {
+            "start": 2763061,
+            "end": 3264803
+        },
+        "site-13": {
+            "start": 3264803,
+            "end": 3853653
+        },
+        "site-14": {
+            "start": 3853653,
+            "end": 4536579
+        },
+        "site-15": {
+            "start": 4536579,
+            "end": 5320551
+        },
+        "site-16": {
+            "start": 5320551,
+            "end": 6212537
+        },
+        "site-17": {
+            "start": 6212537,
+            "end": 7219505
+        },
+        "site-18": {
+            "start": 7219505,
+            "end": 8348424
+        },
+        "site-19": {
+            "start": 8348424,
+            "end": 9606263
+        },
+        "site-20": {
+            "start": 9606263,
+            "end": 11000000
+        }
+    }
+}

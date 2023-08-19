@@ -1,0 +1,157 @@
+2023-08-08 22:10:52,085 - SimulatorRunner - INFO - Create the Simulator Server.
+2023-08-08 22:10:52,085 - Cell - INFO - server: creating listener on tcp://0:58520
+2023-08-08 22:10:52,097 - Cell - INFO - server: created backbone external listener for tcp://0:58520
+2023-08-08 22:10:52,097 - ConnectorManager - INFO - 19885: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-08-08 22:10:52,098 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:24016] is starting
+2023-08-08 22:10:52,598 - Cell - INFO - server: created backbone internal listener for tcp://localhost:24016
+2023-08-08 22:10:52,598 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE tcp://0:58520] is starting
+2023-08-08 22:10:52,678 - nvflare.fuel.hci.server.hci - INFO - Starting Admin Server localhost on Port 58521
+2023-08-08 22:10:52,678 - SimulatorRunner - INFO - Deploy the Apps.
+2023-08-08 22:10:52,689 - SimulatorRunner - INFO - Create the simulate clients.
+2023-08-08 22:10:52,691 - ClientManager - INFO - Client: New client site-1@192.168.1.90 joined. Sent token: 749ff009-917b-4bad-9e50-990a8466d9ad.  Total clients: 1
+2023-08-08 22:10:52,691 - FederatedClient - INFO - Successfully registered client:site-1 for project simulator_server. Token:749ff009-917b-4bad-9e50-990a8466d9ad SSID:
+2023-08-08 22:10:52,692 - ClientManager - INFO - Client: New client site-2@192.168.1.90 joined. Sent token: c5664ce1-5a04-4e74-876b-f56c7bf20c44.  Total clients: 2
+2023-08-08 22:10:52,692 - FederatedClient - INFO - Successfully registered client:site-2 for project simulator_server. Token:c5664ce1-5a04-4e74-876b-f56c7bf20c44 SSID:
+2023-08-08 22:10:52,693 - ClientManager - INFO - Client: New client site-3@192.168.1.90 joined. Sent token: 3879256d-89b2-40f7-9cb6-f99d7f54ca8b.  Total clients: 3
+2023-08-08 22:10:52,693 - FederatedClient - INFO - Successfully registered client:site-3 for project simulator_server. Token:3879256d-89b2-40f7-9cb6-f99d7f54ca8b SSID:
+2023-08-08 22:10:52,694 - ClientManager - INFO - Client: New client site-4@192.168.1.90 joined. Sent token: 7172d6f7-be64-47f5-b5cb-9306f00d1256.  Total clients: 4
+2023-08-08 22:10:52,694 - FederatedClient - INFO - Successfully registered client:site-4 for project simulator_server. Token:7172d6f7-be64-47f5-b5cb-9306f00d1256 SSID:
+2023-08-08 22:10:52,695 - ClientManager - INFO - Client: New client site-5@192.168.1.90 joined. Sent token: 311c2d22-c392-45a9-a596-bb838cee92d8.  Total clients: 5
+2023-08-08 22:10:52,695 - FederatedClient - INFO - Successfully registered client:site-5 for project simulator_server. Token:311c2d22-c392-45a9-a596-bb838cee92d8 SSID:
+2023-08-08 22:10:52,696 - SimulatorRunner - INFO - Set the client status ready.
+2023-08-08 22:10:52,696 - SimulatorRunner - INFO - Deploy and start the Server App.
+2023-08-08 22:10:52,696 - ServerCommandAgent - INFO - ServerCommandAgent cell register_request_cb: server.simulate_job
+2023-08-08 22:10:56,035 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: Server runner starting ...
+2023-08-08 22:10:56,035 - HEModelShareableGenerator - ERROR - [identity=simulator_server, run=simulate_job]: Exception when handling event "_start_run": TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+2023-08-08 22:10:56,043 - HEModelShareableGenerator - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/event.py", line 61, in fire_event
+    h.handle_event(event, ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 79, in handle_event
+    self.tenseal_context = load_tenseal_context_from_workspace(self.tenseal_context_file, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/homomorphic_encrypt.py", line 43, in load_tenseal_context_from_workspace
+    context = ts.context_from(data)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/__init__.py", line 71, in context_from
+    return Context.load(data, n_threads)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/enc_context.py", line 179, in load
+    return cls._wrap(ts._ts_cpp.TenSEALContext.deserialize(data))
+TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+
+2023-08-08 22:10:56,043 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: starting workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) ...
+2023-08-08 22:10:56,044 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job]: Initializing ScatterAndGather workflow.
+2023-08-08 22:10:56,044 - XGBModelPersistor - INFO - Initializing server model as None
+2023-08-08 22:10:56,044 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: Workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) started
+2023-08-08 22:10:56,044 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Beginning ScatterAndGather training phase.
+2023-08-08 22:10:56,044 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 started.
+2023-08-08 22:10:56,044 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
+2023-08-08 22:10:56,622 - SimulatorClientRunner - INFO - Start the clients run simulation.
+2023-08-08 22:10:57,624 - SimulatorClientRunner - INFO - Simulate Run client: site-1
+2023-08-08 22:10:57,644 - SimulatorClientRunner - INFO - Simulate Run client: site-2
+2023-08-08 22:10:57,646 - SimulatorClientRunner - INFO - Simulate Run client: site-3
+2023-08-08 22:10:57,646 - SimulatorClientRunner - INFO - Simulate Run client: site-4
+2023-08-08 22:10:57,656 - SimulatorClientRunner - INFO - Simulate Run client: site-5
+2023-08-08 22:11:03,936 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=1457a9f6-1681-412c-9177-cf301c327ab1]: assigned task to client site-1: name=train, id=1457a9f6-1681-412c-9177-cf301c327ab1
+2023-08-08 22:11:03,937 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=1457a9f6-1681-412c-9177-cf301c327ab1]: sent task assignment to client. client_name:site-1 task_id:1457a9f6-1681-412c-9177-cf301c327ab1
+2023-08-08 22:11:03,937 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: 1457a9f6-1681-412c-9177-cf301c327ab1  sharable_header_task_id: 1457a9f6-1681-412c-9177-cf301c327ab1
+2023-08-08 22:11:03,984 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: got result from client site-1 for task: name=train, id=1457a9f6-1681-412c-9177-cf301c327ab1
+2023-08-08 22:11:03,984 - HEInTimeAccumulateWeightedAggregator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=1457a9f6-1681-412c-9177-cf301c327ab1]: cannot handle data kind XGB_MODEL, expecting DataKind.WEIGHT_DIFF, DataKind.WEIGHTS, or DataKind.COLLECTION.
+2023-08-08 22:11:03,985 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=1457a9f6-1681-412c-9177-cf301c327ab1]: Contribution from site-1 REJECTED by the aggregator at round 0.
+2023-08-08 22:11:03,985 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=1457a9f6-1681-412c-9177-cf301c327ab1]: finished processing client result by scatter_and_gather
+2023-08-08 22:11:03,985 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-1   task_id:1457a9f6-1681-412c-9177-cf301c327ab1
+2023-08-08 22:11:03,988 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: assigned task to client site-3: name=train, id=90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:03,989 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: sent task assignment to client. client_name:site-3 task_id:90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:03,989 - GetTaskCommand - INFO - return task to client.  client_name: site-3  task_name: train   task_id: 90f95ad3-14fe-47a3-9c53-718eff309a6d  sharable_header_task_id: 90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:04,046 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: got result from client site-3 for task: name=train, id=90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:04,047 - HEInTimeAccumulateWeightedAggregator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: cannot handle data kind XGB_MODEL, expecting DataKind.WEIGHT_DIFF, DataKind.WEIGHTS, or DataKind.COLLECTION.
+2023-08-08 22:11:04,047 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: Contribution from site-3 REJECTED by the aggregator at round 0.
+2023-08-08 22:11:04,047 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: finished processing client result by scatter_and_gather
+2023-08-08 22:11:04,048 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-3   task_id:90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:04,063 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=ac4e502a-4659-466c-87f1-3fe4815fe6d6]: assigned task to client site-2: name=train, id=ac4e502a-4659-466c-87f1-3fe4815fe6d6
+2023-08-08 22:11:04,063 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, task_name=train, task_id=ac4e502a-4659-466c-87f1-3fe4815fe6d6]: sent task assignment to client. client_name:site-2 task_id:ac4e502a-4659-466c-87f1-3fe4815fe6d6
+2023-08-08 22:11:04,063 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: train   task_id: ac4e502a-4659-466c-87f1-3fe4815fe6d6  sharable_header_task_id: ac4e502a-4659-466c-87f1-3fe4815fe6d6
+2023-08-08 22:11:04,091 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: got result from client site-2 for task: name=train, id=ac4e502a-4659-466c-87f1-3fe4815fe6d6
+2023-08-08 22:11:04,091 - HEInTimeAccumulateWeightedAggregator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=ac4e502a-4659-466c-87f1-3fe4815fe6d6]: cannot handle data kind XGB_MODEL, expecting DataKind.WEIGHT_DIFF, DataKind.WEIGHTS, or DataKind.COLLECTION.
+2023-08-08 22:11:04,091 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=ac4e502a-4659-466c-87f1-3fe4815fe6d6]: Contribution from site-2 REJECTED by the aggregator at round 0.
+2023-08-08 22:11:04,091 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=ac4e502a-4659-466c-87f1-3fe4815fe6d6]: finished processing client result by scatter_and_gather
+2023-08-08 22:11:04,091 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-2   task_id:ac4e502a-4659-466c-87f1-3fe4815fe6d6
+2023-08-08 22:11:04,203 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job, task_name=train, task_id=0831a893-9fb1-4c6b-82fa-18936ab71e7f]: assigned task to client site-4: name=train, id=0831a893-9fb1-4c6b-82fa-18936ab71e7f
+2023-08-08 22:11:04,203 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job, task_name=train, task_id=0831a893-9fb1-4c6b-82fa-18936ab71e7f]: sent task assignment to client. client_name:site-4 task_id:0831a893-9fb1-4c6b-82fa-18936ab71e7f
+2023-08-08 22:11:04,203 - GetTaskCommand - INFO - return task to client.  client_name: site-4  task_name: train   task_id: 0831a893-9fb1-4c6b-82fa-18936ab71e7f  sharable_header_task_id: 0831a893-9fb1-4c6b-82fa-18936ab71e7f
+2023-08-08 22:11:04,263 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job]: got result from client site-4 for task: name=train, id=0831a893-9fb1-4c6b-82fa-18936ab71e7f
+2023-08-08 22:11:04,263 - HEInTimeAccumulateWeightedAggregator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=0831a893-9fb1-4c6b-82fa-18936ab71e7f]: cannot handle data kind XGB_MODEL, expecting DataKind.WEIGHT_DIFF, DataKind.WEIGHTS, or DataKind.COLLECTION.
+2023-08-08 22:11:04,263 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=0831a893-9fb1-4c6b-82fa-18936ab71e7f]: Contribution from site-4 REJECTED by the aggregator at round 0.
+2023-08-08 22:11:04,263 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=0831a893-9fb1-4c6b-82fa-18936ab71e7f]: finished processing client result by scatter_and_gather
+2023-08-08 22:11:04,264 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-4   task_id:0831a893-9fb1-4c6b-82fa-18936ab71e7f
+2023-08-08 22:11:04,556 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job, task_name=train, task_id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41]: assigned task to client site-5: name=train, id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41
+2023-08-08 22:11:04,556 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job, task_name=train, task_id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41]: sent task assignment to client. client_name:site-5 task_id:caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41
+2023-08-08 22:11:04,556 - GetTaskCommand - INFO - return task to client.  client_name: site-5  task_name: train   task_id: caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41  sharable_header_task_id: caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41
+2023-08-08 22:11:04,651 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job]: got result from client site-5 for task: name=train, id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41
+2023-08-08 22:11:04,651 - HEInTimeAccumulateWeightedAggregator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41]: cannot handle data kind XGB_MODEL, expecting DataKind.WEIGHT_DIFF, DataKind.WEIGHTS, or DataKind.COLLECTION.
+2023-08-08 22:11:04,651 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41]: Contribution from site-5 REJECTED by the aggregator at round 0.
+2023-08-08 22:11:04,652 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job, peer_rc=OK, task_name=train, task_id=caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41]: finished processing client result by scatter_and_gather
+2023-08-08 22:11:04,652 - SubmitUpdateCommand - INFO - submit_update process. client_name:site-5   task_id:caaf52ee-00bb-4ecb-9e0c-fbe5fd1d1e41
+2023-08-08 22:11:04,660 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: task train exit with status TaskCompletionStatus.OK
+2023-08-08 22:11:04,666 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Start aggregation.
+2023-08-08 22:11:04,667 - DXOAggregator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: aggregating 0 update(s) at round 0
+2023-08-08 22:11:04,667 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: End aggregation.
+2023-08-08 22:11:04,667 - HEModelShareableGenerator - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: shareable_to_learnable...
+2023-08-08 22:11:04,667 - HEModelShareableGenerator - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: error converting shareable to model
+2023-08-08 22:11:04,667 - HEModelShareableGenerator - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 140, in shareable_to_learnable
+    return self._shareable_to_learnable(shareable, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 87, in _shareable_to_learnable
+    raise ValueError("expected encryption algorithm {} but got {}".format(HE_ALGORITHM_CKKS, enc_algorithm))
+ValueError: expected encryption algorithm CKKS but got None
+
+2023-08-08 22:11:04,667 - ScatterAndGather - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Exception in ScatterAndGather control_flow: ValueError: HEModelShareableGenerator Exception ValueError: expected encryption algorithm CKKS but got None
+2023-08-08 22:11:04,672 - ScatterAndGather - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 140, in shareable_to_learnable
+    return self._shareable_to_learnable(shareable, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 87, in _shareable_to_learnable
+    raise ValueError("expected encryption algorithm {} but got {}".format(HE_ALGORITHM_CKKS, enc_algorithm))
+ValueError: expected encryption algorithm CKKS but got None
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_common/workflows/scatter_and_gather.py", line 261, in control_flow
+    self._global_weights = self.shareable_gen.shareable_to_learnable(aggr_result, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_shareable_generator.py", line 143, in shareable_to_learnable
+    raise ValueError(f"{self._name} Exception {secure_format_exception(e)}") from e
+ValueError: HEModelShareableGenerator Exception ValueError: expected encryption algorithm CKKS but got None
+
+2023-08-08 22:11:04,672 - ServerRunner - ERROR - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Aborting current RUN due to FATAL_SYSTEM_ERROR received: Exception in ScatterAndGather control_flow: ValueError: HEModelShareableGenerator Exception ValueError: expected encryption algorithm CKKS but got None
+2023-08-08 22:11:04,672 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: asked to abort - triggered abort_signal to stop the RUN
+2023-08-08 22:11:04,673 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow: scatter_and_gather finalizing ...
+2023-08-08 22:11:04,673 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: ABOUT_TO_END_RUN fired
+2023-08-08 22:11:04,673 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: END_RUN fired
+2023-08-08 22:11:04,673 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Server runner finished.
+2023-08-08 22:11:04,709 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-5, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2023-08-08 22:11:04,709 - GetTaskCommand - INFO - return task to client.  client_name: site-5  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2023-08-08 22:11:04,828 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-4, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2023-08-08 22:11:04,829 - GetTaskCommand - INFO - return task to client.  client_name: site-4  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2023-08-08 22:11:05,058 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2023-08-08 22:11:05,059 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2023-08-08 22:11:05,066 - SimulatorServer - INFO - Server app stopped.
+
+
+2023-08-08 22:11:05,125 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-3, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2023-08-08 22:11:05,125 - GetTaskCommand - INFO - return task to client.  client_name: site-3  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2023-08-08 22:11:05,139 - nvflare.fuel.hci.server.hci - INFO - Admin Server localhost on Port 58521 shutdown!
+2023-08-08 22:11:05,139 - SimulatorServer - INFO - shutting down server
+2023-08-08 22:11:05,139 - SimulatorServer - INFO - canceling sync locks
+2023-08-08 22:11:05,139 - SimulatorServer - INFO - server off
+2023-08-08 22:11:05,160 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-2, peer_run=simulate_job]: server runner is finalizing - asked client to end the run
+2023-08-08 22:11:05,160 - GetTaskCommand - INFO - return task to client.  client_name: site-2  task_name: __end_run__   task_id:   sharable_header_task_id: 
+2023-08-08 22:11:05,161 - FederatedClient - INFO - Shutting down client run: site-1
+2023-08-08 22:11:05,161 - FederatedClient - INFO - Shutting down client run: site-2
+2023-08-08 22:11:05,162 - FederatedClient - INFO - Shutting down client run: site-3
+2023-08-08 22:11:05,162 - FederatedClient - INFO - Shutting down client run: site-4
+2023-08-08 22:11:05,162 - FederatedClient - INFO - Shutting down client run: site-5
+2023-08-08 22:11:05,162 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: asked to abort - triggered abort_signal to stop the RUN
+2023-08-08 22:11:08,647 - MPM - INFO - MPM: Good Bye!

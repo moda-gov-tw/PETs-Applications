@@ -1,0 +1,69 @@
+api_version: 2
+name: criditcardfraud
+description: NVIDIA FLARE sample project yaml file
+
+participants:
+  # change example.com to the FQDN of the server
+  - name: server
+    type: server
+    org: nvidia
+    fed_learn_port: 6666
+    admin_port: 6667
+  - name: site_1
+    type: client
+    org: site_1
+  - name: site_2
+    type: client
+    org: site_2
+  - name: site_3
+    type: client
+    org: site_3
+  - name: site_4
+    type: client
+    org: site_4
+  - name: site_5
+    type: client
+    org: site_5
+  - name: admin@nvidia.com
+    type: admin
+    org: nvidia
+    role: project_admin
+
+# The same methods in all builders are called in their order defined in builders section
+builders:
+  - path: nvflare.lighter.impl.workspace.WorkspaceBuilder
+    args:
+      template_file: master_template.yml
+  - path: nvflare.lighter.impl.template.TemplateBuilder
+  - path: nvflare.lighter.impl.static_file.StaticFileBuilder
+    args:
+      # config_folder can be set to inform NVIDIA FLARE where to get configuration
+      config_folder: config
+
+      # scheme for communication driver (currently supporting the default, grpc, only).
+      # scheme: grpc
+
+      # app_validator is used to verify if uploaded app has proper structures
+      # if not set, no app_validator is included in fed_server.json
+      # app_validator: PATH_TO_YOUR_OWN_APP_VALIDATOR
+
+      # when docker_image is set to a docker image name, docker.sh will be generated on server/client/admin
+      # docker_image:
+
+      # download_job_url is set to http://download.server.com/ as default in fed_server.json.  You can override this
+      # to different url.
+      # download_job_url: http://download.server.com/
+
+      overseer_agent:
+        path: nvflare.ha.dummy_overseer_agent.DummyOverseerAgent
+        # if overseer_exists is true, args here are ignored.  Provisioning
+        #   tool will fill role, name and other local parameters automatically.
+        # if overseer_exists is false, args in this section will be used and the sp_end_point
+        # must match the server defined above in the format of SERVER_NAME:FL_PORT:ADMIN_PORT
+        # 
+        overseer_exists: false
+        args:
+          sp_end_point: server:6666:6667
+
+  - path: nvflare.lighter.impl.cert.CertBuilder
+  - path: nvflare.lighter.impl.signature.SignatureBuilder

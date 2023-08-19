@@ -1,0 +1,34 @@
+{
+    "format_version": 2,
+    "executors": [
+        {
+            "tasks": [
+                "train"
+            ],
+            "executor": {
+                "id": "Executor",
+                "path": "creditcard_executor.FedXGBTreeCreditCardExecutor",
+                "args": {
+                    "data_split_filename": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/xgboost_creditcard/5_exponential/data_site-5.json",
+                    "training_mode": "bagging",
+                    "num_client_bagging": 5,
+                    "num_local_parallel_tree": 1,
+                    "local_subsample": 1,
+                    "lr_mode": "uniform",
+                    "local_model_path": "model.json",
+                    "global_model_path": "model_global.json",
+                    "learning_rate": 0.1,
+                    "objective": "binary:logistic",
+                    "max_depth": 8,
+                    "eval_metric": "auc",
+                    "tree_method": "hist",
+                    "nthread": 16,
+                    "lr_scale": 0.6364197373236979
+                }
+            }
+        }
+    ],
+    "task_result_filters": [],
+    "task_data_filters": [],
+    "components": []
+}

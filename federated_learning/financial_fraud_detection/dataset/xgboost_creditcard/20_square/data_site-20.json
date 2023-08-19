@@ -1,0 +1,89 @@
+{
+    "data_path": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv",
+    "data_index": {
+        "valid": {
+            "start": 0,
+            "end": 49841
+        },
+        "site-1": {
+            "start": 49841,
+            "end": 49922
+        },
+        "site-2": {
+            "start": 49922,
+            "end": 50249
+        },
+        "site-3": {
+            "start": 50249,
+            "end": 50985
+        },
+        "site-4": {
+            "start": 50985,
+            "end": 52294
+        },
+        "site-5": {
+            "start": 52294,
+            "end": 54340
+        },
+        "site-6": {
+            "start": 54340,
+            "end": 57287
+        },
+        "site-7": {
+            "start": 57287,
+            "end": 61298
+        },
+        "site-8": {
+            "start": 61298,
+            "end": 66537
+        },
+        "site-9": {
+            "start": 66537,
+            "end": 73168
+        },
+        "site-10": {
+            "start": 73168,
+            "end": 81354
+        },
+        "site-11": {
+            "start": 81354,
+            "end": 91260
+        },
+        "site-12": {
+            "start": 91260,
+            "end": 103049
+        },
+        "site-13": {
+            "start": 103049,
+            "end": 116884
+        },
+        "site-14": {
+            "start": 116884,
+            "end": 132930
+        },
+        "site-15": {
+            "start": 132930,
+            "end": 151350
+        },
+        "site-16": {
+            "start": 151350,
+            "end": 172308
+        },
+        "site-17": {
+            "start": 172308,
+            "end": 195968
+        },
+        "site-18": {
+            "start": 195968,
+            "end": 222493
+        },
+        "site-19": {
+            "start": 222493,
+            "end": 252047
+        },
+        "site-20": {
+            "start": 252047,
+            "end": 284807
+        }
+    }
+}

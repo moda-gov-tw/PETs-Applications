@@ -1,0 +1,71 @@
+{
+    "format_version": 2,
+    "executors": [
+        {
+            "tasks": [
+                "train",
+                "submit_model",
+                "validate"
+            ],
+            "executor": {
+                "id": "Executor",
+                "path": "creditcard_executor.FedXGBTreeCreditCardExecutor",
+                "args": {
+                    "data_split_filename": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/xgboost_creditcard/5_exponential/data_site-2.json",
+                    "training_mode": "bagging",
+                    "num_client_bagging": 5,
+                    "num_local_parallel_tree": 1,
+                    "local_subsample": 1,
+                    "lr_mode": "scaled",
+                    "local_model_path": "model.json",
+                    "global_model_path": "model_global.json",
+                    "learning_rate": 0.1,
+                    "objective": "binary:logistic",
+                    "max_depth": 8,
+                    "eval_metric": "auc",
+                    "tree_method": "hist",
+                    "nthread": 16,
+                    "lr_scale": 0.03168117940467983
+                }
+            }
+        }
+    ],
+    "task_result_filters": [
+        {
+            "tasks": [
+                "train"
+            ],
+            "filters": [
+                {
+                    "name": "HEModelEncryptor",
+                    "path": "nvflare.app_opt.he.model_encryptor.HEModelEncryptor",
+                    "args": {
+                        "aggregation_weights": {
+                            "site1": 1.0,
+                            "site2": 1.0,
+                            "site3": 1.0,
+                            "site4": 1.0,
+                            "site5": 1.0
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "task_data_filters": [
+        {
+            "tasks": [
+                "train",
+                "validate"
+            ],
+            "filters": [
+                {
+                    "name": "HEModelDecryptor",
+                    "path": "nvflare.app_opt.he.model_decryptor.HEModelDecryptor",
+                    "args": {}
+                }
+            ]
+        }
+    ],
+    "components": []
+}

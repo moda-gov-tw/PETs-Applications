@@ -1,0 +1,14 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}update log{% endblock title %}
+
+{% block content %}
+    {% include 'general/update_log_text.html' %}
+{% endblock content %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '更新日誌' %}";
+        navbar_highlight('update_log');
+    </script>
+{% endblock script %}

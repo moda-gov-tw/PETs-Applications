@@ -1,0 +1,188 @@
+{% load i18n %}
+{% load static %}
+<div class="header_word">
+    <font id="string_name">被配對對象名稱</font>
+</div> 
+<div class="modal-body" style="padding:15px 0px 0px 0px;">
+    <div>
+        <font id="string_introduction" class="en_little_content"></font>
+    </div>
+    <table class="content_word" style="margin:5px 0px 0px 0px; width:100%">
+        <tbody id="string_pair_tbody">
+        </tbody>
+    </table>
+    <div id="column_button">
+        <div>
+            <img id="custom_add" src="{% static 'img/plus.png' %}" alt="{% trans '新增欄位' %}" width="40"/>
+        </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+    var structure_dict = {};
+    
+    {% if structure_dict %}
+        structure_dict = {{ structure_dict|safe }};
+    {% endif %}
+
+
+    function create_string_pair(column_title) {
+        $('#string_name').html(column_title);        
+        set_string_pair(column_title);
+    }
+    
+    function set_string_pair(column_title) {
+        var pair_area = document.getElementById('string_pair_tbody');
+        var string_element_dict = {{ string_element_dict|safe }};
+        var string_element_list = string_element_dict[column_title];
+        
+        if (!(column_title in structure_dict)) {
+            var temp = {};
+            for (var element of string_element_list) {
+                temp[element] = null;
+            }
+            structure_dict[column_title] = temp;
+        }
+        
+        var pair_dict = structure_dict[column_title];
+        var element_count = 0;
+        pair_area.innerHTML = "";
+        for (var element in pair_dict) {
+            var tr = pair_area.insertRow(-1);
+            var td = tr.insertCell(-1);
+            td.innerHTML = '<input type="text" id="column_title_'+ element_count +'" class="custom_font" value="'+ element +'" disabled="disabled" style="width:100%">';
+            td.style = "padding-bottom:5px; padding-right:5px; width:42%;";
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<font style="width:100%">' + "{% trans '對應' %}" + '</font>';
+            td.style = "padding-bottom:5px; padding-right:5px; width:9%;"
+            
+            td = tr.insertCell(-1);
+            td.innerHTML = '<input id="select_pair_input_' + element_count + '" list="select_pair_' + element_count + '" style="width:100%" onchange="set_structure_dict(\''+column_title+'\', '+element_count+')">';
+            td.innerHTML += '<span class="custom-select-myarrow">';
+            td.innerHTML += '<datalist id="select_pair_' + element_count + '">';
+            td.innerHTML += '</datalist>';
+            var option_count = 0;
+            var datalist = document.getElementById('select_pair_'+element_count)
+            for (var pair_element in pair_dict) {
+                datalist.innerHTML += '<option id="select_pair_'+element_count+'_option_'+option_count+'" value="' + pair_element + '">';
+                datalist.innerHTML += '<font>';
+                datalist.innerHTML += pair_element;
+                datalist.innerHTML += '</font>';
+                datalist.innerHTML += '</option>';
+                option_count = option_count + 1;
+            }
+            td.style = "padding-bottom:5px; padding-right:5px; width:42%;";
+            td = tr.insertCell(-1);
+            td.style = "padding-bottom:5px; width:7%;";
+            var select = $('#select_pair_label_' + element_count);
+            if (pair_dict[element]) {
+                select.val(pair_dict[element]);
+            }
+            element_count = element_count + 1;
+        }
+        $('#custom_add').unbind('click');
+        $('#custom_add').click(function() {
+            add_string_pair(column_title);
+        });
+    }
+    
+    function add_string_pair(column_title) {
+        var pair_area = document.getElementById('string_pair_tbody');
+        var count_id = pair_area.rows.length;
+        var tr = pair_area.insertRow(-1);        
+        var td = tr.insertCell(-1);
+        var pair_dict = structure_dict[column_title];
+        td.innerHTML = '<input type="text" id="column_title_' + count_id + '" class="custom_font" style="width:100%" onchange="set_structure_dict(\'' + column_title + '\', ' + count_id + ')">';
+        td.style = "padding-bottom:5px; padding-right:5px; width:42%;";
+        
+        td = tr.insertCell(-1);
+        td.innerHTML = '<font style="width:100%">' + "{% trans '對應' %}" + '</font>';
+        td.style = "padding-bottom:5px; padding-right:5px; width:9%;"
+        
+        td = tr.insertCell(-1);
+        td.innerHTML = '<input id="select_pair_input_' + count_id + '" list="select_pair_' + count_id + '" style="width:100%">';
+        td.innerHTML += '<span class="custom-select-myarrow">';
+        td.innerHTML += '<datalist id="select_pair_' + count_id + '">';
+        td.innerHTML += '</datalist>';
+        
+        var datalist = document.getElementById('select_pair_'+count_id);
+        var option_count = 0;
+        for (var pair_element in pair_dict) {
+            datalist.innerHTML += '<option id="select_pair_'+count_id+'_option_'+option_count+'" value="' + pair_element + '">';
+            datalist.innerHTML += pair_element;
+            datalist.innerHTML += '</option>';
+            option_count = option_count + 1;
+        }
+        td.style = "padding-bottom:5px; padding-right:5px; width:42%;";
+        
+        var string_element = $('#column_title_' + count_id); 
+        var select = $('#select_pair_' + count_id);
+        string_element.change(function() {
+            set_element_list(column_title, count_id);
+        });
+        select.change(function() {
+            set_structure_dict(column_title, count_id);
+        });
+        
+        td = tr.insertCell(-1);
+        td.innerHTML = '<img src="{% static "img/minus.png" %}" alt="{% trans "刪除欄位" %}" width="40" onclick="delete_field(\''+column_title+'\', '+count_id+')"/>';
+        td.style = "padding-bottom:5px; width:7%;"        
+    }
+    
+    function set_structure_dict(column_title, count) {
+        var element = $('#column_title_' + count).val();
+        console.log(element);
+        var select = $('#select_pair_input_' + count).val();
+        console.log(select);
+        var pair_dict = structure_dict[column_title];
+        if (element) {
+            pair_dict[element] = select;
+            structure_dict[column_title] = pair_dict;
+            console.log(structure_dict);
+        }
+    }
+    
+    function set_element_list(column_title, id) {
+        var pair_area = document.getElementById('string_pair_tbody');
+        var count_id = pair_area.rows.length;
+        var element = $('#column_title_' + id).val();
+        
+        var check_exist = document.getElementById('select_pair_0_option_'+id);
+        if(check_exist) {
+            delete_element_list(column_title, id)
+        }
+        
+        for (var count = 0; count<pair_area.rows.length; count++) {
+            var datalist = document.getElementById('select_pair_'+count);
+            datalist.innerHTML += '<option id="select_pair_'+count+'_option_'+id+'" value="'+element+'">'+element+'</option>'
+        }
+    }
+    
+    function delete_field(column_title, delete_id) {
+        var pair_area = document.getElementById('string_pair_tbody');
+        
+        for (var i=delete_id; i<pair_area.rows.length-1; i++) {
+            now_element = document.getElementById('column_title_' + i);
+            next_element = document.getElementById('column_title_'+(i+1));
+            now_element.value = next_element.value;
+            now_element = document.getElementById('select_pair_'+i);
+            next_element = document.getElementById('select_pair_'+(i+1));
+            now_element.value = next_element.value;
+            set_element_list(column_title, i)
+        }
+        delete_element_list(column_title, pair_area.rows.length-1);
+        pair_area.deleteRow(-1);
+    }
+    
+    function delete_element_list(column_title, delete_id) {
+        var pair_area = document.getElementById('string_pair_tbody');
+        if (document.getElementById('select_pair_0_option_'+delete_id)) {
+            for (var count = 0; count<pair_area.rows.length; count++) {
+                var datalist = document.
+                    getElementById('select_pair_'+count);
+                datalist.removeChild(document.getElementById('select_pair_'+count+'_option_'+delete_id))
+            }
+        }
+    }    
+</script>

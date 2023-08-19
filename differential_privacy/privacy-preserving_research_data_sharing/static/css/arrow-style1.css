@@ -1,0 +1,28 @@
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    .select-arrow {
+        appearance:none; 
+        -webkit-appearance:none;
+        background: url("../img/chrome_down_arrow.jpg") no-repeat scroll right center transparent;
+        background-size:auto 100%
+    }
+    
+    .remove-input-arrow::-webkit-outer-spin-button,
+    .remove-input-arrow::-webkit-inner-spin-button {
+        -webkit-appearance:none;
+    }    
+}
+
+@-moz-document url-prefix(){
+    .select-arrow {
+        appearance:none;  
+        -moz-appearance:none;
+        background: url("../img/firefox_down_arrow.jpg") no-repeat scroll right center transparent;
+        background-size:auto 100%
+    }
+    
+    .remove-input-arrow {
+        -moz-appearance:textfield;
+    }
+    
+    .Big-input-arrow
+}

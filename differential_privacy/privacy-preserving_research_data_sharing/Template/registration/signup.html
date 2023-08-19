@@ -1,0 +1,54 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}signup{% endblock title %}
+
+{% block content %}
+    <form id="signup_form" action="{% url 'signup' %}" method="post">
+        <table class="content_word" style="width:50%">
+        {% csrf_token %}
+        {% for field in form %}
+            <tr>
+                <td>
+                    <font data-toggle="tooltip" title="{{ field.help_text }}">{{ field.label }}</font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:5px">
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <font style="color: red">{{ error }}</font>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </form>
+    
+    <div style="padding-top:20px">
+        <font class="header_word">{% trans '操作列表' %}</font>
+    </div>
+    <table class="content_word" style="width:25%;">
+        <tr valign="top">
+            <td style="width:50%;">
+                <a href="javascript:void(0)" onclick="form_submit()" style="color:#FF0000">
+                    <font>{% trans '註冊完成' %}</font>
+                </a>
+            </td>
+            <td style="width:50%;">
+                <a href="{% url 'login' %}" style="color:#0062AD">
+                    <font>{% trans '回到登入' %}</font>
+                </a>
+            </td>
+        </tr>
+    </table>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '歡迎使用本系統，註冊完畢後將自動導向至主頁面' %}";
+        
+        function form_submit() {
+            $('#signup_form').submit();
+        }
+    </script>
+{% endblock script %}

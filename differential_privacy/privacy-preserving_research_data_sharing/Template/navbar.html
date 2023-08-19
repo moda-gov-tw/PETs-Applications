@@ -1,0 +1,181 @@
+{% load i18n %}
+{% trans '帳號管理' as account_management %}
+{% trans '更改密碼' as change_password %}
+{% trans '登出' as log_out %}
+{% trans '刪除帳號' as delete_account %}
+<div>
+    <!-- navbar top -->
+    <nav style="border-bottom-style:dotted; border-width:1px; border-color:#707070;">
+        <!-- navbar-header -->
+        <div>
+            <a href="{% url 'home' %}">
+                <font class="home_word">{% trans '資料匿名化系統' %}</font>
+            </a>
+        </div>
+        <!-- end navbar-header -->
+        <!-- navbar-top-links -->
+        <ul class="nav navbar-top-links">
+            <!-- main dropdown -->
+            <li>
+                <a id="home" href="{% url 'home' %}">
+                    <font>{% trans '首頁' %}</font>
+                </a>
+            </li>
+            <li>
+                <a id="DPView" href="{% url 'DPView:home' %}">
+                    <font>DPView</font>
+                </a>
+            </li>
+            <li>
+                <a id="t_Closeness" href="{% url 't_Closeness:home' %}">
+                    <font>k-Anonymity</font>
+                </a>
+            </li>
+            {% if false %}
+                <li>
+                    <a id="l_Diversity" href="{% url 'l_Diversity:home' %}">
+                        <font>l-Diversity</font>
+                    </a>
+                </li>
+                <li>
+                    <a id="k_Anonymity" href="{% url 'k_Anonymity:home' %}">
+                        <font>k-Anonymity</font>
+                    </a>
+                </li>
+            {% endif %}
+            <li>
+                <a id="update_log" href="{% url 'update_log' %}">
+                    <font>{% trans '更新日誌' %}</font>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                    <font>{% trans '語言切換' %}</font>
+                </a>
+                <ul class="nav nav-second-level dropdown-menu dropdown-user" style="font-size: 18px;">
+                    <form id="i18n" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path|remove_language_code }}"/>
+                        <input name="language" type="hidden" value="{{ LANGUAGE_CODE }}" />
+                    </form>
+                    {% for code, name in LANGUAGES %}
+                        <li>
+                            <a href="javascript:void(0)" name="language_item" onclick="switch_language('{{ code }}')">
+                                <font>{{ name }}</font>                            
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- second-level-items -->
+            </li>
+            <li class="dropdown">
+                {% if user.is_authenticated %}
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        <font>{{ user.username }}</font>
+                    </a>
+                {% else %}
+                    <a class="dropdown-toggle" href="javascript:void(0)">
+                        <font>{% trans '尚未登入' %}</font>
+                    </a>
+                {% endif %}
+                <!-- dropdown user-->
+                <ul class="dropdown-menu dropdown-user" style="font-size: 18px;">
+                    <li>
+                        <a href="javascript:void(0)" onclick="change_password()">
+                            <i class="fa fa-key fa-fw"></i>
+                            <font>{% trans '更改密碼' %}</font>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <i class="fa fa-sign-out fa-fw"></i>
+                            <font>{% trans '登出' %}</font>                            
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="delete_account()">
+                            <i class="fa fa-trash-o fa-fw"></i>
+                            <font>{% trans '刪除帳號' %}</font>
+                        </a>
+                    </li>
+                </ul>
+                <!-- end dropdown-user -->
+            </li>
+            <!-- end main dropdown -->
+        </ul>
+        <!-- end navbar-top-links -->
+    </nav>
+    
+    <!-- end navbar top -->
+    <div id="alert" class="alert row" style="display:none; width:100%; opacity:0.9; margin:0px; padding:5px">
+        <font id="alert_text" class="col-md-11 title_word"></font>
+        <button type="button" class="close" onclick="close_alert()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+    
+<script>
+    alert_jquery = $('#alert');
+    alert_text_jquery = $('#alert_text');
+    
+    function navbar_highlight(title) {
+        var highlight = document.getElementById(title);
+        highlight.removeAttribute("href");
+        highlight.style.color = '#000000';
+    }
+    
+    function switch_language(language) {
+        $("[name='language']").val(language);
+        $('#i18n').submit();
+    }
+        
+    function initial_alert(text) {
+        alert_jquery.removeClass();
+        alert_jquery.addClass('alert row');
+        alert_jquery.finish();
+        alert_jquery.css('opacity','0.9');
+        alert_text_jquery.text(text);
+        alert_jquery.show();
+        window.scrollTo(0, 0);
+    }
+    
+    function danger_alert(text) {
+        initial_alert(text);
+        alert_jquery.addClass('alert-danger');
+        alert_jquery.fadeOut(15000, close_alert);
+    }
+    
+    function success_alert(text) {
+        initial_alert(text);
+        alert_jquery.addClass('alert-success');
+        alert_jquery.fadeOut(15000, close_alert);
+    }
+    
+    function warning_alert(text) {
+        initial_alert(text);
+        alert_jquery.addClass('alert-warning');
+        alert_jquery.fadeOut(15000, close_alert);
+    }
+        
+    function close_alert() {
+        alert_jquery.hide();
+    }
+    
+    function delete_account() {
+        {% if not user.is_authenticated %}
+            warning_alert("{% trans '請先登入' %}");
+            return;
+        {% endif %}
+        window.location = "{% url 'password_check_page' 'delete_account' %}";
+    }
+    
+    function change_password() {
+        {% if not user.is_authenticated %}
+            warning_alert("{% trans '請先登入' %}");
+            return;
+        {% endif %}
+        window.location = "{% url 'password_check_page' 'change_password' %}";
+    }
+</script>

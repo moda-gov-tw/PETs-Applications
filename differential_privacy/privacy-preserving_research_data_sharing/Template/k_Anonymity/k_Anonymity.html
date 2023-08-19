@@ -1,0 +1,15 @@
+{% extends "general/function.html" %}
+{% load i18n %}
+{% block title %}k-Anonymity {{ block.super }}{% endblock title %}
+
+{% block hint %}
+    <div>
+        <font>{% trans '1：去識別化後的檔案可用性高，但執行速度較慢，可先執行 t-Closeness 測試是否符合需求' %}</font>
+    </div>
+    <div>
+        <font>{% trans '2：k 的值不能小於1，不能大於資料總筆數' %}</font>
+    </div>
+    <div>
+        <font>{% trans '3：將游標懸浮至參數上可獲得參數進一步的說明' %}</font>
+    </div>
+{% endblock hint %}

@@ -1,0 +1,529 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-06 08:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Template/DPSyn/DPSyn.html:6 Template/home.html:23
+msgid ""
+"說明： 差分隱私適用於資料筆數較大的資料集，建議至少含有一萬筆紀錄且維度也會受"
+"資料筆數影響不能太高。"
+msgstr ""
+"Description: Differential Privacy is suitable for the data sets with a large "
+"number of data, suggest that data set has ten thousand records at least and "
+"the dimension can't be highly influenced by the counts of records."
+
+#: Template/DPSyn/DPSyn_home.html:11
+msgid "說明：差分隱私適用於資料筆數較大的資料集，建議至少含有一萬筆紀錄"
+msgstr ""
+"Description : Differential Privacy is suitable for the data sets with a "
+"large number of data, suggest that data set has ten thousand records at "
+"least."
+
+#: Template/DPSyn/DPSyn_home.html:12
+msgid "注意事項1：文件格式( 資料欄位不可少於3欄 )"
+msgstr "Attention 1: data must >= 3 columns."
+
+#: Template/DPSyn/DPSyn_home.html:13
+#: Template/k_Anonymity/k_Anonymity_home.html:8
+#: Template/l_Diversity/l_Diversity_home.html:8
+#: Template/t_Closeness/t_Closeness_home.html:8
+msgid "注意事項2：文件內容( 請先刪除如姓名、ID等極具識別能力的欄位 )"
+msgstr "Attention 2: please delete identification data, like name, ID."
+
+#: Template/DPSyn/DPSyn_home.html:14
+msgid "注意事項3：檔案請另存新檔為CSV檔(.csv)"
+msgstr "Attention 3: file must save as csv(.csv)."
+
+#: Template/DPSyn/DPSyn_number_preprocessing.html:4
+msgid "說明1：請選擇下列數字欄位的資料類型"
+msgstr "Description 1: please pair type to data."
+
+#: Template/DPSyn/DPSyn_number_preprocessing.html:6
+#: Template/json_parser/json_parser.html:6
+msgid "說明2：請設定數字欄位去識別化時，所使用的分區間隔"
+msgstr "Description 2: please set interval of number for de-identification."
+
+#: Template/footer.html:59
+msgid "貢獻人員："
+msgstr "Contribution: "
+
+#: Template/footer.html:60
+msgid "林志訓"
+msgstr "Chih-Hsun Lin"
+
+#: Template/footer.html:60
+msgid "林晏丞"
+msgstr "Yen-Cheng Lin"
+
+#: Template/footer.html:60
+msgid "陳鐿文"
+msgstr "Yi-Wen Chen"
+
+#: Template/footer.html:60
+msgid "王力慶"
+msgstr "Li-Ching Wang"
+
+#: Template/footer.html:66
+msgid "聯絡方式："
+msgstr "Contacts: "
+
+#: Template/footer.html:68
+msgid "交通大學資訊管理與財務金融學系"
+msgstr "Department of Information Management and Finance, NCTU"
+
+#: Template/footer.html:69
+msgid "游家牧助理教授"
+msgstr "Assistant Professor Chia-Mu Yu"
+
+#: Template/general/display_file.html:3
+msgid "(前200筆)"
+msgstr "(first 200 records)"
+
+#: Template/general/execute_finish.html:6
+msgid "去識別化完成"
+msgstr "de-identification finish"
+
+#: Template/general/execute_finish.html:7
+msgid "說明1：左邊為原始檔案，右邊為去識別化檔案"
+msgstr ""
+"Description 1: origin file at the left, de-identification file at the right."
+
+#: Template/general/execute_finish.html:8
+msgid "說明2：將頁面滾動至最下方，可以選擇存檔或進行後續的可用度檢測"
+msgstr ""
+"Description 2: scroll the page to the bottom, you can choose to download "
+"file or check utility."
+
+#: Template/general/execute_finish.html:13 Template/general/utility.html:4
+msgid "原始檔案"
+msgstr "origin file"
+
+#: Template/general/execute_finish.html:20 Template/general/utility.html:5
+msgid "去識別化檔案"
+msgstr "de-identification file"
+
+#: Template/general/execute_finish.html:27 Template/general/utility.html:40
+msgid "下載去識別化檔案"
+msgstr "download de-identification file"
+
+#: Template/general/execute_finish.html:30
+msgid "檔案可用度量測"
+msgstr "check utility"
+
+#: Template/general/execute_finish.html:33
+msgid "再次執行去識別化"
+msgstr "de-identification again"
+
+#: Template/general/execute_finish.html:36 Template/general/function.html:52
+#: Template/general/parameter_custom.html:51 Template/general/utility.html:43
+msgid "返回主選單"
+msgstr "back to home"
+
+#: Template/general/function.html:3
+msgid "小時"
+msgstr "hour"
+
+#: Template/general/function.html:4
+msgid "分"
+msgstr "minute"
+
+#: Template/general/function.html:5
+msgid "秒"
+msgstr "second"
+
+#: Template/general/function.html:6
+msgid "目前進度："
+msgstr "completion_rate: "
+
+#: Template/general/function.html:22 Template/general/parallel_template.html:18
+#: Template/registration/signup.html:16
+msgid "說明："
+msgstr "Description: "
+
+#: Template/general/function.html:49
+msgid "執行"
+msgstr "execute"
+
+#: Template/general/function.html:58
+msgid "進度條"
+msgstr "progress bar"
+
+#: Template/general/function.html:59
+msgid "執行時間："
+msgstr "run time: "
+
+#: Template/general/function.html:130
+msgid "執行完成"
+msgstr "finish"
+
+#: Template/general/function.html:132
+msgid "檔案執行完畢"
+msgstr "finish"
+
+#: Template/general/function.html:140
+msgid "執行失敗"
+msgstr "wrong"
+
+#: Template/general/function_home.html:17
+msgid "注意事項1："
+msgstr "Attention 1: "
+
+#: Template/general/function_home.html:26
+msgid "請選擇將要去識別化的CSV檔案(.csv)"
+msgstr "Please select the CSV file(.csv) to be de-identified."
+
+#: Template/general/function_home.html:49
+msgid "請先選擇檔案"
+msgstr "Please select file."
+
+#: Template/general/function_home.html:54
+msgid "檔案類型錯誤"
+msgstr "File type error."
+
+#: Template/general/number_preprocessing.html:3
+#: Template/json_parser/json_parser.html:10
+msgid "檔名："
+msgstr "File name: "
+
+#: Template/general/number_preprocessing.html:7
+#: Template/json_parser/json_parser.html:14
+msgid "無需預先設定的參數"
+msgstr "Don't need any setting."
+
+#: Template/general/number_preprocessing.html:10
+#: Template/json_parser/json_parser.html:17
+msgid "欄位："
+msgstr "Column: "
+
+#: Template/general/number_preprocessing.html:14
+msgid "資料為離散型資料"
+msgstr "data is discrete."
+
+#: Template/general/number_preprocessing.html:18
+msgid "資料為連續型資料"
+msgstr "data is continuous."
+
+#: Template/general/number_preprocessing.html:23
+msgid "間隔數量："
+msgstr "quantity of interval: "
+
+#: Template/general/number_preprocessing.html:28
+msgid "確定"
+msgstr "determine"
+
+#: Template/general/number_preprocessing.html:32
+msgid "間隔區間(每個區間皆包含最小值不包含最大值)："
+msgstr "number of interval (minimum <= number < maximum): "
+
+#: Template/general/number_preprocessing.html:88
+msgid "checked_result錯誤呼叫："
+msgstr "Call checked_result error."
+
+#: Template/general/number_preprocessing.html:137
+msgid "已達最大值"
+msgstr "Maximum"
+
+#: Template/general/number_preprocessing.html:141
+msgid "已達最小值"
+msgstr "Minimum"
+
+#: Template/general/parallel_template.html:17
+msgid "並列式模板"
+msgstr "Parallel template"
+
+#: Template/general/parallel_template.html:40
+#: Template/general/parameter_custom.html:36
+msgid "繼續執行"
+msgstr "continue"
+
+#: Template/general/parameter_custom.html:6
+msgid "檔案確認"
+msgstr "Check file"
+
+#: Template/general/parameter_custom.html:7
+msgid "說明1：請確認左邊的參數設定，是否希望做進一步的調整"
+msgstr "Description 1: please check parameter at the left"
+
+#: Template/general/parameter_custom.html:8
+msgid "說明2：請確認右邊的檔案預覽，是否為您想要去識別化的檔案"
+msgstr "Description 2: please check preview file at the right"
+
+#: Template/general/parameter_custom.html:9
+msgid "說明3：設定完成後，將頁面滾動至最下方，並按下繼續執行"
+msgstr ""
+"Description 3: after check everything, scroll the page to the bottom, and "
+"continue."
+
+#: Template/general/parameter_custom.html:22
+#, fuzzy
+#| msgid "custom_mode錯誤，{{ custom_mode }}不符合預期，請通知開發人員"
+msgid "custom_mode錯誤，{{custom_mode}}不符合預期，請通知開發人員"
+msgstr "custom_mode error, %s is wrong, please contact us thanks."
+
+#: Template/general/parameter_custom.html:29
+msgid "檔案預覽"
+msgstr "Preview file"
+
+#: Template/general/parameter_custom.html:40
+msgid "進階設定"
+msgstr "advanced settings"
+
+#: Template/general/parameter_custom.html:44
+msgid "基礎設定"
+msgstr "base settings"
+
+#: Template/general/parameter_custom.html:48
+msgid "重新選擇檔案"
+msgstr "Select file again."
+
+#: Template/general/parameter_custom.html:93
+#: Template/general/parameter_custom.html:216
+msgid "尚未選擇資料類型"
+msgstr "Please pair type to data."
+
+#: Template/general/parameter_custom.html:122
+#: Template/general/parameter_custom.html:231
+#, fuzzy, python-format
+#| msgid "custom_mode錯誤，%(custom_mode)s不符合預期，請通知開發人員"
+msgid "間隔 type 錯誤，%(type)s不符合預期，請通知開發人員"
+msgstr "interval type error, %(type)s is wrong, please contact us thanks."
+
+#: Template/general/parameter_custom.html:126
+#: Template/general/parameter_custom.html:235
+msgid "尚未確認間隔數量"
+msgstr "Please determine quantity of interval."
+
+#: Template/general/parameter_custom.html:197
+msgid "尚有對應關係還沒填寫"
+msgstr "Need pair."
+
+#: Template/general/parameter_custom.html:261
+#, fuzzy, python-format
+#| msgid "custom_mode錯誤，%(custom_mode)s不符合預期，請通知開發人員"
+msgid "custom_mode 錯誤，%(custom_mode)s不符合預期，請通知開發人員"
+msgstr "custom_mode error, %(custom_mode)s is wrong, please contact us thanks."
+
+#: Template/general/utility.html:3
+msgid "已完成"
+msgstr "finish"
+
+#: Template/general/utility.html:9
+msgid "可用性評估"
+msgstr "check utility"
+
+#: Template/general/utility.html:10
+msgid "說明1：請選擇用以量測的機器學習方法，選擇後將立即開始量測"
+msgstr "Description 1: select machine learning method to check utility."
+
+#: Template/general/utility.html:11
+msgid "說明2：左邊為原始檔案的準確度，右邊為去識別化檔案的準確度"
+msgstr ""
+"Description 2: accuracy of origin file at the left, accuracy of de-"
+"identification file at the right"
+
+#: Template/general/utility.html:15
+msgid "用以量測的機器學習："
+msgstr "machine learning method: "
+
+#: Template/general/utility.html:22
+msgid "量測中請稍後"
+msgstr "please wait a moment."
+
+#: Template/general/utility.html:28 Template/general/utility.html:64
+msgid "原始檔案準確度(accuracy)："
+msgstr "accuracy of origin file: "
+
+#: Template/general/utility.html:34 Template/general/utility.html:65
+msgid "去識別化檔案準確度(accuracy)："
+msgstr "accuracy of de-identification file: "
+
+#: Template/home.html:3
+msgid "使用"
+msgstr "enter"
+
+#: Template/json_parser/json_parser.html:4
+msgid ""
+"說明1：配對檔案裡文字的上下關係，例如：gmail 屬於 google，可自行輸入或使用下"
+"拉式選單"
+msgstr ""
+"Description 1: pair relation of word, like 'gmail pair to google', use input "
+"or dropdown list to pair"
+
+#: Template/json_parser/json_parser.html:21
+msgid "資料為地址"
+msgstr "data is address"
+
+#: Template/json_parser/json_parser.html:25
+msgid "資料間無關聯"
+msgstr "data is not any related"
+
+#: Template/json_parser/json_parser.html:36
+msgid "對應"
+msgstr "pair to"
+
+#: Template/json_parser/json_parser.html:52
+msgid "新增欄位"
+msgstr "add custom"
+
+#: Template/json_parser/json_parser.html:55
+msgid "刪除欄位"
+msgstr "delete custom"
+
+#: Template/k_Anonymity/k_Anonymity.html:6
+msgid ""
+"說明1：去識別化後的檔案可用性高，但執行速度較慢，可先執行 t-Closeness 測試是"
+"否符合需求"
+msgstr "Description 1: high utility, but run time is worst."
+
+#: Template/k_Anonymity/k_Anonymity.html:7
+#: Template/l_Diversity/l_Diversity.html:7
+#: Template/t_Closeness/t_Closeness.html:7
+msgid "說明2：「K」 ── 去識別化後，在任意查詢條件下，至少會同時查到K筆資料"
+msgstr ""
+"Description 2: 'K' - quantity of search data at least k by any search "
+"condition."
+
+#: Template/k_Anonymity/k_Anonymity_home.html:7
+#: Template/l_Diversity/l_Diversity_home.html:7
+#: Template/t_Closeness/t_Closeness_home.html:7
+msgid "注意事項1：文件格式( 資料筆數不可超過200筆，資料欄位不可超過4欄 )"
+msgstr "Attention 1: row <= 200 (except title), column <= 4"
+
+#: Template/k_Anonymity/k_Anonymity_home.html:9
+#: Template/l_Diversity/l_Diversity_home.html:9
+#: Template/t_Closeness/t_Closeness_home.html:9
+msgid ""
+"注意事項3：文件內容( 請將要公布的主要內容放在最後一欄，以免對其進行去識別化，"
+"例如薪資表中的薪水欄位 )"
+msgstr ""
+"Attention 3: please put main data to last column, like Salary in payslip"
+
+#: Template/k_Anonymity/k_Anonymity_home.html:10
+#: Template/l_Diversity/l_Diversity_home.html:10
+#: Template/t_Closeness/t_Closeness_home.html:10
+msgid "注意事項4：檔案請另存新檔為CSV檔(.csv)"
+msgstr "Attention 4: file save as csv file(.csv)"
+
+#: Template/l_Diversity/l_Diversity.html:6
+msgid "說明1：執行速度較快，但去識別化後的檔案不一定具備可用性"
+msgstr "Description 1: run time is fastest, but utility is worst."
+
+#: Template/l_Diversity/l_Diversity.html:8
+msgid ""
+"說明3：「L」 ── 去識別化後，K筆資料中，將至少有L筆資料將完全相同( 包含沒去識"
+"別化的最後一欄 )"
+msgstr "Description 2: 'L' - at least L same data in K"
+
+#: Template/navbar.html:2
+msgid "帳號管理"
+msgstr "account_management"
+
+#: Template/navbar.html:3
+msgid "登出"
+msgstr "log out"
+
+#: Template/navbar.html:4
+msgid "刪除帳號"
+msgstr "delete account"
+
+#: Template/navbar.html:9
+msgid "主頁"
+msgstr "home"
+
+#: Template/navbar.html:49 Template/navbar.html:77
+msgid "帳號即將刪除，刪除後資料無法回復，如確定要刪除請輸入YES"
+msgstr "Account will delete, if sure delete please input 'YES'."
+
+#: Template/navbar.html:53 Template/navbar.html:81
+msgid "刪除動作已取消"
+msgstr "Cancel delete."
+
+#: Template/registration/login.html:15
+msgid "歡迎使用本系統，請先登入帳號以繼續操作"
+msgstr "Welcome to system, please log in to continue."
+
+#: Template/registration/login.html:16
+msgid "說明：若無帳號請先註冊"
+msgstr "Description: if don't have account, please sign up first."
+
+#: Template/registration/login.html:31
+msgid "登入"
+msgstr "log in"
+
+#: Template/registration/login.html:34 Template/registration/signup.html:15
+msgid "註冊"
+msgstr "sign up"
+
+#: Template/registration/signup.html:37
+msgid "送出"
+msgstr "send"
+
+#: Template/registration/signup.html:40
+msgid "回到登入"
+msgstr "back to login"
+
+#: Template/t_Closeness/t_Closeness.html:6
+msgid "說明1：執行速度較快，若可用性過低可藉由調高T來提升可用性"
+msgstr "Description 1: run time is fastest, if utility is too bad, add T value can let utility up."
+
+#: Template/t_Closeness/t_Closeness.html:8
+msgid ""
+"說明3：「T」 ── 去識別化後，K筆資料中的主要內容(最後一欄)的分布，將與整個資料"
+"集的分布相差在T以內"
+msgstr ""
+"Description 3: 'T' - distribution of data in K, will like dataset, "
+"difference with T"
+
+#: accounts/validator/password_validation.py:20
+#, python-format
+msgid "密碼長度過短，長度至少為 %(min_length)d "
+msgid_plural "密碼長度過短，長度至少為 %(min_length)d "
+msgstr[0] "password too short, at least %(min_length)d"
+msgstr[1] "password too short, at least %(min_length)d"
+
+#: accounts/validator/password_validation.py:30
+#, python-format
+msgid "密碼長度至少為 %(min_length)d "
+msgid_plural "密碼長度至少為 %(min_length)d "
+msgstr[0] "password at least %(min_length)d"
+msgstr[1] "password at least %(min_length)d"
+
+#: accounts/validator/password_validation.py:51
+#, python-format
+msgid "密碼與 %(verbose_name)s 欄位過於相似"
+msgstr "password too similar with %(verbose_name)s"
+
+#: accounts/validator/password_validation.py:57
+msgid "密碼不能與其他欄位過於相似."
+msgstr "password can't too similar with other data"
+
+#: accounts/validator/password_validation.py:63
+msgid "密碼太過常見"
+msgstr "password too common"
+
+#: accounts/validator/password_validation.py:68
+msgid "不能使用常見密碼"
+msgstr "password can't use common words"
+
+#: accounts/validator/password_validation.py:74
+msgid "密碼全為數字"
+msgstr "password is only number"
+
+#: accounts/validator/password_validation.py:79
+msgid "密碼不能全為數字"
+msgstr "password can't only number"

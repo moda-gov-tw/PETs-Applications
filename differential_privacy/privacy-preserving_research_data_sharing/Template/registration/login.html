@@ -1,0 +1,66 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}login{% endblock title %}
+
+{% block content %}
+    <form id="login_form" action="{% url 'login' %}" method="post">
+        <table class="content_word" style="width:50%">
+            {% csrf_token %}
+            <tr>
+                <td>
+                    <font data-toggle="tooltip" title="{{ form.username.help_text }}">{{ form.username.label }}</font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:5px">
+                    {{ form.username }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <font data-toggle="tooltip" title="{{ form.username.help_text }}">{{ form.password1.label }}</font>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-bottom:5px">
+                    {{ form.password1 }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <font style="color: red">
+                        {{ error_message }}
+                    </font>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <div style="padding-top:20px">
+        <font class="header_word">{% trans '操作列表' %}</font>
+    </div>
+    <table class="content_word" style="width:25%;">
+        <tr valign="top">
+            <td style="width:50%;">
+                <a href="javascript:void(0)" onclick="form_submit()" style="color:#FF0000">
+                    <font>{% trans '登入系統' %}</font>
+                </a>
+            </td>
+            <td style="width:50%;">
+                <a href="{% url 'signup' %}" style="color:#0062AD">
+                    <font>{% trans '開始註冊' %}</font>
+                </a>
+            </td>
+        </tr>
+    </table>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        page.title = "{% trans '歡迎使用本系統，請先登入帳號以繼續操作' %}";
+        
+        function form_submit() {
+            $('#login_form').submit();
+        }
+    </script>
+{% endblock script %}

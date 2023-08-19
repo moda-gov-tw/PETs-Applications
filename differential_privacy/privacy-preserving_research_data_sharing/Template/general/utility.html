@@ -1,0 +1,284 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}utility check{% endblock title %}
+
+{% block content %}    
+    {% trans '已完成' as finish %}
+    {% trans '原始檔案' as origin_file %}
+    {% trans '去識別化檔案' as de_identification_file %}
+    {% trans '可用度檢測檔案' as utility_file %}
+    <div class="header_word hint-body">
+        <font id="hint_utility" name="hint_level_1" onclick="hint_click('hint_utility', 1)">{% trans '說明' %} ▼</font>
+        <div id="hint_utility_page" name="level_1_page" class="header_word" style="display:none">
+            <div class="hint-level-1 en_little_content" style="padding-top:0px">
+                <div>
+                    <font>{% trans '1：請選擇用以量測的機器學習方法，以及預測目標是分類問題或是回歸問題，選擇後請按下確定' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '2：將會以資料集最後一欄做為量測目標(Label)' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '3：上方為以80%原始檔案訓練，20%原始檔案驗證的準確度' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '4：中間為以80%去識別化檔案訓練，20%去識別化檔案驗證的準確度' %}</font>
+                </div>
+                <div>
+                    <font>{% trans '5：下方為以80%去識別化檔案訓練，20%原始檔案檔案驗證的準確度' %}</font>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form id="parameter_form">
+        {% csrf_token %}
+        <table style="width:100%; margin-bottom:20px">
+            <tr class="header_word">
+                <td style="width:50%">
+                    <font for="machine_learning_mode_select">{% trans '模型預測目標：' %}</font>
+                </td>
+                <td style="width:50%">
+                    <font for="machine_learning_select">{% trans '用以量測的機器學習：' %}</font>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50%">
+                    <div style="padding-right:10px">
+                        <select id="machine_learning_mode_select" class="form-control content_word select-arrow" style="padding:0px; height:100%; color:#000000;">
+                            <option value="classification">
+                                <font>
+                                    {% trans '分類預測' %}
+                                </font>
+                            </option>
+                            <option value="regression">
+                                <font>
+                                    {% trans '回歸預測' %}
+                                </font>
+                            </option>
+                            <option value="diff">
+                                <font>
+                                    {% trans 'asdsad' %}
+                                </font>
+                            </option>
+                        </select>
+                    </div>
+                </td>
+                <td style="width:50%">
+                    <div style="padding-right:10px">
+                        <select id="machine_learning_select" class="form-control content_word select-arrow" style="padding:0px; height:100%; color:#000000;">
+                            {% for item in machine_learning_list %}
+                                <option value="{{ item }}">
+                                    <font>
+                                        {{ item }}
+                                    </font>
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <select id="diff_select" class="form-control content_word select-arrow" style="padding:0px; height:100%; color:#000000; display: none;">
+                            <option value="132">
+                                <font>
+                                    132
+                                </font>
+                            </option>
+                            <option value="qbc">
+                                <font>
+                                    qbc
+                                </font>
+                            </option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <font id="loading" class="content_word" style="color:#FF0000; display:none; margin-bottom:10px;">{% trans '量測中請稍後' %}</font>
+        <div class="en_little_content">
+            <div>
+                <font id="left_accuracy">{% trans '原始檔案準確度(accuracy)：' %}</font>
+            </div>
+            <div>
+                <font id="right_accuracy">{% trans '去識別化檔案準確度(accuracy)：' %}</font>
+            </div>
+            <div>
+                <font id="bottom_accuracy">{% trans '以去識別化訓練，檢測原始檔案準確度(accuracy)：' %}</font>
+            </div>
+        </div>
+    </form>
+    
+    <div style="padding-top:20px">
+        <font class="header_word">{% trans '操作列表' %}</font>
+    </div>
+    <table class="content_word" style="width:50%;">
+        <tr valign="top">
+            <td style="width:25%;">
+                <a id="start_botton" href="javascript:void(0)" onclick="check_start()" style="color:#FF0000">
+                    <font>{% trans '開始量測' %}</font>
+                </a>
+            </td>
+            <td style="width:25%;">
+                <a href="{{ download_output_url }}" style="color:#0062AD">
+                    <font>{% trans '下載成果' %}</font>
+                </a>
+            </td>
+            <td style="width:25%;">
+                <a href="{% url 'home' %}" style="color:#0062AD">
+                    <font>{% trans '返回首頁' %}</font>
+                </a>
+            </td>
+            <td style="width:25%;">
+            </td>
+        </tr>
+    </table>
+{% endblock content %}
+
+{% block script %}
+    {% trans '已完成' as finish %}
+    {% trans '原始檔案' as origin_file %}
+    {% trans '去識別化檔案' as de_identification_file %}
+    {% trans '可用度檢測檔案' as utility_file %}
+    <script>
+        page.title = "{% trans '可用性評估' %}";
+        navbar_highlight('{{ caller }}');
+    </script>
+    
+    <script>
+        var left_accuracy = $('#left_accuracy');
+        var right_accuracy = $('#right_accuracy');
+        var bottom_accuracy = $('#bottom_accuracy');
+        var loading_text = $('#loading');
+        var diff_selecter = $('#diff_select');
+        var selecter = $('#machine_learning_select');
+        var mode = $('#machine_learning_mode_select');
+        var start_botton = $('#start_botton');
+
+        var finish_text = '{{ finish }}';
+        var unlock_count = 0;
+        var select_mode = "machine_learning";
+        var check_utility_method = selecter.val();
+        
+        mode.on('change', function() {
+            if ($(this).val() === 'classification') {       
+                diff_selecter.hide();
+                selecter.show(); 
+                left_accuracy.text("{% trans '原始檔案準確度(accuracy)：' %}");
+                right_accuracy.text("{% trans '去識別化檔案準確度(accuracy)：' %}");
+                bottom_accuracy.text("{% trans '以去識別化訓練，檢測原始檔案準確度(accuracy)：' %}");
+                select_mode = "machine_learning";
+                check_utility_method = selecter.val();
+            }
+            else if ($(this).val() === 'regression') {
+                diff_selecter.hide();
+                selecter.show(); 
+                left_accuracy.text("{% trans '原始檔案決定係數(coefficient of determination)：' %}");
+                right_accuracy.text("{% trans '去識別化檔案決定係數(coefficient of determination)：' %}");
+                bottom_accuracy.text("{% trans '以去識別化訓練，檢測原始檔案決定係數(coefficient of determination)：' %}");
+                select_mode = "machine_learning";
+                check_utility_method = selecter.val();
+            }
+            else if ($(this).val() === 'diff') {
+                diff_selecter.show();
+                selecter.hide();
+                left_accuracy.text("{% trans '原sadsdadtermination)：' %}");
+                right_accuracy.text("{% trans 'asdsad(coefficient of determination)：' %}");
+                bottom_accuracy.text("{% trans '以去sadasd練，檢測原始檔案決定係數(coefficient of determination)：' %}");
+                select_mode = "diff";
+                check_utility_method = diff_selecter.val();
+            }
+        });
+        
+        function finish(text_element, finish_message) {
+            finish_text = finish_message+' '+finish_text;
+            text_element.text(finish_text);
+        }
+        
+        function reset() {
+            finish_text = '{{ finish }}';
+            unlock_count = 0;
+            
+            loading_text.text("{% trans '量測中請稍後' %}");
+            if (mode.val() === 'classification') {
+                diff_selecter.hide();
+                selecter.show(); 
+                left_accuracy.text("{% trans '原始檔案準確度(accuracy)：' %}");
+                right_accuracy.text("{% trans '去識別化檔案準確度(accuracy)：' %}");
+                bottom_accuracy.text("{% trans '以去識別化訓練，檢測原始檔案準確度(accuracy)：' %}");
+                select_mode = "machine_learning";
+                check_utility_method = selecter.val();
+            }
+            else if (mode.val() === 'regression') {
+                diff_selecter.hide();
+                selecter.show(); 
+                left_accuracy.text("{% trans '原始檔案決定係數(coefficient of determination)：' %}");
+                right_accuracy.text("{% trans '去識別化檔案決定係數(coefficient of determination)：' %}");
+                bottom_accuracy.text("{% trans '以去識別化訓練，檢測原始檔案決定係數(coefficient of determination)：' %}");
+                select_mode = "machine_learning";
+                check_utility_method = selecter.val();
+            }
+            else if (mode.val() === 'diff') {
+                diff_selecter.show();
+                selecter.hide();
+                left_accuracy.text("{% trans '原sadsdadtermination)：' %}");
+                right_accuracy.text("{% trans 'asdsad(coefficient of determination)：' %}");
+                bottom_accuracy.text("{% trans '以去sadasd練，檢測原始檔案決定係數(coefficient of determination)：' %}");
+                select_mode = "diff";
+                check_utility_method = diff_selecter.val();
+            }
+        }
+        
+        function utility_check(train_file_path, test_file_path, text_element, file_kind) {
+            var url = '{{ check_utility_url }}' + select_mode;
+            var data = {
+                'csrfmiddlewaretoken' : '{{ csrf_token }}',
+                'csv_name' : '{{file_name}}',
+                'check_utility_method' : check_utility_method,
+                'check_utility_mode' : mode.val(),
+                'train_file_path' : train_file_path,
+                'test_file_path' : test_file_path,
+            };
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (result) {
+                    if (mode.val() === 'classification') {
+                        text_element.text(text_element.text() + result.accuracy + '%');
+                    }
+                    else if (mode.val() === 'regression') {
+                        text_element.text(text_element.text() + result.accuracy);
+                    }
+                    finish(loading_text, file_kind);
+                    unlock_count++;
+                    if (unlock_count>=3) {
+                        selecter.removeAttr('disabled');
+                        mode.removeAttr('disabled');
+                        start_botton.removeAttr('disabled');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var jsonObj = JSON.parse(xhr.responseText);
+                    text_element.text(text_element.text() + jsonObj.accuracy + '%');
+                    danger_alert(file_kind+jsonObj.message);
+                    unlock_count++;
+                    if (unlock_count>=3) {
+                        selecter.removeAttr('disabled');
+                        mode.removeAttr('disabled');
+                        start_botton.removeAttr('disabled');
+                    }
+                }
+            });
+        }
+        
+        function check_start() {
+            reset();
+                        
+            selecter.attr('disabled', 'disabled');
+            mode.attr('disabled', 'disabled');
+            start_botton.attr('disabled', 'disabled');
+            loading_text.show();
+            
+            utility_check('upload', 'upload', left_accuracy, '{{ origin_file }}');
+            utility_check('output', 'output', right_accuracy, '{{ de_identification_file }}');
+            utility_check('output', 'upload', bottom_accuracy, '{{ utility_file }}');
+        }
+    </script>
+{% endblock script %}

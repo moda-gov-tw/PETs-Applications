@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Avenir';
+  src: url('./Avenir/AvenirLTStd-Book') format("opentype");
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('./Helvetica/Helvetica.ttf') format("truetype");
+}
+
+.home_word{
+    font-size: 22px;
+    font-weight: bold;
+    color:black;
+}
+
+.title_word{
+    font-size: 26px;
+}
+
+.header_word{
+    font-size: 22px;
+}
+
+.content_word, .en_little_content{
+    font-size: 20px;
+}
+
+.footer_header, .footer_content{
+    font-size: 18px;
+}

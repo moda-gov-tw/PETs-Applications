@@ -1,0 +1,74 @@
+{% extends "base.vue" %}
+{% load i18n %}
+{% block title %}confirm{% endblock title %}
+
+{% block content %}
+    <div id="question">
+        <div class="header_word">
+            <font>{{ cell_content }}</font>
+        </div>
+        
+        <div style="padding-top:20px">
+            <font class="header_word">{% trans '操作列表' %}</font>
+        </div>
+        <table class="content_word" style="width:25%;">
+            <tr valign="top">
+                <td style="width:50%;">
+                    <a href="javascript:void(0)" onclick="go_to_url()" style="color:#0062AD">
+                        <font>{% trans '是' %}</font>
+                    </a>
+                </td>
+                <td style="width:50%;">
+                    <a href="javascript:void(0)" onclick="dobule_check()" style="color:#0062AD">
+                        <font>{% trans '否' %}</font>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div id="check" style="display:none">
+        <div class="header_word">
+            <font>{% trans '確定執行新的去識別化嗎?先前的執行結果將不會保留' %}</font>
+        </div>
+        
+        <div style="padding-top:20px">
+            <font class="header_word">{% trans '操作列表' %}</font>
+        </div>
+        <table class="content_word" style="width:25%;">
+            <tr valign="top">
+                <td style="width:50%;">
+                    <a href="javascript:void(0)" onclick="new_start()" style="color:#0062AD">
+                        <font>{% trans '是' %}</font>
+                    </a>
+                </td>
+                <td style="width:50%;">
+                    <a href="javascript:void(0)" onclick="dobule_check()" style="color:#0062AD">
+                        <font>{% trans '否' %}</font>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script>
+        function go_to_url() {
+            window.location = "{{ yes_url }}";
+        }
+        
+        function dobule_check() {
+            $('#question').toggle();
+            $('#check').toggle();
+        }
+        
+        function new_start() {
+            $.get("{% url 'initialize' %}");
+            {% if break_url %}
+                $.get('{{ break_url }}');
+            {% endif %}
+            window.location = "{% url 'home' %}";
+        }
+    </script>
+{% endblock script %}

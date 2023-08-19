@@ -1,0 +1,67 @@
+2023-08-08 22:10:58,683 - ClientTaskWorker - INFO - ClientTaskWorker started to run
+2023-08-08 22:10:58,713 - Cell - INFO - site-3.simulate_job: created backbone external connector to tcp://localhost:58520
+2023-08-08 22:10:58,713 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE tcp://localhost:58520] is starting
+2023-08-08 22:11:03,502 - HEModelEncryptor - INFO - Using HE model encryptor.
+2023-08-08 22:11:03,502 - HEModelEncryptor - INFO - client weights control: {'site1': 1.0, 'site2': 1.0, 'site3': 1.0, 'site4': 1.0, 'site5': 1.0}
+2023-08-08 22:11:03,502 - HEModelEncryptor - INFO - Encrypting all layers
+2023-08-08 22:11:03,503 - HEModelDecryptor - INFO - Using HE model decryptor.
+2023-08-08 22:11:03,517 - FedXGBTreeCreditCardExecutor - INFO - [identity=site-3, run=simulate_job]: Client site-3 initialized with args: 
+ Namespace(job_folder='/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/tree-based/jobs/creditcard_5_bagging_HE_exponential_split_scaled_lr', workspace='/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/tree-based/workspaces/creditcard_5_bagging_HE_exponential_split_scaled_lr', clients=None, n_clients=5, threads=5, gpu=None, max_clients=100, set=[], log_config=None, config_folder='config', job_id='simulate_job', client_config='config/config_fed_client.json', env='config/environment.json', server_config='config/config_fed_server.json', client_name='site-3', token='3879256d-89b2-40f7-9cb6-f99d7f54ca8b')
+2023-08-08 22:11:03,943 - HEModelEncryptor - ERROR - [identity=site-3, run=simulate_job]: Exception when handling event "_start_run": TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+2023-08-08 22:11:03,958 - HEModelEncryptor - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/event.py", line 61, in fire_event
+    h.handle_event(event, ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_encryptor.py", line 105, in handle_event
+    self.tenseal_context = load_tenseal_context_from_workspace(self.tenseal_context_file, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/homomorphic_encrypt.py", line 43, in load_tenseal_context_from_workspace
+    context = ts.context_from(data)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/__init__.py", line 71, in context_from
+    return Context.load(data, n_threads)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/enc_context.py", line 179, in load
+    return cls._wrap(ts._ts_cpp.TenSEALContext.deserialize(data))
+TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+
+2023-08-08 22:11:03,958 - HEModelDecryptor - ERROR - [identity=site-3, run=simulate_job]: Exception when handling event "_start_run": TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+2023-08-08 22:11:03,961 - HEModelDecryptor - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/event.py", line 61, in fire_event
+    h.handle_event(event, ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/model_decryptor.py", line 58, in handle_event
+    self.tenseal_context = load_tenseal_context_from_workspace(self.tenseal_context_file, fl_ctx)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/app_opt/he/homomorphic_encrypt.py", line 43, in load_tenseal_context_from_workspace
+    context = ts.context_from(data)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/__init__.py", line 71, in context_from
+    return Context.load(data, n_threads)
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/tenseal/enc_context.py", line 179, in load
+    return cls._wrap(ts._ts_cpp.TenSEALContext.deserialize(data))
+TypeError: deserialize(): incompatible function arguments. The following argument types are supported:
+    1. (buffer: str, n_threads: Optional[int] = 8) -> _tenseal_cpp.TenSEALContext
+
+Invoked with: None
+
+2023-08-08 22:11:03,963 - ClientRunner - INFO - [identity=site-3, run=simulate_job]: client runner started
+2023-08-08 22:11:03,963 - ClientTaskWorker - INFO - Initialize ClientRunner for client: site-3
+2023-08-08 22:11:03,990 - Communicator - INFO - Received from simulator_server server  (568 Bytes). getTask: train time: 0.0036439895629882812 seconds
+2023-08-08 22:11:03,991 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
+2023-08-08 22:11:03,991 - ClientRunner - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:03,991 - ClientRunner - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: invoking task executor FedXGBTreeCreditCardExecutor
+2023-08-08 22:11:03,991 - FedXGBTreeCreditCardExecutor - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: Client trainer got task: train
+2023-08-08 22:11:03,991 - FedXGBTreeCreditCardExecutor - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: Client site-3 initial training from scratch
+2023-08-08 22:11:04,043 - FedXGBTreeCreditCardExecutor - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: Local epochs finished. Returning shareable
+2023-08-08 22:11:04,044 - ClientRunner - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: finished processing task
+2023-08-08 22:11:04,045 - FederatedClient - INFO - Starting to push execute result.
+2023-08-08 22:11:04,048 - Communicator - INFO -  SubmitUpdate size: 2288 Bytes. time: 0.0030078887939453125 seconds
+2023-08-08 22:11:04,049 - ClientRunner - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=90f95ad3-14fe-47a3-9c53-718eff309a6d]: result sent to server for task: name=train, id=90f95ad3-14fe-47a3-9c53-718eff309a6d
+2023-08-08 22:11:04,049 - ClientTaskWorker - INFO - Finished one task run for client: site-3 interval: 0.05 task_processed: True
+2023-08-08 22:11:05,126 - FederatedClient - INFO - pull_task completed. Task name:__end_run__ Status:True 
+2023-08-08 22:11:05,126 - ClientRunner - INFO - [identity=site-3, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: server asked to end the run
+2023-08-08 22:11:05,126 - ClientTaskWorker - INFO - End the Simulator run.
+2023-08-08 22:11:05,126 - ClientTaskWorker - INFO - Clean up ClientRunner for : site-3 

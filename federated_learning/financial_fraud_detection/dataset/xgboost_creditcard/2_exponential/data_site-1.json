@@ -1,0 +1,17 @@
+{
+    "data_path": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv",
+    "data_index": {
+        "valid": {
+            "start": 0,
+            "end": 49841
+        },
+        "site-1": {
+            "start": 49841,
+            "end": 113033
+        },
+        "site-2": {
+            "start": 113033,
+            "end": 284807
+        }
+    }
+}

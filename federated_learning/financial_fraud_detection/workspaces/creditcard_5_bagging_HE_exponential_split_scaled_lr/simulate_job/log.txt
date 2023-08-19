@@ -1,0 +1,2 @@
+2023-08-08 15:33:11,366 - SimulatorRunner - ERROR - Simulator setup error: FileNotFoundError: source directory "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/jobs/creditcard_5_bagging_HE_exponential_split_scaled_lr" does not exist
+2023-08-08 15:33:11,366 - MPM - INFO - MPM: Good Bye!

@@ -1,0 +1,168 @@
+2023-07-31 16:34:51,385 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:34:51,392 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:34:51,392 - ConnectorManager - INFO - 47860: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:34:51,393 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:58466] is starting
+2023-07-31 16:34:51,898 - Cell - INFO - server: created backbone internal listener for tcp://localhost:58466
+2023-07-31 16:34:51,898 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:34:51,899 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:34:51,910 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:34:51,911 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:34:51,923 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:34:54,005 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:34:54,005 - MPM - WARNING - #### MPM: still running thread Thread-3
+2023-07-31 16:34:54,006 - MPM - WARNING - #### MPM: still running thread Thread-5
+2023-07-31 16:34:54,006 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:36:27,349 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:36:27,357 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:36:27,357 - ConnectorManager - INFO - 48025: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:36:27,358 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:10784] is starting
+2023-07-31 16:36:27,863 - Cell - INFO - server: created backbone internal listener for tcp://localhost:10784
+2023-07-31 16:36:27,863 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:36:27,864 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:36:27,867 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:36:27,867 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:36:27,872 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:36:29,969 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:36:29,970 - MPM - WARNING - #### MPM: still running thread Thread-4
+2023-07-31 16:36:29,970 - MPM - WARNING - #### MPM: still running thread Thread-5
+2023-07-31 16:36:29,970 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:36:36,946 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:36:36,952 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:36:36,952 - ConnectorManager - INFO - 48042: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:36:36,953 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:12064] is starting
+2023-07-31 16:36:37,458 - Cell - INFO - server: created backbone internal listener for tcp://localhost:12064
+2023-07-31 16:36:37,459 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:36:37,461 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:36:37,465 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:36:37,472 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:36:37,484 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:36:39,561 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:36:39,561 - MPM - WARNING - #### MPM: still running thread Thread-4
+2023-07-31 16:36:39,561 - MPM - WARNING - #### MPM: still running thread Thread-5
+2023-07-31 16:36:39,562 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:36:47,027 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:36:47,034 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:36:47,034 - ConnectorManager - INFO - 48053: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:36:47,034 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:22290] is starting
+2023-07-31 16:36:47,539 - Cell - INFO - server: created backbone internal listener for tcp://localhost:22290
+2023-07-31 16:36:47,540 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:36:47,542 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:36:47,552 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:36:47,553 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:36:47,563 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:36:49,644 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:36:49,644 - MPM - WARNING - #### MPM: still running thread Thread-3
+2023-07-31 16:36:49,644 - MPM - WARNING - #### MPM: still running thread Thread-4
+2023-07-31 16:36:49,644 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:36:56,995 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:36:57,002 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:36:57,002 - ConnectorManager - INFO - 48064: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:36:57,002 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:37248] is starting
+2023-07-31 16:36:57,508 - Cell - INFO - server: created backbone internal listener for tcp://localhost:37248
+2023-07-31 16:36:57,508 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:36:57,510 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:36:57,514 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:36:57,521 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:36:57,531 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:36:59,614 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:36:59,615 - MPM - WARNING - #### MPM: still running thread Thread-4
+2023-07-31 16:36:59,615 - MPM - WARNING - #### MPM: still running thread Thread-5
+2023-07-31 16:36:59,615 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:37:07,297 - Cell - INFO - server: creating listener on grpc://0:6666
+2023-07-31 16:37:07,304 - Cell - INFO - server: created backbone external listener for grpc://0:6666
+2023-07-31 16:37:07,304 - ConnectorManager - INFO - 48076: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:37:07,305 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:53148] is starting
+2023-07-31 16:37:07,806 - Cell - INFO - server: created backbone internal listener for tcp://localhost:53148
+2023-07-31 16:37:07,806 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE grpc://0:6666] is starting
+2023-07-31 16:37:07,807 - ServerState - INFO - Got the primary sp: server fl_port: 6666 SSID: ebc6125d-0a56-4688-9b08-355fe9e4d61a. Turning to hot.
+2023-07-31 16:37:07,808 - FederatedServer - INFO - state changed from: ColdState to: HotState
+2023-07-31 16:37:07,811 - MPM - ERROR - main_func execute exception: OSError: [Errno 48] Address already in use
+2023-07-31 16:37:07,814 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/server/server_train.py", line 121, in main
+    admin_server = create_admin_server(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/utils.py", line 77, in create_admin_server
+    admin_server = FedAdminServer(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/server/admin.py", line 172, in __init__
+    AdminServer.__init__(
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/hci/server/hci.py", line 148, in __init__
+    self.server_bind()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
+
+2023-07-31 16:37:09,918 - MPM - WARNING - #### MPM: still running thread Thread-2
+2023-07-31 16:37:09,918 - MPM - WARNING - #### MPM: still running thread Thread-4
+2023-07-31 16:37:09,919 - MPM - WARNING - #### MPM: still running thread Thread-5
+2023-07-31 16:37:09,919 - MPM - INFO - MPM: Good Bye!

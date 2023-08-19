@@ -1,0 +1,85 @@
+2023-07-31 16:36:29,417 - Cell - INFO - site_1: created backbone external connector to grpc://server:6666
+2023-07-31 16:36:29,418 - ConnectorManager - INFO - 48029: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:36:29,418 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:61008] is starting
+2023-07-31 16:36:29,924 - Cell - INFO - site_1: created backbone internal listener for tcp://localhost:61008
+2023-07-31 16:36:29,924 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE grpc://server:6666] is starting
+2023-07-31 16:36:29,926 - FederatedClient - INFO - Wait for engine to be created.
+2023-07-31 16:36:37,759 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 8 seconds
+2023-07-31 16:36:45,970 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 16 seconds
+2023-07-31 16:37:00,445 - MPM - ERROR - main_func execute exception: RuntimeError: Login failed.
+2023-07-31 16:37:00,446 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/client/client_train.py", line 120, in main
+    raise RuntimeError("Login failed.")
+RuntimeError: Login failed.
+
+2023-07-31 16:37:02,088 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:37:09,514 - Cell - INFO - site_1: created backbone external connector to grpc://server:6666
+2023-07-31 16:37:09,514 - ConnectorManager - INFO - 48081: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:37:09,515 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:1525] is starting
+2023-07-31 16:37:10,020 - Cell - INFO - site_1: created backbone internal listener for tcp://localhost:1525
+2023-07-31 16:37:10,020 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE grpc://server:6666] is starting
+2023-07-31 16:37:10,021 - FederatedClient - INFO - Wait for engine to be created.
+2023-07-31 16:37:17,853 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 8 seconds
+2023-07-31 16:37:26,065 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 16 seconds
+2023-07-31 16:37:40,587 - MPM - ERROR - main_func execute exception: RuntimeError: Login failed.
+2023-07-31 16:37:40,588 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/client/client_train.py", line 120, in main
+    raise RuntimeError("Login failed.")
+RuntimeError: Login failed.
+
+2023-07-31 16:37:42,792 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:37:49,612 - Cell - INFO - site_1: created backbone external connector to grpc://server:6666
+2023-07-31 16:37:49,612 - ConnectorManager - INFO - 48231: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:37:49,613 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:21287] is starting
+2023-07-31 16:37:50,114 - Cell - INFO - site_1: created backbone internal listener for tcp://localhost:21287
+2023-07-31 16:37:50,115 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE grpc://server:6666] is starting
+2023-07-31 16:37:50,119 - FederatedClient - INFO - Wait for engine to be created.
+2023-07-31 16:37:57,952 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 8 seconds
+2023-07-31 16:38:06,166 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 16 seconds
+2023-07-31 16:38:20,623 - MPM - ERROR - main_func execute exception: RuntimeError: Login failed.
+2023-07-31 16:38:20,625 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/client/client_train.py", line 120, in main
+    raise RuntimeError("Login failed.")
+RuntimeError: Login failed.
+
+2023-07-31 16:38:22,286 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:38:29,997 - Cell - INFO - site_1: created backbone external connector to grpc://server:6666
+2023-07-31 16:38:29,997 - ConnectorManager - INFO - 48272: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:38:29,998 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:62580] is starting
+2023-07-31 16:38:30,503 - Cell - INFO - site_1: created backbone internal listener for tcp://localhost:62580
+2023-07-31 16:38:30,504 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE grpc://server:6666] is starting
+2023-07-31 16:38:30,507 - FederatedClient - INFO - Wait for engine to be created.
+2023-07-31 16:38:38,344 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 8 seconds
+2023-07-31 16:38:46,549 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 16 seconds
+2023-07-31 16:39:01,062 - MPM - ERROR - main_func execute exception: OSError: [Errno 5] Input/output error
+2023-07-31 16:39:01,063 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/client/client_train.py", line 119, in main
+    print("The client could not register to server. ")
+OSError: [Errno 5] Input/output error
+
+2023-07-31 16:39:03,275 - MPM - INFO - MPM: Good Bye!
+2023-07-31 16:39:10,191 - Cell - INFO - site_1: created backbone external connector to grpc://server:6666
+2023-07-31 16:39:10,191 - ConnectorManager - INFO - 48315: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2023-07-31 16:39:10,192 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:16251] is starting
+2023-07-31 16:39:10,696 - Cell - INFO - site_1: created backbone internal listener for tcp://localhost:16251
+2023-07-31 16:39:10,696 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE grpc://server:6666] is starting
+2023-07-31 16:39:10,699 - FederatedClient - INFO - Wait for engine to be created.
+2023-07-31 16:39:18,532 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 8 seconds
+2023-07-31 16:39:26,740 - nvflare.fuel.f3.sfm.conn_manager - INFO - Retrying [CH00001 ACTIVE grpc://server:6666] in 16 seconds
+2023-07-31 16:39:41,267 - MPM - ERROR - main_func execute exception: RuntimeError: Login failed.
+2023-07-31 16:39:41,267 - MPM - ERROR - Traceback (most recent call last):
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/fuel/f3/mpm.py", line 144, in run
+    rc = main_func()
+  File "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/TTCxgb/lib/python3.9/site-packages/nvflare/private/fed/app/client/client_train.py", line 120, in main
+    raise RuntimeError("Login failed.")
+RuntimeError: Login failed.
+
+2023-07-31 16:39:43,470 - MPM - INFO - MPM: Good Bye!

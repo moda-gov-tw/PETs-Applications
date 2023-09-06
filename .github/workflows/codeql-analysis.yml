@@ -82,7 +82,7 @@ jobs:
       - if: matrix.language == 'cpp'
         name: Build the criminal data cloud computing application
         run: |
-          cd ${{ github.workspace }}/homomorphic_encryption/criminal_data_cloud_computing
+          cd ${{ github.workspace }}/homomorphic_encryption/criminal_data_cloud_computing/tfhe-police/
           mkdir build && cd build
           cmake ..
           make

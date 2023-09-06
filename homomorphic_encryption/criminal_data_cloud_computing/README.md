@@ -89,4 +89,4 @@ Please refer to [here](https://hackmd.io/@petworks/ByAmydrP3) for the Chinese ve
 
 ## Disclaimer
 
-The application listed here only serves as the minimum demonstrations of using PETs. The source code should not be directly deployed for real-world use.
+The application listed here only serves as the minimum demonstrations of using PETs. The source code should not be directly deployed for production use.

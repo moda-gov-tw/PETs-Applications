@@ -20,4 +20,4 @@ Here we provide a list of the PETs applications dealing with this problem.
 
 ## Disclaimer
 
-The applications listed here only serve as the minimum demonstrations of using PETs. Their source code should not be directly deployed for real-world use.
+The applications listed here only serve as the minimum demonstrations of using PETs. Their source code should not be directly deployed for production use.

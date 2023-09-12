@@ -30,7 +30,7 @@ include_directories( ${OpenFHE_INCLUDE}/third-party/include )
 include_directories( ${OpenFHE_INCLUDE}/core )
 include_directories( ${OpenFHE_INCLUDE}/pke )
 include_directories( ${OpenFHE_INCLUDE}/binfhe )
-include_directories(../include)
+include_directories(./include)
 
 ### add directories for other OpenFHE modules as needed for your project
 

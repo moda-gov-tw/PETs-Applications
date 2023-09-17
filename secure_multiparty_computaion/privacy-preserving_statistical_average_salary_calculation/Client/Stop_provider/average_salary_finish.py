@@ -4,8 +4,8 @@ import sys
 
 sys.path.append('.')
 
-from client import *
-from domains import *
+from Client.client import *
+from Client.domains import *
 
 n_computation_nodes = int(sys.argv[1])
 computation_node0_port_num = int(sys.argv[2])

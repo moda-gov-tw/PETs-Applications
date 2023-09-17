@@ -4,10 +4,10 @@ import sys
 
 sys.path.append('.')
 
-from client import *
-from domains import *
+from Client.client import *
+from Client.domains import *
 
-n_computation_nodes = int(sys.argv[1])
+n_computation_nodes = int(sys.argv[1])  #the number of MPC node
 computation_node_0_port_num = int(sys.argv[2])
 ip = []
 for i in range(n_computation_nodes):
@@ -19,7 +19,7 @@ salary = float(input("Please enter your salary:"))
 gender = int(input("\n1.Male 2.Female 3.Other \nPlease choose your gender:"))
 
 print("\n")
-if gender not in [1,2,3]:
+if gender not in [1, 2, 3]:
     raise ValueError("invalid gender type")
 
 client = Client(ip, computation_node_0_port_num, client_id)
@@ -36,5 +36,3 @@ else:
 multiple = 2 ** 16
 client.send_private_inputs([domain(salary * multiple)])
 client.send_private_inputs([domain(gender)])
-
-# print('Average Salary is :',(client.receive_outputs(domain, 1)[0].v % 2 ** 64)/multiple)

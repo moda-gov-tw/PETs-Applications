@@ -4,7 +4,7 @@ import time
 
 class Client:
     def __init__(self, hostnames, port_base, my_client_id):
-        ctx = ssl.SSLContext()
+        ctx = ssl.SSLContext(ssl_version=ssl.PROTOCOL_SSLv23)
         name = 'C%d' % my_client_id
         prefix = 'Player-Data/%s' % name
         ctx.load_cert_chain(certfile=prefix + '.pem', keyfile=prefix + '.key')

@@ -44,7 +44,7 @@ def split_num_proportion(n, site_num, option: str):
     if option == "uniform":
         ratio_vec = np.ones(site_num)
     elif option == "IID":
-        ratio_vec = np.ones(site_num) #沒有包含valid_data
+        ratio_vec = np.ones(site_num) #without valid_data
     elif option == "linear":
         ratio_vec = np.linspace(1, site_num, num=site_num)
     elif option == "square":

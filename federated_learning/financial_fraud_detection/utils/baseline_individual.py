@@ -1,5 +1,3 @@
-# Author HC_SU
-# Project TTC PPFL
 # Model XGB
 # Dataset CreditCardFraud@Kaggle.com
 # Discribe: everyone gets the same distribution dataset as well as the label ratio

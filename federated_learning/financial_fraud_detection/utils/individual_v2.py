@@ -1,5 +1,3 @@
-# Author HC_SU
-# Project TTC PPFL
 # Model XGB
 # Dataset CreditCardFraud@Kaggle.com
 
@@ -35,8 +33,6 @@ def xgboost_args_parser():
 def prepare_creditcard(data_path: str, start: int, end: int):
     data_size = end - start
     creditcard = pd.read_csv(data_path, skip_blank_lines=True, skiprows=lambda x: x in range(1, start), nrows=data_size)
-    # print(creditcard.info())
-    # print(creditcard.head())
     total_data_num = creditcard.shape[0]
 
     print(f"Total data count: {total_data_num}")
@@ -116,8 +112,7 @@ def main():
 
     site = args.site_id
     site_num = args.site_num
-    
-    # check if site_id and "valid" in the mapping dict
+
     if site not in data_index.keys():
         raise ValueError(
             f"Dict of data_index does not contain Client {site} split",
@@ -140,7 +135,7 @@ def main():
     valid_index = data_index["valid"]
 
     exp_root = os.path.join(args.workspace_root, model_name)
-    # Set mode file paths
+    # Set model file paths
     model_path = os.path.join(exp_root, "model.json")
     # Set tensorboard output
     writer = SummaryWriter(exp_root)
@@ -158,8 +153,6 @@ def main():
 
     # construct training and validation xgboost DMatrix
     dmat_train = xgb.DMatrix(X_train, label=y_train)                
-    # dmat_valid = dmat_creditcard.slice(X_creditcard.index[0:valid_num])
-    # dmat_train = dmat_creditcard.slice(X_creditcard.index[valid_num:])
     # distributed the validate data set
     valid_num = valid_index["end"] - valid_index["start"]
     id = int(site.split("-")[1])

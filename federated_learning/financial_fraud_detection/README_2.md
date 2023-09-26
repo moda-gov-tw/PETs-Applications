@@ -56,7 +56,7 @@ Install NVFLARE:
 ```
 $ python3 -m pip install nvflare
 ```
-Install [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) to ./dataset
+Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) to ./dataset
 
 Clone repo to get examples(連結待補上):
 ```

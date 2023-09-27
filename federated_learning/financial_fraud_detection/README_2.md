@@ -58,15 +58,17 @@ $ python3 -m pip install nvflare
 ```
 Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) to ./dataset
 
-Clone repo to get examples(連結待補上):
+Clone repo to get examples:
 ```
-$ git clone https://github.com/
+$ git clone https://github.com/PETs-Applications/federated_learning/financial_fraud_detection
+$ bash CCF_data_split_gen.sh
+$ bash CCF_job_config_gen.sh
 $ cd tree-based
 ```
 Quick Start with Simulator:
 Making sure the NVFLARE environment is set up correctly following Installation, you can run an example application with The FL Simulator using the following script
 ```
-$ nvflare simulator jobs/creditcard_5_bagging_HE_exponential_split_scaled_lr -w ${PWD}/workspaces/creditcard_5_bagging_HE_exponential_split_scaled_lr -n 5 -t 5
+$ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```
 
 Command Usage:

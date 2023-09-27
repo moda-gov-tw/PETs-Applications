@@ -56,12 +56,12 @@ Install NVFLARE:
 ```
 $ python3 -m pip install nvflare
 ```
-
+Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/)
 Clone repo to get examples:
 ```
 $ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 $ cd federated_learning/financial_fraud_detection
-Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) to ./dataset
+Download the Dataset to ./dataset
 $ bash CCF_data_split_gen.sh
 $ bash CCF_job_config_gen.sh
 $ cd tree-based

@@ -51,8 +51,7 @@ In the privacy-enhanced joint machine learning architecture, each financial inst
 ![](https://hackmd.io/_uploads/HyTeH80T3.jpg)
 
 ## Quick Start
-Environment:
-FLARE is now supported for Python 3.9 and Python 3.10
+NVIDIA FLARE requires Python 3.8+.
 Install NVFLARE:
 ```
 $ pip install --upgrade pip

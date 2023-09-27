@@ -55,7 +55,8 @@ Environment:
 FLARE is now supported for Python 3.9 and Python 3.10
 Install NVFLARE:
 ```
-$ python3 -m pip install nvflare
+$ pip install --upgrade pip
+$ pip install nvflare
 ```
 Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/)
 Clone repo to get examples:

@@ -6,8 +6,7 @@ Credit card fraud is a growing concern worldwide, causing huge financial losses 
 ## Dataset
 
 
-* Credit Card Fraud Detection data source
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+* [Credit Card Fraud Detection data source](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 * Data set introduction:
 This dataset contains credit card transactions by European cardholders in September 2013.
 Due to confidentiality issues, the public data set cannot provide the original characteristics of the data and more background information. Some field data are converted numerical variables of Principal Components Analysis (PCA), that is, fields V1, V2 to V28 are PCA Transformation results to protect customer information.
@@ -15,10 +14,10 @@ PCA is essentially a dimensionality reduction technique that preserves the most 
 * Dataset size:
 150.83MB
 * Dataset field:
-Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
-V1, V2, …, V28: results transformed by PCA (may contain private data)
-Amount: transaction amount
-class: 1 in case of fraud, 0 otherwise (target variable for prediction)
+- Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
+- V1, V2, …, V28: results transformed by PCA (may contain private data)
+- Amount: transaction amount
+- class: 1 in case of fraud, 0 otherwise (target variable for prediction)
 
 ![](https://hackmd.io/_uploads/rkfjVI0a2.jpg)
 
@@ -61,15 +60,17 @@ Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/)
 Clone repo to get examples:
 ```
 $ git clone https://github.com/moda-gov-tw/PETs-Applications.git
-$ cd federated_learning/financial_fraud_detection
+$ cd PETs-Applications/federated_learning/financial_fraud_detection
 $ pip install -r requirements.txt
+
 Download the Dataset to ./dataset
 $ bash CCF_data_split_gen.sh
 $ bash CCF_job_config_gen.sh
 $ cd tree-based
 ```
 Quick Start with Simulator:
-Making sure the NVFLARE environment is set up correctly following Installation, you can run an example application with The FL Simulator using the following script
+
+Make sure the NVFLARE environment is set up correctly after the previous installation, you can run an example application with The FL Simulator using the following script
 ```
 $ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```

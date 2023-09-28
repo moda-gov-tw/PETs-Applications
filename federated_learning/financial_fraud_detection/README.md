@@ -42,8 +42,8 @@ Using **differential privacy** prevents servers from cooperating with data provi
 
 ## Data Processing
 
-In the privacy-enhanced joint machine learning architecture, each financial institution participating in the training is regarded as an independent local end. We can use servers on public cloud service platforms (such as AWS, Azure or Google Cloud) as aggregation servers. In order to enhance privacy protection, differential privacy technology is also used, so the training process is as follows:
-1.	The local end uses local data to train the model, and adds the obtained local model parameters to the random noise of differential privacy to protect the local model parameters from direct prying by the server.
+In the privacy-enhanced joint machine learning architecture, each financial institution participating in the training is regarded as an independent local end. We can use servers on public cloud service platforms (such as AWS, Azure, or Google Cloud) as aggregation servers. In order to enhance privacy protection, differential privacy technology is also used, so the training process is as follows:
+1.	The local end uses local data to train the model and adds the obtained local model parameters to the random noise of differential privacy to protect the local model parameters from direct prying by the server.
 2.	Upload the protected parametric local model to the aggregation server.
 3.	When the server receives the data uploaded by the local end, it aggregates the data and updates the global model after completion. The updated global model will be sent back to all local ends for a new round of training.
 
@@ -70,7 +70,7 @@ $ cd tree-based
 ```
 Quick Start with Simulator:
 
-Make sure the NVFLARE environment is set up correctly after the previous installation, you can run an example application with The FL Simulator using the following script
+Make sure that the NVFLARE environment is set up correctly after installation, you can run an example application with The FL Simulator using the following script
 ```
 $ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```
@@ -105,4 +105,4 @@ maximum number of clients
 Please refer to [here](https://hackmd.io/@petworks/ByAmydrP3) for the Chinese version of this documentation. 
 
 ## Disclaimer
-The application listed here only serves as the minimum demonstrations of using PETs. The source code should not be directly deployed for production use.
+The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

@@ -12,6 +12,9 @@ Here we provide a list of the PETs applications dealing with this problem.
 - **Differential Privacy** - [Privacy-Preserving Research Data Sharing](differential_privacy/privacy-preserving_research_data_sharing)
     - The application uses differential privacy to ensure patient privacy before releasing data for diabetes prediction.
 
+- **Synthetic Data** - [Privacy-Preserving Research Data Sharing](synthetic_data/privacy-preserving_research_data_sharing)
+    - The application uses differential privacy to ensure patient privacy before releasing data for diabetes prediction.
+
 - **Federated Learning** - [Financial Fraud Detection](federated_learning/financial_fraud_detection)
     - The application uses federated learning to ensure client privacy when building a fraud detection system with multiple financial institutions.
 

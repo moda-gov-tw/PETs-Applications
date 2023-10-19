@@ -44,14 +44,16 @@ jobs:
         name: Build OpenFHE
         run: |
           # Dependencies
-          sudo apt-get install -y build-essential
-          sudo apt-get install -y cmake
+          sudo apt-get install -y build-essential cmake g++-12
+          sudo apt install -y clang libomp5 libomp-dev
 
           # Clone the source code
           sudo mkdir -m 777 /opt/openFHE && cd /opt/openFHE
-          git clone --branch v1.0.4 https://github.com/openfheorg/openfhe-development.git /opt/openFHE
+          git clone https://github.com/openfheorg/openfhe-development.git /opt/openFHE
 
           # Build
+          export CC=/usr/bin/clang
+          export CXX=/usr/bin/clang++
           mkdir build && cd build
           cmake ..
 
@@ -83,9 +85,7 @@ jobs:
         name: Build the criminal data cloud computing application
         run: |
           cd ${{ github.workspace }}/homomorphic_encryption/criminal_data_cloud_computing/tfhe-police/
-          mkdir build && cd build
-          cmake ..
-          make
+          bash run.sh
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2

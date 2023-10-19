@@ -75,7 +75,11 @@ Step 2. Generate Certificate
 ./Scripts/setup-ssl.sh <the_number_of_MPC_nodes>
 ./Scripts/setup-clients.sh <the_number_of_Data_providers>
 ```
+Certificates will be placed at `Player-Data/`.
 Step 3. Distribute certificates
+Send `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`) to each MPC node.
+Send `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`) to each Data Provider.
+Send `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`) to Stop Provider.
 
 ### Preparation Stage
 #### MPC nodes
@@ -83,13 +87,22 @@ Step 1: Build and install MP-SPDZ using `make -j 8 tldr`. If you don't know how 
 ```
 git clone https://github.com/data61/MP-SPDZ.git
 cd MP-SPDZ
-make -j 8 tldr      //Rapidly construct the necessary files and the available protocol: mascot-party.x.
+make -j 8 tldr      //Rapidly construct the necessary files
+make -j 8 shamir    //build the available protocol: shamir-party.x.
 ```
-Step 2: Clone MPC_node
+In this case, we opt for a semi-honest protocol, so we have employed the Shamir protocol. If we were to use a malicious-secure protocol (MASCOT), then the computation time in the context of three computing parties (i.e., locally) would compare as follows:
+|Protocol | Time     | 
+|:--------: | :--------: |
+|shamir| 0.047469 |
+|mascot| 7.18371 |
 
+Step 2: Clone MPC_node
+```
+git clone https://github.com/B08902060/secure_multiparty_computaion.git
+```
 Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp MPC_node/average_gender_salary.mpc Program/Source/
+cp secure_multiparty_computaion/MPC_node/average_gender_salary.mpc Program/Source/
 ```
 Step 4. Compile MPC file
 ```
@@ -105,7 +118,10 @@ c_rehash Player-Data/
 
 #### Data provider
 Step 1: Clone Client/Data_provider
-
+```
+git clone https://github.com/B08902060/secure_multiparty_computaion.git
+cd secure_multiparty_computaion/
+```
 Step 2: Install `gmpy2`
 ```
 pip3 install gmpy2
@@ -119,7 +135,10 @@ mv /path/to/file/P*.pem Player-Data/
 
 #### Stop provider 
 Step 1: Clone Client/Stop_provider
-
+```
+git clone https://github.com/B08902060/secure_multiparty_computaion.git
+cd secure_multiparty_computaion/
+```
 Step 2: Install `gmpy2`
 ```
 pip3 install gmpy2
@@ -134,7 +153,7 @@ mv /path/to/file/P*.pem Player-Data/
 ### Computation Stage
 Step 1. MPC nodes start MPC protocol.
 ```
-./mascot-party.x -N <the_number_of_MPC_nodes> -p <ID_of_MPC_nodes> -h <IP_of_MPC_node_0> average_gender_salary
+./shamir-party.x -N <the_number_of_MPC_nodes> -p <ID_of_MPC_nodes> -h <IP_of_MPC_node_0> -pn <PortNumber_of_MPC_node_0> average_gender_salary
 ```
 If you don't know how to do it or meet any issue, please check [MP-SPDZ documentation](https://mp-spdz.readthedocs.io/en/latest/).
 
@@ -142,7 +161,7 @@ Step 2. Data providers connect and sent data(secret input) to MPC nodes.
 ```
 python3 Client/Data_provider/average_salary.py <the_number_of_MPC_node> 14000 <IP_of_MPC_node_0> ... <IP_of_MPC_node_(m-1)>
 ```
-14000 is the port number of $MPC\ node_0$ (that of $MPC\ node_i$ is $14000+i$). You can adjust it in `MPC_node/average_gender_salary.mpc`
+14000 is the listening port number of $MPC\ node_0$ (that of $MPC\ node_i$ is $14000+i$). You can adjust it in `MPC_node/average_gender_salary.mpc`
 
 Step 3. When the time is up, Stop provider issues the command to terminate the MPC protocol.
 ```
@@ -150,13 +169,13 @@ python3 Client/Stop_provider/average_salary_finish.py <the_number_of_MPC_node> 1
 ```
 
 Step 4. MPC node 0 will output the result.
-
+MPC node 0 shares the result with Data providers.
 
 
 ## Reference
 
 
-Please refer to [here](https://hackmd.io/tsCygT4XQsyNxlqZlsSgEQ) for the Chinese version of this documentation. 
+Please refer to [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of this documentation. 
 
 ## Disclaimer
 

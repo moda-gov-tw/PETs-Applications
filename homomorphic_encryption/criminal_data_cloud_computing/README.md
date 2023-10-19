@@ -85,7 +85,7 @@ node TTC.js
 ## Reference
 
 
-Please refer to [here](https://hackmd.io/@petworks/ByAmydrP3) for the Chinese version of this documentation. 
+Please refer to [here](https://hackmd.io/@petworks/SJ3i2nq0n) for the Chinese version of this documentation. 
 
 ## Disclaimer
 

@@ -102,7 +102,7 @@ maximum number of clients
 
 
 ## Reference
-Please refer to [here](https://hackmd.io/@petworks/ByAmydrP3) for the Chinese version of this documentation. 
+Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

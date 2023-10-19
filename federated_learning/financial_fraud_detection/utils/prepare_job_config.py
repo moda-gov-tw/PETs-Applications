@@ -25,13 +25,11 @@ MODE_ALGO_MAP = {"bagging": "tree-based", "cyclic": "tree-based", "histogram": "
 
 
 def job_config_args_parser():
-    # parser = argparse.ArgumentParser(description="generate train configs for HIGGS dataset")
     parser = argparse.ArgumentParser(description="generate train configs for creditcard  dataset")
     parser.add_argument(
         "--data_root",
         type=str,
-        # default="/tmp/nvflare/xgboost_higgs_dataset",
-        default="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/xgboost_creditcard",
+        default="/tmp/nvflare/xgboost_creditcard",
         help="Path to dataset config files for each site",
     )
     parser.add_argument("--site_num", type=int, default=5, help="Total number of sites")
@@ -69,8 +67,6 @@ def _get_job_name(args) -> str:
         strDP = ""
     elif args.DP == "DP":
         strDP = "DP_"
-    elif args.DP == "HE":
-        strDP = "HE_"
     return (
         # "higgs_"
         "creditcard_"
@@ -96,10 +92,6 @@ def _get_src_job_dir(training_mode, DP):
         strDP = ""
     elif DP == "DP":
         strDP = "_DP"
-    elif DP == "HE":
-        strDP = "_HE"
-
-    
     base_job_map = {
         "bagging": "bagging_base",
         "cyclic": "cyclic_base",

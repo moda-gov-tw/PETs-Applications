@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-DATASET_PATH="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv"
-OUTPUT_PATH="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/xgboost_creditcard"
+DATASET_PATH="$(pwd)/dataset/creditcard.csv"
+OUTPUT_PATH="/tmp/nvflare/xgboost_creditcard"
 
 if [ ! -f "${DATASET_PATH}" ]
 then

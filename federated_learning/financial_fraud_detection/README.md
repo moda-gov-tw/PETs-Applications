@@ -1,231 +1,108 @@
-# Federated Learning for XGBoost 
 
-Please make sure you set up virtual environment and Jupyterlab follows [example root readme](../../README.md)
+# Privacy-Preserving Research Data Sharing
 
-## Introduction to XGBoost and HIGGS Data
+Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks and individuals. To effectively deal with this problem, Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks, so the joint machine learning training method can achieve collaboration while protecting privacy. Through federated learning, multiple financial institutions cooperate on the basis of a shared model, reducing the risk of sensitive data exposure while obtaining superior model performance.
 
-You can also follow along in this [notebook](./data_job_setup.ipynb) for an interactive experience.
-
-### XGBoost
-These examples show how to use [NVIDIA FLARE](https://nvflare.readthedocs.io/en/main/index.html) on tabular data applications.
-They use [XGBoost](https://github.com/dmlc/xgboost),
-which is an optimized distributed gradient boosting library.
-
-### HIGGS
-The examples illustrate a binary classification task based on [HIGGS dataset](https://archive.ics.uci.edu/dataset/280/higgs).
-This dataset contains 11 million instances, each with 28 attributes.
-
-Please note that the UCI's website may experience occasional downtime.
-
-## Federated Training of XGBoost
-Several mechanisms have been proposed for training an XGBoost model in a federated learning setting.
-In these examples, we illustrate the use of NVFlare to carry out *horizontal* federated learning using two approaches: histogram-based collaboration and tree-based collaboration.
-
-### Horizontal Federated Learning
-Under horizontal setting, each participant / client joining the federated learning will have part of the whole data / instances / examples/ records, while each instance has all the features.
-This is in contrast to vertical federated learning, where each client has part of the feature values for each instance.
-
-#### Histogram-based Collaboration
-The histogram-based collaboration federated XGBoost approach leverages NVFlare integration of recently added [federated learning support](https://github.com/dmlc/xgboost/issues/7778) in the XGBoost open-source library,
-which allows the existing *distributed* XGBoost training algorithm to operate in a federated manner,
-with the federated clients acting as the distinct workers in the distributed XGBoost algorithm.
-
-In distributed XGBoost, the individual workers share and aggregate coarse information about their respective portions of the training data,
-as required to optimize tree node splitting when building the successive boosted trees.
-
-The shared information is in the form of quantile sketches of feature values as well as corresponding sample gradient and sample Hessian histograms.
-
-Under federated histogram-based collaboration, precisely the same information is exchanged among the clients.
-
-The main differences are that the data is partitioned across the workers according to client data ownership, rather than being arbitrarily partionable, and all communication is via an aggregating federated [gRPC](https://grpc.io) server instead of direct client-to-client communication.
-
-Histograms from different clients, in particular, are aggregated in the server and then communicated back to the clients.
-
-See [histogram-based/README](histogram-based/README.md) for more information on the histogram-based collaboration.
-
-#### Tree-based Collaboration
-Under tree-based collaboration, individual trees are independently trained on each client's local data without aggregating the global sample gradient histogram information.
-Trained trees are collected and passed to the server / other clients for aggregation and further boosting rounds.
-
-The XGBoost Booster api is leveraged to create in-memory Booster objects that persist across rounds to cache predictions from trees added in previous rounds and retain other data structures needed for training.
-
-See [tree-based/README](tree-based/README.md) for more information on two different types of tree-based collaboration algorithms.
+## Dataset
 
 
-## HIGGS Data Preparation
-For data preparation, you can follow this [notebook](./data_job_setup.ipynb):
-### Download and Store Data
-To run the examples, we first download the dataset from the HIGGS link above, which is a single `.csv` file.
-By default, we assume the dataset is downloaded, uncompressed, and stored in `~/dataset/HIGGS.csv`.
+* [Credit Card Fraud Detection data source](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+* Data set introduction:
+This dataset contains credit card transactions by European cardholders in September 2013.
+Due to confidentiality issues, the public data set cannot provide the original characteristics of the data and more background information. Some field data are converted numerical variables of Principal Components Analysis (PCA), that is, fields V1, V2 to V28 are PCA Transformation results to protect customer information.
+PCA is essentially a dimensionality reduction technique that preserves the most important features while reducing the number of dimensions. Therefore, these 28 V variables can be considered as representations of more different variables such as customer details, transaction amount, transaction location, etc.
+* Dataset size:
+150.83MB
+* Dataset field:
+  - Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
+  - V1, V2, …, V28: results transformed by PCA (may contain private data)
+  - Amount: transaction amount
+  - class: 1 in case of fraud, 0 otherwise (target variable for prediction)
 
-> **_NOTE:_** If the dataset is downloaded in another place,
-> make sure to modify the corresponding `DATASET_PATH` inside `data_split_gen.sh`.
+![](https://hackmd.io/_uploads/rkfjVI0a2.jpg)
 
-### Data Split
-Since HIGGS dataset is already randomly recorded,
-data split will be specified by the continuous index ranges for each client,
-rather than a vector of random instance indices.
-We provide four options to split the dataset to simulate the non-uniformity in data quantity: 
 
-1. uniform: all clients has the same amount of data 
-2. linear: the amount of data is linearly correlated with the client ID (1 to M)
-3. square: the amount of data is correlated with the client ID in a squared fashion (1^2 to M^2)
-4. exponential: the amount of data is correlated with the client ID in an exponential fashion (exp(1) to exp(M))
+## Used PETs
 
-The choice of data split depends on dataset and the number of participants.
+There are several privacy protection technologies in the current joint learning, which can be adjusted according to the needs of users to meet the security requirements in different environments. Here, the joint learning of the fraud detection system is used as an example for illustration.
 
-For a large dataset like HIGGS, if the number of clients is small (e.g. 5),
-each client will still have sufficient data to train on with uniform split,
-and hence exponential would be used to observe the performance drop caused by non-uniform data split.
-If the number of clients is large (e.g. 20), exponential split will be too aggressive, and linear/square should be used.
+* Federated Learning
+Through joint learning, customer credit card transaction data scattered in different financial institutions can be trained for a common fraud detection model. Each financial institution uses its own data to train a local model locally, and then uploads the local model to the server for global model aggregation and integration. Update, since the data does not need to be transmitted to the server or third-party centralized, it can protect the privacy of transaction data to different financial institutions.
+However, in this case, the server can directly obtain the model parameter update of each financial institution, and external attackers may eavesdrop on the transmission channel to obtain relevant information and conduct inference attacks, which may pose a threat to data privacy. Therefore, when implementing federated learning, it is necessary to consider strengthening data privacy protection measures.
 
-Data splits used in this example can be generated with
+* Differential Privacy (Federal Learning for Privacy Enhanced Protection)
+Differential privacy is used to defend against collusion attacks when using secure multi-party operations. Taking 5 financial institutions participating in the training as an example, the collusion attack that may occur is that the server colludes with 4 financial institutions. When this happens, the co-conspirator can recover the actual local model parameters of the uncolluded institutions, so add the difference Privacy enables each local to independently generate random noise and add it to its local model parameters. After adding this random noise to the local model weights, even in the case of 4 financial institutions and the server cooperating, they can only recover the noised local model parameters of the non-colluding institutions, not the actual local model parameters.
+However, adding noise can improve the degree of privacy protection, but at the same time, it will affect the accuracy of the model. Therefore, it is necessary to find a balance within a reasonable range of noise to ensure that privacy is properly protected while maintaining reasonable performance of the model, in this way to defend against collusion attacks that may suffer from federated learning that only uses secure multi-party operations.
+
+## Goals of Using PETs
+
+Using **federated learning** to save data in their own local systems reduces the risk of exposing sensitive data, and each local side can benefit from the shared model, which can achieve better model performance than individual training. 
+
+Using **differential privacy** prevents servers from cooperating with data providers to infer private data from information they have about each other, and prevents attackers from eavesdropping on the transmission channel to obtain information for reasoning.
+
+## Data Processing
+
+In the privacy-enhanced joint machine learning architecture, each financial institution participating in the training is regarded as an independent local end. We can use servers on public cloud service platforms (such as AWS, Azure, or Google Cloud) as aggregation servers. In order to enhance privacy protection, differential privacy technology is also used, so the training process is as follows:
+1.	The local end uses local data to train the model and adds the obtained local model parameters to the random noise of differential privacy to protect the local model parameters from direct prying by the server.
+2.	Upload the protected parametric local model to the aggregation server.
+3.	When the server receives the data uploaded by the local end, it aggregates the data and updates the global model after completion. The updated global model will be sent back to all local ends for a new round of training.
+
+![](https://hackmd.io/_uploads/HyTeH80T3.jpg)
+
+## Quick Start
+NVIDIA FLARE requires Python 3.8+.
+Install NVFLARE:
 ```
-bash data_split_gen.sh
+$ pip install --upgrade pip
+$ pip install nvflare
+```
+Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/)
+Clone repo to get examples:
+```
+$ git clone https://github.com/moda-gov-tw/PETs-Applications.git
+$ cd PETs-Applications/federated_learning/financial_fraud_detection
+$ pip install -r requirements.txt
+
+Download the Dataset to ./dataset
+$ bash CCF_data_split_gen.sh
+$ bash CCF_job_config_gen.sh
+$ cd tree-based
+```
+Quick Start with Simulator:
+
+Make sure that the NVFLARE environment is set up correctly after installation, you can run an example application with The FL Simulator using the following script
+```
+$ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```
 
-This will generate data splits for three client sizes: 2, 5 and 20, and 3 split conditions: uniform, square, and exponential.
-If you want to customize for your experiments, please check `utils/prepare_data_split.py`.
-
-> **_NOTE:_** The generated train config files will be stored in the folder `/tmp/nvflare/xgboost_higgs_dataset/`,
-> and will be used by jobs by specifying the path within `config_fed_client.json` 
-
-
-## HIGGS job configs preparation under various training schemes
-
-Please follow the [Installation](https://nvflare.readthedocs.io/en/main/quickstart.html) instructions to install NVFlare.
-
-We then prepare the NVFlare job configs for different settings by running
+Command Usage:
 ```
-bash job_config_gen.sh
+usage: nvflare simulator [-h] -w WORKSPACE [-n N_CLIENTS] [-c CLIENTS] [-t THREADS] [-gpu GPU] job_folder
+
+positional arguments:
+job_folder
+
+optional arguments:
+-h, --help             show this help message and exit
+-w WORKSPACE, --workspace WORKSPACE
+WORKSPACE folder
+-n N_CLIENTS, --n_clients N_CLIENTS
+number of clients
+-c CLIENTS, --clients CLIENTS
+client names list
+-t THREADS, --threads THREADS
+number of parallel running clients
+-gpu GPU, --gpu GPU
+list of GPU Device Ids, comma separated
+-m MAX_CLIENTS, --max_clients MAX_CLIENTS
+maximum number of clients
 ```
 
-This script modifies settings from base job configuration
-(`./tree-based/jobs/bagging_base` or `./tree-based/jobs/cyclic_base`
-or `./histogram-based/jobs/base`),
-and copies the correct data split file generated in the data preparation step.
-
-> **_NOTE:_** To customize your own job configs, you can just edit from the generated ones.
-> Or check the code in `./utils/prepare_job_config.py`.
-
-The script will generate a total of 10 different configs in `tree-based/jobs` for tree-based algorithm:
-
-- tree-based cyclic training with uniform data split for 5 clients
-- tree-based cyclic training with non-uniform data split for 5 clients
-- tree-based bagging training with uniform data split and uniform shrinkage for 5 clients
-- tree-based bagging training with non-uniform data split and uniform shrinkage for 5 clients
-- tree-based bagging training with non-uniform data split and scaled shrinkage for 5 clients
-- tree-based cyclic training with uniform data split for 20 clients
-- tree-based cyclic training with non-uniform data split for 20 clients
-- tree-based bagging training with uniform data split and uniform shrinkage for 20 clients
-- tree-based bagging training with non-uniform data split and uniform shrinkage for 20 clients
-- tree-based bagging training with non-uniform data split and scaled shrinkage for 20 clients
 
 
-The script will also generate 2 configs in `histogram-based/jobs` for histogram-base algorithm:
 
-- histogram-based training with uniform data split for 2 clients
-- histogram-based training with uniform data split for 5 clients
+## Reference
+Please refer to [here](https://hackmd.io/@petworks/ByAmydrP3) for the Chinese version of this documentation. 
 
-## Run experiments for tree-based and histogram-based settings
-After you run the two scripts `data_split_gen.sh` and `job_config_gen.sh`,
-please go to sub-folder [tree-based](tree-based) for running tree-based algorithms,
-and sub-folder [histogram-based](histogram-based) for running histogram-based algorithms.
-
-
-## GPU support
-By default, CPU based training is used.
-
-If the CUDA is installed on the site, tree construction and prediction can be
-accelerated using GPUs.
-
-GPUs are enabled by using :code:`gpu_hist` as :code:`tree_method` parameter.
-For example,
-::
-              "xgboost_params": {
-                "max_depth": 8,
-                "eta": 0.1,
-                "objective": "binary:logistic",
-                "eval_metric": "auc",
-                "tree_method": "gpu_hist",
-                "gpu_id": 0,
-                "nthread": 16
-              }
-
-For GPU based training, edit `job_config_gen.sh` to change `TREE_METHOD="hist"` to `TREE_METHOD="gpu_hist"`.
-Then run the `job_config_gen.sh` again to generates new job configs for GPU-based training.
-
-### Multi GPU support
-
-Multiple GPUs can be supported by running one NVFlare client for each GPU. Each client
-runs a different NVFlare app with the corresponding :code:`gpu_id` assigned.
-
-Assuming there are 2 physical client sites, each with 2 GPUs (id 0 and 1).
-We can start 4 NVFlare client processes (site-1a, site-1b, site-2a, site-2b), one for each GPU.
-The job layout looks like this,
-::
-
-    xgb_multi_gpu_job
-    ├── app_server
-    │   └── config
-    │       └── config_fed_server.json
-    ├── app_site1_gpu0
-    │   └── config
-    │       └── config_fed_client.json
-    ├── app_site1_gpu1
-    │   └── config
-    │       └── config_fed_client.json
-    ├── app_site2_gpu0
-    │   └── config
-    │       └── config_fed_client.json
-    ├── app_site2_gpu1
-    │   └── config
-    │       └── config_fed_client.json
-    └── meta.json
-
-Each app is deployed to its own client site. Here is the :code:`meta.json`,
-::
-
-    {
-      "name": "xgb_multi_gpu_job",
-      "resource_spec": {
-        "site-1a": {
-          "num_of_gpus": 1,
-          "mem_per_gpu_in_GiB": 1
-        },
-        "site-1b": {
-          "num_of_gpus": 1,
-          "mem_per_gpu_in_GiB": 1
-        },
-        "site-2a": {
-          "num_of_gpus": 1,
-          "mem_per_gpu_in_GiB": 1
-        },
-        "site-2b": {
-          "num_of_gpus": 1,
-          "mem_per_gpu_in_GiB": 1
-        }
-      },
-      "deploy_map": {
-        "app_server": [
-          "server"
-        ],
-        "app_site1_gpu0": [
-          "site-1a"
-        ],
-        "app_site1_gpu1": [
-          "site-1b"
-        ],
-        "app_site2_gpu0": [
-          "site-2a"
-        ],
-        "app_site2_gpu1": [
-          "site-2b"
-        ]
-      },
-      "min_clients": 4
-    }
-
-For federated XGBoost, all clients must participate in the training. Therefore,
-:code:`min_clients` must equal to the number of clients.
-
+## Disclaimer
+The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

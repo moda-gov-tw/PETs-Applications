@@ -1,5 +1,5 @@
 {
-    "data_path": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/financial_fraud_detection/dataset/creditcard.csv",
+    "data_path": "/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv",
     "data_index": {
         "valid": {
             "start": 0,
@@ -7,10 +7,10 @@
         },
         "site-1": {
             "start": 49841,
-            "end": 167324
+            "end": 113033
         },
         "site-2": {
-            "start": 167324,
+            "start": 113033,
             "end": 284807
         }
     }

@@ -20,11 +20,12 @@ import seaborn as sns
 import tensorflow as tf
 
 # simulator workspace
+# modified by yourself
 client_results_root = "./workspaces/xgboost_workspace_"
 
-# client_num_list = [5, 20]
 client_num_list = [5]
 client_pre = "app_site-"
+# modified by yourself
 centralized_path = "./workspaces/centralized_5_0.8/events.*"
 
 individual_path = "./workspaces"
@@ -33,34 +34,14 @@ individual_path = "./workspaces"
 # bagging and cyclic need different handle
 experiments_bagging = {
     5: {
-        # "5_bagging_uniform_split_uniform_lr": {"tag": "AUC"},
-        # "5_bagging_exponential_split_uniform_lr": {"tag": "AUC"},
-        # "5_bagging_exponential_split_scaled_lr": {"tag": "AUC"},
         "5_bagging_IID_split_uniform_lr": {"tag": "AUC"},
     },
-    # 20: {
-    #     "20_bagging_uniform_split_uniform_lr": {"tag": "AUC"},
-    #     "20_bagging_square_split_uniform_lr": {"tag": "AUC"},
-    #     "20_bagging_square_split_scaled_lr": {"tag": "AUC"},
-    # },
 }
 experiments_bagging_DP = {
     5: {
-        # "5_bagging_DP_exponential_split_scaled_lr": {"tag": "AUC"},
         "5_bagging_DP_IID_split_uniform_lr": {"tag": "AUC"},
     }
 }
-# experiments_cyclic = {
-#     5: {
-#         "5_cyclic_uniform_split_uniform_lr": {"tag": "AUC"},
-#         "5_cyclic_exponential_split_uniform_lr": {"tag": "AUC"},
-#     },
-#     20: {
-#         "20_cyclic_uniform_split_uniform_lr": {"tag": "AUC"},
-#         "20_cyclic_square_split_uniform_lr": {"tag": "AUC"},
-#     },
-# }
-
 
 weight = 0.0
 
@@ -120,7 +101,6 @@ def main():
         add_eventdata(data, "centralized", eventfile, tag="AUC")
         # pick first client for bagging experiments
         site = 1
-        # for site in range(1, client_num + 1):
         for config, exp in experiments_bagging[client_num].items():
             record_path = os.path.join(client_results_root + config, "simulate_job", client_pre + str(site), "events.*")
             eventfile = glob.glob(record_path, recursive=True)
@@ -147,18 +127,6 @@ def main():
             eventfile = eventfile[0]
             print("adding", eventfile)
             add_eventdata(data, config, eventfile, tag=exp["tag"])
-
-        # Combine all clients' records for cyclic experiments
-        # for site in range(1, client_num + 1):
-        #     for config, exp in experiments_cyclic[client_num].items():
-        #         record_path = os.path.join(
-        #             client_results_root + config, "simulate_job", client_pre + str(site), "events.*"
-        #         )
-        #         eventfile = glob.glob(record_path, recursive=True)
-        #         assert len(eventfile) == 1, f"No unique event file found under {record_path}!"
-        #         eventfile = eventfile[0]
-        #         print("adding", eventfile)
-        #         add_eventdata(data, config, eventfile, tag=exp["tag"])
 
         sns.lineplot(x="Round", y="AUC", hue="Config", data=data)
         plt.show()

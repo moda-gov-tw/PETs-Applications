@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DATASET_PATH="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv"
+DATASET_PATH="dataset/creditcard.csv"
 SITE_NUM=5
 
 if [ ! -f "${DATASET_PATH}" ]

@@ -1,5 +1,3 @@
-# Author HC_SU
-# Project TTC PPFL
 # Model XGB
 # Dataset CreditCardFraud@Kaggle.com
 # Discribe: everyone gets the same distribution dataset as well as the label ratio
@@ -46,7 +44,6 @@ def prepare_creditcard(data_path):
     creditcard = creditcard.drop(['Amount'], axis=1)
     creditcard = creditcard.drop(['Time'], axis=1)
 
-    # split to feature and label
     X = creditcard.iloc[:, creditcard.columns != 'Class']
     y = creditcard.iloc[:, creditcard.columns == 'Class']
     print("Label counts: ")
@@ -121,8 +118,6 @@ def train_split(train_data_split_dict, val_data_split_dict, site_num, X, y):
         end_idx = start_idx + samples_per_fold
 
         # Split the data and labels for the current fold
-        # X_fold = X_shuffled[start_idx:end_idx]    #有經過打亂
-        # y_fold = y_shuffled[start_idx:end_idx]    #有經過打亂
         X_fold = X[start_idx:end_idx]
         y_fold = y[start_idx:end_idx]
 
@@ -154,8 +149,7 @@ def main():
     start = time.time()
     print(" Data spliting Start")
     X, y, total_train_data_num = prepare_creditcard(data_path)
-    # data_per_fold = total_train_data_num/site_num
-    # 分割各個site的資料
+
     train_split(train_data_split_dict, val_data_split_dict, site_num, X, y)
 
     end = time.time()
@@ -172,9 +166,9 @@ def main():
 
         
         num_rounds = args.num_rounds
-        # valid_num = 49841
+
         exp_root = os.path.join(args.workspace_root, model_name)
-        # Set mode file paths
+        # Set model file paths
         model_path = os.path.join(exp_root, "model.json")
         # Set tensorboard output
         writer = SummaryWriter(exp_root)

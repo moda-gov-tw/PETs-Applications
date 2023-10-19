@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-DATASET_PATH="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/creditcard.csv"
-DATA_SPLIT_PATH="/Users/cheng/LAB/TTC/NVFlare/examples/advanced/xgboost/dataset/xgboost_creditcard/5_exponential/data_site-1.json"
+DATASET_PATH="dataset/creditcard.csv"
+DATA_SPLIT_PATH="dataset/xgboost_creditcard/5_exponential/data_site-1.json"
 SITE_NUM=5
 
 if [ ! -f "${DATA_SPLIT_PATH}" ]

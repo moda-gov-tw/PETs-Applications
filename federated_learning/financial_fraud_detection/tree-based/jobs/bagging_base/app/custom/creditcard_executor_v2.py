@@ -72,6 +72,8 @@ class FedXGBTreeCreditCardExecutor(FedXGBTreeExecutor):
         )
         self.data_split_filename = data_split_filename
 
+
+
     def load_data(self):
         with open(self.data_split_filename) as file:
             data_split = json.load(file)

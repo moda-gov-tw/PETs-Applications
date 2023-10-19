@@ -76,6 +76,7 @@ Step 2. Generate Certificate
 ./Scripts/setup-clients.sh <the_number_of_Data_providers>
 ```
 Certificates will be placed at `Player-Data/`.
+
 Step 3. Distribute certificates
 Send `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`) to each MPC node.
 Send `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`) to each Data Provider.

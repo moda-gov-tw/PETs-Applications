@@ -64,7 +64,10 @@ In this example, we utilize secret sharing techniques to enable employees to tra
 Furthermore, since MP-SPDZ uses openssl to establish a secure channel, we need to create certificates and distribute them to each MPC node, Data Providers, and the Stop Provider(Assume that this step has already been completed by default). This is done to ensure the security of the transmission.
 
 ## Quick Start
-### Create and distribute certificates
+### Deployment Stage
+In this stage, we will establish secure channels between the participants, using OpenSSL for this purpose. If you wish to perform testing on your own, you can use MPC_node 0 as the default to carry out the actions of this stage (create and distribute certificates).
+
+#### Create and distribute certificates
 Step 1: Clone MP-SPDZ
 ```
 git clone https://github.com/data61/MP-SPDZ.git

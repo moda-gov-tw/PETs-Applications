@@ -84,7 +84,7 @@ Step 3. Distribute certificates
 Send `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`) to each MPC node.  
 Send `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`) to each Data Provider.  
 Send `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`) to Stop Provider.  
-*** In this stage, MPC nodes are set to default, with the expectation that the vendor will handle certificate distribution during deployment. As for the data providers' part, it is practical to have a certification authority or entity to perform the distribution. ***
+**In this stage, MPC nodes are set to default, with the expectation that the vendor will handle certificate distribution during deployment. As for the data providers' part, it is practical to have a certification authority or entity to perform the distribution.**
 
 ### Preparation Stage
 #### MPC nodes

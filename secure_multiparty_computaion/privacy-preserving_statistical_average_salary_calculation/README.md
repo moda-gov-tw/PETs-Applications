@@ -107,7 +107,7 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 ```
 Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Program/Source/
+cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 Step 4. Compile MPC file
 ```

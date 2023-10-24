@@ -183,7 +183,6 @@ cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical
 ./compile.py average_gender_salary.mpc
 ```
 ##### Step 5. Setup Certificate: receive `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`); move them to `Player-Data/`; run `c_rehash <directory>` on its location.
-In local testing, please skip this step.
 ```
 mv /path/to/file/Pi.pem Player-Data/
 mv /path/to/file/Pi.key Player-Data/

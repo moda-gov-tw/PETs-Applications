@@ -63,24 +63,90 @@ In this example, we utilize secret sharing techniques to enable employees to tra
 
 Furthermore, since MP-SPDZ uses openssl to establish a secure channel, we need to create certificates and distribute them to each MPC node, Data Providers, and the Stop Provider(Assume that this step has already been completed by default). This is done to ensure the security of the transmission.
 
-## Quick Start
+## Quick Start for Local test
 ### Deployment Stage
-In this stage, we will establish secure channels between the participants, using OpenSSL for this purpose. If you wish to perform testing on your own, you can use MPC_node 0 as the default to carry out the actions of this stage (create and distribute certificates).
-
-#### Create and distribute certificates
-Step 1: Clone MP-SPDZ
+##### Step 1: Clone MP-SPDZ
 ```
 git clone https://github.com/data61/MP-SPDZ.git
 cd MP-SPDZ
 ```
-Step 2. Generate Certificate
+##### Step 2. Generate Certificate
 ```
-./Scripts/setup-ssl.sh <the_number_of_MPC_nodes>
-./Scripts/setup-clients.sh <the_number_of_Data_providers>
+./Scripts/setup-ssl.sh 3
+./Scripts/setup-clients.sh 4
+```
+The value of 3 is the default for the number of MPC nodes.  
+The value of 4 is the default for the number of Data providers.  
+### Preparation Stage
+##### Step 1: Build MP-SPDZ.
+```
+make -j 8 tldr
+make -j 8 shamir    
+```
+`make -j 8 tldr` is used to quickly construct necessary files.  
+`make -j 8 shamir` is used to build the protocol: shamir-party.x.  
+
+##### Step 2: Clone moda-gov-tw/PETs-Applications
+```
+git clone https://github.com/moda-gov-tw/PETs-Applications.git
+```
+
+##### Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
+```
+cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
+```
+
+##### Step 4: Install `gmpy2`
+```
+pip3 install gmpy2
+```
+### Computation Stage
+##### Step 1. MPC nodes start MPC protocol.
+```
+Scripts/compile-run.py -E shamir average_gender_salary
+```
+
+##### Step 2. Data providers connect and sent data(secret input) to MPC nodes.
+```
+cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+python3 Client/Data_provider/average_salary.py 3 14000 localhost localhost localhost
+```
+Please open another terminal and execute this step.  
+In accordance with the instructions, enter the ID, salary, and gender.  
+```
+Please enter your ID:1
+Please enter your salary:1123701
+
+1.Male 2.Female 3.Other 
+Please choose your gender:2
+```
+Please complete the input for the three employees with ID=1, 2, and 3.
+##### Step 3. Stop provider issues the command to terminate the MPC protocol.
+```
+python3 Client/Stop_provider/average_salary_finish.py 3 14000 localhost localhost localhost
+```
+
+##### Step 4. MPC node 0 will output the result.
+MPC node 0 shares the result with Data providers.
+
+## Quick Start for Distributed System
+### Deployment Stage
+In this stage, we will establish secure channels between the participants, using OpenSSL for this purpose. If you wish to perform testing on your own, you can use MPC_node 0 as the default to carry out the actions of this stage (create and distribute certificates).
+
+#### Create and distribute certificates
+##### Step 1: Clone MP-SPDZ
+```
+git clone https://github.com/data61/MP-SPDZ.git
+cd MP-SPDZ
+```
+##### Step 2. Generate Certificate
+```
+./Scripts/setup-ssl.sh <the number of MPC nodes>
+./Scripts/setup-clients.sh <the number of Data providers>
 ```
 Certificates will be placed at `Player-Data/`.
 
-Step 3. Distribute certificates  
+##### Step 3. Distribute certificates  
 Send `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`) to each MPC node.  
 Send `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`) to each Data Provider.  
 Send `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`) to Stop Provider.  
@@ -88,32 +154,36 @@ Send `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`) to Stop Provider.
 
 ### Preparation Stage
 #### MPC nodes
-Step 1: Build and install MP-SPDZ using `make -j 8 tldr`. If you don't know how to do it, please check [MP-SPDZ documentation](https://mp-spdz.readthedocs.io/en/latest/).
+##### Step 1: Clone and build MP-SPDZ. In local testing,we don't need to clone MP-SPDZ again. 
 ```
 git clone https://github.com/data61/MP-SPDZ.git
 cd MP-SPDZ
-make -j 8 tldr      //Rapidly construct the necessary files
-make -j 8 shamir    //build the available protocol: shamir-party.x.
+make -j 8 tldr
+make -j 8 shamir    
 ```
+`make -j 8 tldr` is used to quickly construct necessary files.  
+`make -j 8 shamir` is used to build the protocol: shamir-party.x.  
 In this case, we opt for a semi-honest protocol, so we have employed the Shamir protocol. If we were to use a malicious-secure protocol (MASCOT), then the computation time in the context of three computing parties (i.e., locally) would compare as follows:
 |Protocol | Time     | 
 |:--------: | :--------: |
 |shamir| 0.047469 |
 |mascot| 7.18371 |
+If you have the problems about this step, please check [MP-SPDZ documentation](https://mp-spdz.readthedocs.io/en/latest/).
 
-Step 2: Clone MPC_node
+##### Step 2: Clone moda-gov-tw/PETs-Applications
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
 ```
-Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
+##### Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
 cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
-Step 4. Compile MPC file
+##### Step 4. Compile MPC file
 ```
 ./compile.py average_gender_salary.mpc
 ```
-Step 5. Setup Certificate: receive `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`); move them to `Player-Data/`; run `c_rehash <directory>` on its location.
+##### Step 5. Setup Certificate: receive `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes),`C*.pem`(all providers' `*.pem`); move them to `Player-Data/`; run `c_rehash <directory>` on its location.
+In local testing, please skip this step.
 ```
 mv /path/to/file/Pi.pem Player-Data/
 mv /path/to/file/Pi.key Player-Data/
@@ -122,16 +192,16 @@ c_rehash Player-Data/
 ```
 
 #### Data provider
-Step 1: Clone Client/Data_provider
+##### Step 1: Clone Client/Data_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
 cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
 ```
-Step 2: Install `gmpy2`
+##### Step 2: Install `gmpy2`
 ```
 pip3 install gmpy2
 ```
-Step 3. Setup Certificate: receive `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`); move them to `Player-Data/`
+##### Step 3. Setup Certificate: receive `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all MPC nodes' `*.pem`); move them to `Player-Data/`
 ```
 mv /path/to/file/Ci.pem Player-Data/
 mv /path/to/file/Ci.key Player-Data/
@@ -139,16 +209,16 @@ mv /path/to/file/P*.pem Player-Data/
 ```
 
 #### Stop provider 
-Step 1: Clone Client/Stop_provider
+##### Step 1: Clone Client/Stop_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
 cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
 ```
-Step 2: Install `gmpy2`
+##### Step 2: Install `gmpy2`
 ```
 pip3 install gmpy2
 ```
-Step 3. Setup Certificate: receive `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`); move them to `Player-Data/`
+##### Step 3. Setup Certificate: receive `C0.pem`,`C0.key`,`P*.pem`(all MPC nodes' `*.pem`); move them to `Player-Data/`
 ```
 mv /path/to/file/C0.pem Player-Data/
 mv /path/to/file/C0.key Player-Data/
@@ -156,29 +226,28 @@ mv /path/to/file/P*.pem Player-Data/
 ```
 
 ### Computation Stage
-Step 1. MPC nodes start MPC protocol.
+##### Step 1. MPC nodes start MPC protocol.
 ```
-./shamir-party.x -N <the_number_of_MPC_nodes> -p <ID_of_MPC_nodes> -h <IP_of_MPC_node_0> -pn <PortNumber_of_MPC_node_0> average_gender_salary
-```
+./shamir-party.x -N <the number of MPC nodes> -p <ID of MPC nodes> -h <IP of MPC node 0> -pn <PortNumber of MPC node 0> average_gender_salary
+```  
 If you don't know how to do it or meet any issue, please check [MP-SPDZ documentation](https://mp-spdz.readthedocs.io/en/latest/).
 
-Step 2. Data providers connect and sent data(secret input) to MPC nodes.
+##### Step 2. Data providers connect and sent data(secret input) to MPC nodes.
 ```
-python3 Client/Data_provider/average_salary.py <the_number_of_MPC_node> 14000 <IP_of_MPC_node_0> ... <IP_of_MPC_node_(m-1)>
+python3 Client/Data_provider/average_salary.py <the number of MPC nodes> 14000 <IP of MPC node 0> ... <IP of MPC node (m-1)>
 ```
 14000 is the listening port number of $MPC\ node_0$ (that of $MPC\ node_i$ is $14000+i$). You can adjust it in `MPC_node/average_gender_salary.mpc`
 
-Step 3. When the time is up, Stop provider issues the command to terminate the MPC protocol.
+##### Step 3. When the time is up, Stop provider issues the command to terminate the MPC protocol.
 ```
-python3 Client/Stop_provider/average_salary_finish.py <the_number_of_MPC_node> 14000 <IP_of_MPC_node_0> ... <IP_of_MPC_node_(m-1)>
+python3 Client/Stop_provider/average_salary_finish.py <the number of MPC nodes> 14000 <IP of MPC node 0> ... <IP of MPC node (m-1)>
 ```
 
-Step 4. MPC node 0 will output the result.
+##### Step 4. MPC node 0 will output the result.
 MPC node 0 shares the result with Data providers.
 
 
 ## Reference
-
 
 Please refer to [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of this documentation. 
 

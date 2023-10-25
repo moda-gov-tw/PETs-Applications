@@ -109,6 +109,7 @@ Scripts/compile-run.py -E shamir average_gender_salary
 ##### Step 2. Data providers connect and sent data(secret input) to MPC nodes.
 ```
 cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cp -r ../../../Player-Data/ .
 python3 Client/Data_provider/average_salary.py 3 14000 localhost localhost localhost
 ```
 Please open another terminal and execute this step.  

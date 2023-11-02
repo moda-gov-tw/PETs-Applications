@@ -22,7 +22,7 @@ The National Health and Nutrition Examination Survey (NHANES I) was initiated in
 
 ## Used PETs
 
-Differential Privacy、k-anonymization、Synthetic Data
+k-anonymization
 
 ## Goals of Using PETs
 
@@ -30,20 +30,9 @@ To protect the information of participants involved in the NHANES data collectio
 
 ## Data Processing
 
-1. Differential Privacy
-
-For the NHANES dataset to be released in a way to satisfy differential privacy, we must first find a way to generate the data. Noise is injected into the output of functions involving statistical computations. An intuitive approach is to convert the data distribution into a contingency table and then inject DP noise into each count value. The noisy contingency table is converted back to the releasable dataset by sampling according to the new but noisy statistical distribution. The figure below shows an overall procedure of the differentially private data synthesis. We note that the in the figure below, the post-processing techniques such as integrality, non-negativity, and consistency are also included to enhance the quality of the synthetic dataset. However, such post-processing techniques are optional.
-
-2. k-anonymization
-
 To release the NHANES dataset in compliance with k-anonymity, it's crucial first to determine which column in the dataset serves as the Sensitive Attribute (SA) while treating the other attributes as Quasi-identifiers (QI). Subsequently, suppression and generalization are applied to categorical attributes. The objective is to ensure that each record in the data is indistinguishably similar to at least k-1 other records within the dataset. However, a single iteration often fails to meet the above criteria because while de-identifying the data, one should preserve the usability of the original information as much as possible. Hence, the de-identification process typically adopts a progressive approach, gradually intensifying the strength of suppression and generalization (e.g., increasing the masked digits in zip codes from the last two to three digits) until the dataset meets the k-anonymity definition, after which the k-anonymized dataset is outputted.
 
-3. Synthetic Data
-
-To create a synthetic dataset from the NHANES dataset for release, it's crucial to first analyze the structure, distribution, and relationships within the original data. Subsequently, statistical models or machine learning techniques, such as Generative Adversarial Networks (GANs), are employed to capture the characteristics of the original data. Once the model is sufficiently trained, it can produce new data items that statistically resemble the original data but do not directly reflect any specific records from the original dataset.
-
-
-## Quick Start - k-anonymization
+## Quick Start
 
 ### Step 1: Clone the PETWorks-framework Repository
 Open your terminal and execute the following command:

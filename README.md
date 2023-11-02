@@ -13,7 +13,7 @@ Here we provide a list of the PETs applications dealing with this problem.
     - The application uses differential privacy to ensure patient privacy before releasing data for diabetes prediction.
 
 - **Synthetic Data** - [Privacy-Preserving Research Data Sharing](synthetic_data/privacy-preserving_research_data_sharing)
-    - The application uses differential privacy to ensure patient privacy before releasing data for diabetes prediction.
+    - The application uses synthetic data to ensure patient privacy before releasing data for diabetes prediction.
 
 - **Federated Learning** - [Financial Fraud Detection](federated_learning/financial_fraud_detection)
     - The application uses federated learning to ensure client privacy when building a fraud detection system with multiple financial institutions.
@@ -22,7 +22,7 @@ Here we provide a list of the PETs applications dealing with this problem.
     - The application uses homomorphic encryption to ensure personal privacy when computing data on the cloud.
 
 - **k-Anonymization** - [Privacy-Preserving Research Data Sharing](k-anonymization/privacy-preserving_research_data_sharing)
-    - The application uses differential privacy to ensure patient privacy before releasing data for diabetes prediction.
+    - The application uses k-anonymization to ensure patient privacy before releasing data for diabetes prediction.
 
 ## Disclaimer
 

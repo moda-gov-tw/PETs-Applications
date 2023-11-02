@@ -22,7 +22,7 @@ The National Health and Nutrition Examination Survey (NHANES I) was initiated in
 
 ## Used PETs
 
-Differential Privacy、k-anonymization、Synthetic Data
+Differential Privacy
 
 ## Goals of Using PETs
 
@@ -30,46 +30,39 @@ To protect the information of participants involved in the NHANES data collectio
 
 ## Data Processing
 
-1. Differential Privacy
-
 For the NHANES dataset to be released in a way to satisfy differential privacy, we must first find a way to generate the data. Noise is injected into the output of functions involving statistical computations. An intuitive approach is to convert the data distribution into a contingency table and then inject DP noise into each count value. The noisy contingency table is converted back to the releasable dataset by sampling according to the new but noisy statistical distribution. The figure below shows an overall procedure of the differentially private data synthesis. We note that the in the figure below, the post-processing techniques such as integrality, non-negativity, and consistency are also included to enhance the quality of the synthetic dataset. However, such post-processing techniques are optional.
 
-2. k-anonymization
+## Quick Start
+### Environment Requirements
 
-To release the NHANES dataset in compliance with k-anonymity, it's crucial first to determine which column in the dataset serves as the Sensitive Attribute (SA) while treating the other attributes as Quasi-identifiers (QI). Subsequently, suppression and generalization are applied to categorical attributes. The objective is to ensure that each record in the data is indistinguishably similar to at least k-1 other records within the dataset. However, a single iteration often fails to meet the above criteria because while de-identifying the data, one should preserve the usability of the original information as much as possible. Hence, the de-identification process typically adopts a progressive approach, gradually intensifying the strength of suppression and generalization (e.g., increasing the masked digits in zip codes from the last two to three digits) until the dataset meets the k-anonymity definition, after which the k-anonymized dataset is outputted.
+- Python version must be greater than `3.7.1` and less than `3.11`.
 
-3. Synthetic Data
+### Step 1: Install `smartnoise-synth`
 
-To create a synthetic dataset from the NHANES dataset for release, it's crucial to first analyze the structure, distribution, and relationships within the original data. Subsequently, statistical models or machine learning techniques, such as Generative Adversarial Networks (GANs), are employed to capture the characteristics of the original data. Once the model is sufficiently trained, it can produce new data items that statistically resemble the original data but do not directly reflect any specific records from the original dataset.
+Open your terminal and enter the following commands:
 
-
-## Quick Start - Differential Privacy
-### Environment Prerequisites
-
-- Ensure that your Python version is `3.7.1` or higher but below `3.11`.
-
-### Step 1: Install `smartnoise-synth` and `openDP`
-
-Launch your terminal and execute the following commands:
 ```
 pip install smartnoise-synth
 pip install openDP==0.6.2
+pip install swifter
 ```
 
-> **Note:** Upon running `pip install openDP==0.6.2`, you might encounter an error in red text, suggesting that `smartnoise-synth` necessitates `openDP` to be of version `>= 0.7.0`. Nonetheless, due to the absence of a certain API in `openDP` versions post `0.7.0` that is vital for `smartnoise-synth`, we intentionally opt for version `0.6.2`.
+> **Note:** When running `pip install openDP==0.6.2`, you may see an error in red indicating that `smartnoise-synth` requires `openDP` version to be `>= 0.7.0`. However, due to the lack of a specific API required by `smartnoise-synth` in `openDP` versions after `0.7.0`, we choose to install version `0.6.2`.
 
-### Step 2: Retrieve the Sample Code
+### Step 2: Clone the Sample Code
 
-In the terminal, execute the following command:
+Open your terminal and enter the following command:
+
 ```
-git clone https://github.com/moda-gov-tw/PETs-Applications.git
+git clone https://github.com/moda-gov-tw/PETs-Applications
 ```
 
-### Step 3: Execute the Sample Code
+### Step 3: Run the Sample Code
 
-Navigate to the relevant directory and run the sample code with these commands:
+Open your terminal and enter the following commands:
+
 ```
-cd PETs-Applications/differential_privacy/privacy-preserving_research_data_sharing
+cd differential_privacy/privacy-preserving_research_data_sharing 
 python3 example_DP.py
 ```
 

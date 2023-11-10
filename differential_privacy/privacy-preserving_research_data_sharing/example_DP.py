@@ -9,7 +9,7 @@ nhanes = pd.read_csv("NHANES.csv")
 gen_num = nhanes.shape[0]
 print('Total number:', gen_num)
 
-attr_info_1 = {'RIDAGEYR':[32, 44, 56, 68], 'BMXBMI':[28, 42, 56, 70], 'LBXGH':[7, 9, 12, 14], 'METS':[12000, 230000, 35000, 46000]} ## interval
+attr_info_1 = {'RIDAGEYR':[32, 44, 56, 68], 'BMXBMI':[28, 42, 56, 70], 'LBXGH':[7, 9, 12, 14], 'METS':[12000, 23000, 35000, 46000]} ## interval
 attr_info_2 = {'RIDAGEYR':[20, 81], 'BMXBMI':[14, 85], 'LBXGH':[4, 17], 'METS':[0, 58321]} ## min-max value
 ## ==> RIDAGEYR(5 intervals): [20, 31], [32, 43], [44, 55], [56, 67], [68, 80]
 

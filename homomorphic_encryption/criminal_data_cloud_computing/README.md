@@ -36,49 +36,59 @@ The application listed here only serves as the minimum demonstration of using PE
 
 ## Quick Start
 
+### Build The Server And Client
 
+#### Step 1. Build and install OpenFHE
+If you don't know how to do it, please check
+[the OpenFHE documentation](https://openfhe-development.readthedocs.io/en/latest/sphinx_rsts/intro/installation/linux.html).
 
-### compile the server and client executable file
-step 1: 
-Build and install OpenFHE using “make install”. If you don't know how to do it, please check
-[OpenFHE documentation](https://openfhe-development.readthedocs.io/en/latest/sphinx_rsts/intro/installation/linux.html).
+#### Step 2. Build the source code
 
-step 2:
-Clone tfhe-police.   
+Clone the repo and go to the application folder.
+```
+git clone https://github.com/moda-gov-tw/PETs-Applications
+cd PETs-Applications/homomorphic_encryption/criminal_data_cloud_computing/tfhe-police/
+```
 
-step 3: 
-Create the build directory from the root directory of this repo, and cd to it.
+Create a directory where the executables will be placed and build the application.
 ```
 mkdir build
 cd build
-```
-step 4: 
-Run
-```
 cmake ..
-```
-
-step 5: 
-Run “make” to build the executable.
-```
 make
 ```
 
-### using the network service
-step 1: Compile the server file from the repo above. 
+#### Step 3.  Run the executables
 
-step 2: Clone node.js.  
+Use `-h` to see the help text of the server and client executables.
 
-step 3: Put the server into the uploads folder (in the current directory).
 ```
-cd node.js
+./server -h
+./client -h
+```
+
+### Use The Network Service
+
+#### Step 1. Prepare the server executable
+
+Please follow the above instructions to build the server. 
+
+Then, create a directory named `uploads` in the `node.js` folder and copy the server into it.
+```
+cd PETs-Applications/homomorphic_encryption/criminal_data_cloud_computing/node.js
 mkdir uploads/
+cp ../tfhe-police/build/server uploads
 ```
-step 4: install nodejs and related application
-``` 
+
+#### Step 2.  Install the dependencies
+```
 sudo apt install -y nodejs
 sudo apt install npm
 npm install
+```
+
+#### Step 3.  Run the service
+```
 node TTC.js
 ```
 

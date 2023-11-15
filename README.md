@@ -21,6 +21,9 @@ Here we provide a list of the PETs applications dealing with this problem.
 - **Homomorphic Encryption** - [Criminal Data Cloud Computing](homomorphic_encryption/criminal_data_cloud_computing)
     - The application uses homomorphic encryption to ensure personal privacy when computing data on the cloud.
 
+- **Secure Multiparty Computation** - [Privacy-Preserving Statistical Average Salary Calculation](secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation)
+    - The application uses secure multiparty computation to ensure personal salary privacy when investigating gender wage gaps.
+
 - **k-Anonymization** - [Privacy-Preserving Research Data Sharing](k-anonymization/privacy-preserving_research_data_sharing)
     - The application uses k-anonymization to ensure patient privacy before releasing data for diabetes prediction.
 

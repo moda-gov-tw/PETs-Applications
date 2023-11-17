@@ -802,7 +802,22 @@ int encrypt(const char* dirName)
 
 }
 
+static void trim(char * s)
+{
 
+    char * p = s;
+
+    int l = strlen(p);
+
+	if (l==0) return;
+
+    while(isspace(p[l - 1])) p[--l] = 0;
+
+    while(* p && isspace(* p)) ++p, --l;
+
+    memmove(s, p, l + 1);
+
+}
 
 int decrypt(const char* dirName)
 
@@ -954,13 +969,19 @@ int decrypt(const char* dirName)
 
 				}
 
-				fprintf(fptr , "%s,%d,%d,%d\n" , name , encodeCase(decCase) , encodeLocation(decLocation) , encodeTime(decTime));
+				trim(name);
 
-				std::cout << name << "," << encodeCase(decCase) << "," << encodeLocation(decLocation) << "," << encodeTime(decTime) << std::endl;
+				if (strcmp(name, "") != 0)
+
+				{
+
+					fprintf(fptr , "%s,%d,%d,%d\n" , name , encodeCase(decCase) , encodeLocation(decLocation) , encodeTime(decTime));
+
+					std::cout << name << "," << encodeCase(decCase) << "," << encodeLocation(decLocation) << "," << encodeTime(decTime) << std::endl;
+				
+				}
 
 			}
-
-			
 
 			free(fileName);
 

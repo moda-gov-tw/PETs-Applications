@@ -58,6 +58,11 @@ cmake ..
 make
 ```
 
+Copy the dataset to the current directory.
+```
+cp ../testing/data.csv .
+```
+
 #### Step 3.  Run the executables
 
 Use `-h` to see the help text of the server and client executables.

@@ -60,8 +60,9 @@ void help()
 	std::cout << "Usage: ./cleint [options] ...\n";
 	std::cout << "Options:\n";
 	std::cout << "\t-h, --help\t\tdisplay this help and exit.\n";
-	std::cout << "\t-k, --keygen\t\tgenerate a key and save in \"./myKey\".\n";
-	std::cout << "\t-n, --name NAME\t\tgenerate a file that can query by NAME(at most 8 characters). It also generate a file for decryption named \"CC\".\n";
-	std::cout << "\t-d, --decrypt FILENAME\tdecrypt the result which is named FILENAME by \"./myKey\" and show the result.\n";
+	std::cout << "\t-k, --keygen\t\tgenerate a secret key (\"secretKey\"), the associated public keys (\"myKey,\" \"rfKey,\" and \"ksKey\"), and the system parameters (\"CC\").\n";
+	std::cout << "\t-n, --name NAME\t\tgenerate a query for the criminal data associated with NAME.\n";
+	std::cout << "\t-d, --decrypt FILENAME\tdecrypt FILENAME.zip and show the result.\n";
+	std::cout << "\t-e, --encrypt OUTPUT\tencrypt \"data.csv\" and save the result to OUTPUT.zip\n";
 	return;
 }

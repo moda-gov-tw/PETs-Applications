@@ -802,10 +802,10 @@ int encrypt(const char* dirName)
 
 }
 
-static void trim(char * s)
+static void trim(char * source, char * target)
 {
 
-    char * p = s;
+    char * p = source;
 
     int l = strlen(p);
 
@@ -815,7 +815,7 @@ static void trim(char * s)
 
     while(* p && isspace(* p)) ++p, --l;
 
-    memmove(s, p, l + 1);
+    memmove(target, p, l + 1);
 
 }
 
@@ -895,6 +895,8 @@ int decrypt(const char* dirName)
 
 			char name[9] = {0};
 
+			char trimedName[9] = {0};
+
 			for(int b = 0 ; b < blockSize ; b++)
 
 			{
@@ -969,9 +971,9 @@ int decrypt(const char* dirName)
 
 				}
 
-				trim(name);
+				trim(name, trimedName);
 
-				if (strcmp(name, "") != 0)
+				if (strcmp(trimedName, "") != 0)
 
 				{
 

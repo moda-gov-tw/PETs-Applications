@@ -7,7 +7,7 @@ sys.path.append('.')
 from Client.client import *
 from Client.domains import *
 
-n_computation_nodes = int(sys.argv[1])  #the number of MPC node
+n_computation_nodes = int(sys.argv[1])  #the number of SMPC node
 computation_node_0_port_num = int(sys.argv[2])
 ip = []
 for i in range(n_computation_nodes):

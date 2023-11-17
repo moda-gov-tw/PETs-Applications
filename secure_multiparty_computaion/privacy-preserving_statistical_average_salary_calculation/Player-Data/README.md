@@ -1,5 +1,5 @@
-# MPC nodes
-Store `Pi.pem`,`Pi.key`(`i` is the ID of MPC nodes) which are recieved from Coordinator.
+# SMPC nodes
+Store `Pi.pem`,`Pi.key`(`i` is the ID of SMPC nodes) which are recieved from Coordinator.
 
 # Data_provider
 Store `Ci.pem`,`Ci.key`(`i` is the ID of Data provider) which are recieved from Coordinator.

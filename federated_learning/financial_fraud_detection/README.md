@@ -5,19 +5,16 @@ Credit card fraud is a growing concern worldwide, causing huge financial losses 
 
 ## Dataset
 
-
-* [Credit Card Fraud Detection data source](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-* Data set introduction:
-This dataset contains credit card transactions by European cardholders in September 2013.
+[Credit Card Fraud Detection dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+contains credit card transactions by European cardholders in September 2013.
 Due to confidentiality issues, the public data set cannot provide the original characteristics of the data and more background information. Some field data are converted numerical variables of Principal Components Analysis (PCA), that is, fields V1, V2 to V28 are PCA Transformation results to protect customer information.
 PCA is essentially a dimensionality reduction technique that preserves the most important features while reducing the number of dimensions. Therefore, these 28 V variables can be considered as representations of more different variables such as customer details, transaction amount, transaction location, etc.
-* Dataset size:
-150.83MB
-* Dataset field:
-  - Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
-  - V1, V2, …, V28: results transformed by PCA (may contain private data)
-  - Amount: transaction amount
-  - class: 1 in case of fraud, 0 otherwise (target variable for prediction)
+
+Dataset field:
+- Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
+- V1, V2, …, V28: results transformed by PCA (may contain private data)
+- Amount: transaction amount
+- class: 1 in case of fraud, 0 otherwise (target variable for prediction)
 
 ![](https://hackmd.io/_uploads/rkfjVI0a2.jpg)
 
@@ -50,32 +47,40 @@ In the privacy-enhanced joint machine learning architecture, each financial inst
 ![](https://hackmd.io/_uploads/HyTeH80T3.jpg)
 
 ## Quick Start
-NVIDIA FLARE requires Python 3.8+.
-Install NVFLARE:
-```
-$ pip install --upgrade pip
-$ pip install nvflare
-```
-Download the [Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/)
-Clone repo to get examples:
-```
-$ git clone https://github.com/moda-gov-tw/PETs-Applications.git
-$ cd PETs-Applications/federated_learning/financial_fraud_detection
-$ pip install -r requirements.txt
 
-Download the Dataset to ./dataset
-$ bash CCF_data_split_gen.sh
-$ bash CCF_job_config_gen.sh
-$ cd tree-based
-```
-Quick Start with Simulator:
+#### Step 1. Clone the application
 
-Make sure that the NVFLARE environment is set up correctly after installation, you can run an example application with The FL Simulator using the following script
+Clone the repo and go to the application directory.
 ```
-$ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
+git clone https://github.com/moda-gov-tw/PETs-Applications
+cd PETs-Applications/federated_learning/financial_fraud_detection
+```
+#### Step 2. Install dependencies
+
+Download the [dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) and place it in `./dataset`.
+
+Next, install the dependencies required by the application.
+
+```
+pip install -r requirements.txt
 ```
 
-Command Usage:
+After that, run the following script to preprocess the data and config the application.
+```
+bash CCF_data_split_gen.sh
+bash CCF_job_config_gen.sh
+```
+
+#### Step 3. Run the application
+
+Make sure that the NVFLARE environment is set up correctly after installation, you can run an example application with The FL Simulator using the following script.
+
+```
+cd tree-based/
+nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
+```
+
+###### Command Usage
 ```
 usage: nvflare simulator [-h] -w WORKSPACE [-n N_CLIENTS] [-c CLIENTS] [-t THREADS] [-gpu GPU] job_folder
 
@@ -97,9 +102,6 @@ list of GPU Device Ids, comma separated
 -m MAX_CLIENTS, --max_clients MAX_CLIENTS
 maximum number of clients
 ```
-
-
-
 
 ## Reference
 Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 

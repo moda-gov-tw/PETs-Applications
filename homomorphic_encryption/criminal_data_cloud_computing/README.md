@@ -44,7 +44,7 @@ If you don't know how to do it, please check
 
 #### Step 2. Build the source code
 
-Clone the repo and go to the application folder.
+Clone the repo and go to the application directory.
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications
 cd PETs-Applications/homomorphic_encryption/criminal_data_cloud_computing/tfhe-police/
@@ -73,7 +73,7 @@ Use `-h` to see the help text of the server and client executables.
 
 Please follow the above instructions to build the server. 
 
-Then, create a directory named `uploads` in the `node.js` folder and copy the server into it.
+Then, create a directory named `uploads` in the `node.js` directory and copy the server into it.
 ```
 cd PETs-Applications/homomorphic_encryption/criminal_data_cloud_computing/node.js
 mkdir uploads/
@@ -82,7 +82,7 @@ cp ../tfhe-police/build/server uploads
 
 #### Step 2.  Install the dependencies
 ```
-sudo apt install -y nodejs
+sudo apt install nodejs
 sudo apt install npm
 npm install
 ```

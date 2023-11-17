@@ -28,4 +28,4 @@ result = PETAnonymization(
     k=6,
 )
 
-output(result, "output.csv")
+output(result, "result.csv")

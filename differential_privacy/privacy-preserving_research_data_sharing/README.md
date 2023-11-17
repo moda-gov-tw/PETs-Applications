@@ -33,13 +33,11 @@ To protect the information of participants involved in the NHANES data collectio
 For the NHANES dataset to be released in a way to satisfy differential privacy, we must first find a way to generate the data. Noise is injected into the output of functions involving statistical computations. An intuitive approach is to convert the data distribution into a contingency table and then inject DP noise into each count value. The noisy contingency table is converted back to the releasable dataset by sampling according to the new but noisy statistical distribution. The figure below shows an overall procedure of the differentially private data synthesis. We note that the in the figure below, the post-processing techniques such as integrality, non-negativity, and consistency are also included to enhance the quality of the synthetic dataset. However, such post-processing techniques are optional.
 
 ## Quick Start
-### Environment Requirements
+#### Step 1. Install dependencies
 
-- Python version must be greater than `3.7.1` and less than `3.11`.
+Please ensure the Python version is greater than `3.7.1` and less than `3.11`.
 
-### Step 1: Install `smartnoise-synth`
-
-Open your terminal and enter the following commands:
+Then, install the following dependencies.
 
 ```
 pip install smartnoise-synth
@@ -47,20 +45,19 @@ pip install openDP
 pip install swifter
 ```
 
-### Step 2: Clone the Sample Code
+#### Step 2. Clone the application
 
-Open your terminal and enter the following command:
-
+Clone the repo and go to the application directory.
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications
+cd PETs-Applications/differential_privacy/privacy-preserving_research_data_sharing 
 ```
 
-### Step 3: Run the Sample Code
+#### Step 3. Run the application
 
-Open your terminal and enter the following commands:
+Run the following script to process the original data, `NHANES.csv`, with differential privacy. The output will be stored in `result.csv`.
 
 ```
-cd differential_privacy/privacy-preserving_research_data_sharing 
 python3 example_DP.py
 ```
 

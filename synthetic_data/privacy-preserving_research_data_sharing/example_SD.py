@@ -14,6 +14,6 @@ synthsizer.fit(data)
 
 synthetic_data = synthsizer.sample(num_rows=3985)
 
-synthetic_data.to_csv('output.csv',index = False)
+synthetic_data.to_csv('result.csv',index = False)
 
 

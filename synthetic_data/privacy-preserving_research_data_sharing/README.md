@@ -32,26 +32,29 @@ To protect the information of participants involved in the NHANES data collectio
 
 To create a synthetic dataset from the NHANES dataset for release, it's crucial to first analyze the structure, distribution, and relationships within the original data. Subsequently, statistical models or machine learning techniques, such as Generative Adversarial Networks (GANs), are employed to capture the characteristics of the original data. Once the model is sufficiently trained, it can produce new data items that statistically resemble the original data but do not directly reflect any specific records from the original dataset.
 
-## Quick Start - Synthetic Data
+## Quick Start
 
-### Step 1: Install `SDV`
-Open the terminal and enter the following command:
-```
-pip install SDV
-```
+#### Step 1. Install dependencies
 
-### Step 2: Download the Sample Code
-Open the terminal and enter the following command:
+Please ensure the Python version is greater than `3.8` and less than `3.12`.
+
+Then, install `SDV` by using the following command.
 ```
-git clone https://github.com/moda-gov-tw/PETs-Applications.git
+pip install sdv
 ```
 
-### Step 3: Run the Sample Code
-Open the terminal and navigate to the directory by entering:
+#### Step 2. Clone the application
+
+Clone the repo and go to the application directory.
 ```
+git clone https://github.com/moda-gov-tw/PETs-Applications
 cd PETs-Applications/synthetic_data/privacy-preserving_research_data_sharing/
 ```
-Then, run the sample code with:
+
+#### Step 3. Run the application
+
+Run the following script to process the original data, `NHANES.csv`, with synthetic data. The output will be stored in `result.csv`.
+
 ```
 python3 example_SD.py
 ```

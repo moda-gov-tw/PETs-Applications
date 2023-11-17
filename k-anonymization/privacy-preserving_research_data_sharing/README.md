@@ -34,41 +34,37 @@ To release the NHANES dataset in compliance with k-anonymity, it's crucial first
 
 ## Quick Start
 
-### Step 1: Clone the PETWorks-framework Repository
-Open your terminal and execute the following command:
+#### Step 1. Install dependencies
+
+Install [PETWorks-framework](https://github.com/moda-gov-tw/PETWorks-framework) by using the following command.
+
 ```
 git clone https://github.com/moda-gov-tw/PETWorks-framework.git
+mkdir -p PETWorks-framework/arx/lib
+wget https://github.com/arx-deidentifier/arx/releases/download/v3.9.0/libarx-3.9.0.jar -P "PETWorks-framework/arx/lib/"
+pip install -r PETWorks-framework/requirements.txt
 ```
 
-### Step 2: Obtain the ARX Library
-Click on the provided [link](https://github.com/arx-deidentifier/arx/releases/download/v3.9.0/libarx-3.9.0.jar) to download ARX. After downloading, place the `.jar` file in the `PETWorks-framework/arx/lib` directory.
+#### Step 2. Clone the application
 
-### Step 3: Obtain the Dataset, Data Hierarchy, and Sample Code
-Clone the repository using:
+Clone the repository.
 ```
-git clone https://github.com/moda-gov-tw/PETs-Applications.git
+git clone https://github.com/moda-gov-tw/PETs-Applications
 ```
-Then, transfer `example_k.py`, `NHANES_hierarchy`, and `NHANES.csv` from the `k-anonymization` directory to the main `PETWorks-framework` directory.
 
-### Step 4: Install Necessary Dependencies
-Navigate to the Petworksframework directory in the terminal:
+Copy the application files (including `example_k.py`, `NHANES_hierarchy`, and `NHANES.csv`) to `PETWorks-framework`. Then, go to `PETWorks-framework`.
 ```
+cp -r PETs-Applications/k-anonymization/privacy-preserving_research_data_sharing/* PETWorks-framework
 cd PETWorks-framework
 ```
-Then, install the required Python packages:
-```
-pip install -r requirements.txt
-```
 
-### Step 5: Execute the Sample Script
-Run the following command in the terminal:
+#### Step 3. Run the application
+
+Run the following script to process the original data, `NHANES.csv`, with k-anonymization. The output will be stored in `result.csv`.
+
 ```
 python3 example_k.py
 ```
-
-### Step 6: Examine the k-anonymized Data Output
-Within the `PETWorks-framework` directory, locate the `output.csv` file. This contains the k-anonymized data.
-
 
 ## Reference
 Please refer to [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of this documentation. 

@@ -87,7 +87,8 @@ cd tree-based/
 nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```
 
-You will see the execution like in the picture
+You will see the execution as shown in the picture
+![execution](./figures/execution.png)
 
 ###### Command Usage
 ```

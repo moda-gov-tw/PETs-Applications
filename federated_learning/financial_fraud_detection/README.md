@@ -95,8 +95,6 @@ After the federated learning phase, the server will store the global model.
 
 #### Step 4. Prediction by the global model
 
-Load the global model to the xgboost.
-
 This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to independently modify the input for predictions.
 ![execution](./figures/GM_predict.png)
 
@@ -129,6 +127,7 @@ maximum number of clients
 
 ## Reference
 Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 
+For more detailed information, please refer to the [nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

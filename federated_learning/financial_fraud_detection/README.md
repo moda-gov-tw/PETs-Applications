@@ -98,7 +98,7 @@ After the federated learning phase, the server will store the global model.
 Load the global model to the xgboost.
 
 This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to independently modify the input for predictions.
-
+![execution](./figures/GM_predict.png)
 
 ```
 python GM_predict.py

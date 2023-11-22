@@ -64,7 +64,7 @@ cd PETs-Applications/federated_learning/financial_fraud_detection
 ```
 #### Step 2. Install dependencies
 
-Download the [dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) and place it in `./dataset`.
+Download the [dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) and place it in `financial_fraud_detection/dataset`.
 
 Next, install the dependencies required by the application.
 

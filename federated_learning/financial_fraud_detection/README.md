@@ -89,6 +89,7 @@ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/works
 
 You will see the execution as shown in the picture
 ![execution](./figures/execution.png)
+Each Client loads the global model and does the local training, gets the Train-AUC and Valis-AUC.
 
 ###### Command Usage
 ```

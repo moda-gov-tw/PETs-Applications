@@ -90,9 +90,19 @@ nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/works
 You will see the execution as shown in the picture
 ![execution](./figures/execution.png)
 Each Client loads the global model and does the local training, gets the train-auc and valid-auc.
-After the federated learning phase, the server will store the model.
-![execution](./figures/execution.png)
+After the federated learning phase, the server will store the global model.
+![execution](./figures/store_model.png)
 
+#### Step 4. Prediction by the global model
+
+Load the global model to the xgboost.
+
+This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to independently modify the input for predictions.
+
+
+```
+python GM_predict.py
+```
 
 ###### Command Usage
 ```

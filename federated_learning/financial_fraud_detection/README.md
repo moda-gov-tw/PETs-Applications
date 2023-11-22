@@ -48,6 +48,12 @@ In the privacy-enhanced joint machine learning architecture, each financial inst
 
 ## Quick Start
 
+#### Environment requirement
+
+OS version: Ubuntu 20.04
+Python version: Python 3.8+.
+
+
 #### Step 1. Clone the application
 
 Clone the repo and go to the application directory.
@@ -65,7 +71,7 @@ Next, install the dependencies required by the application.
 pip install -r requirements.txt
 ```
 
-After that, run the following script to preprocess the data and config the application.
+After that, run the following script to preprocess the data and configure the application.
 ```
 bash CCF_data_split_gen.sh
 bash CCF_job_config_gen.sh

@@ -87,10 +87,11 @@ cd tree-based/
 nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
 ```
 
-You will see the execution as shown in the picture
+You will see the execution as shown in the picture.
 ![execution](./figures/execution.png)
-Each Client loads the global model and does the local training, gets the train-auc and valid-auc.
-After the federated learning phase, the server will store the global model.
+
+Each client loads the global model and starts local training. The application will periodically print the train-auc (AUC calculated from the training dataset) and valid-auc (AUC calculated from the validation dataset).
+After the federated learning phase finishes, the server will store the global model.
 ![execution](./figures/store_model.png)
 
 #### Step 4. Prediction by the global model

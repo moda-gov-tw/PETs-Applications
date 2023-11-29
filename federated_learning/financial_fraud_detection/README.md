@@ -97,7 +97,7 @@ This is a simple example that utilizes a specific piece of data from the dataset
 ![execution](./figures/GM_predict.png)
 
 ```
-cd..
+cd ..
 python GM_predict.py
 ```
 

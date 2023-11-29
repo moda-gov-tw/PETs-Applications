@@ -50,10 +50,11 @@ In the privacy-enhanced joint machine learning architecture, each financial inst
 
 #### Environment requirement
 
-OS version: Ubuntu 20.04
+OS version: MacOS Sonoma 14.1.1
 
-Python version: Python 3.8+.
+Python version: Python 3.8
 
+This application has been tested using Python 3.8 on MacOS Sonoma 14.1.1 with M2 CPU and 16 GB memory.
 
 #### Step 1. Clone the application
 

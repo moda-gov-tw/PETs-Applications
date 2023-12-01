@@ -1,7 +1,7 @@
 
 # Privacy-Preserving Research Data Sharing
 
-Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks and individuals. To effectively deal with this problem, Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks, so the joint machine learning training method can achieve collaboration while protecting privacy. Through federated learning, multiple financial institutions cooperate on the basis of a shared model, reducing the risk of sensitive data exposure while obtaining superior model performance.
+Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks, and individuals. To effectively deal with this problem, the Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks, so the federated machine learning training method can achieve collaboration while protecting privacy. Through federated learning, multiple financial institutions cooperate based on a shared model, reducing the risk of sensitive data exposure while obtaining superior model performance.
 
 ## Dataset
 

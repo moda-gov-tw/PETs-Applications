@@ -8,7 +8,6 @@ Credit card fraud is a growing concern worldwide, causing huge financial losses 
 [Credit Card Fraud Detection dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 contains credit card transactions made by European cardholders in September 2013. Due to strict confidentiality considerations, the public data set cannot reveal specific attributes of the original data or provide comprehensive background information. Instead, some data fields display numerical variables resulting from principal component analysis (PCA). Specifically, the fields labeled V1 to V28 represent the results of PCA transformations that have been applied to protect customer information and provide better training results in machine learning.
 Principal component analysis (PCA) is fundamentally a dimensionality reduction technique designed to preserve the most critical data characteristics while reducing the overall number of dimensions. Therefore, the 28 variables represented by V1 to V28 can be viewed as condensed representations of a wider range of variables, including customer details, transaction amounts, transaction locations, etc.
-![image](https://github.com/Hector151/PETs-Applications/assets/79897975/ab85a2a6-96b8-478f-a304-90d8907dd193)
 
 
 Dataset field:

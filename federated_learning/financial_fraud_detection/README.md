@@ -93,7 +93,7 @@ After the federated learning phase finishes, the server will store the global mo
 
 #### Step 4. Prediction by the global model
 
-This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the prediction inputs yourself based on your needs.
+This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the inputs yourself based on your needs.
 ![execution](./figures/GM_predict.png)
 
 ```

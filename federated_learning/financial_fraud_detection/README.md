@@ -14,7 +14,7 @@ Dataset field:
 - Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
 - V1, V2, …, V28: results transformed by PCA (may contain private data)
 - Amount: transaction amount
-- class: 1 in case of fraud, 0 otherwise (target variable for prediction)
+- Class: 1 in case of fraud, 0 otherwise (target variable for prediction)
 
 ![](https://hackmd.io/_uploads/rkfjVI0a2.jpg)
 

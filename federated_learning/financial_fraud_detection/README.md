@@ -48,6 +48,10 @@ In the privacy-enhanced joint machine learning architecture, each financial inst
 
 ## Quick Start
 
+#### Environment requirement
+
+This application has been tested using Python 3.8 on MacOS Sonoma 14.1.1 with M2 CPU and 16 GB memory.
+
 #### Step 1. Clone the application
 
 Clone the repo and go to the application directory.
@@ -57,7 +61,7 @@ cd PETs-Applications/federated_learning/financial_fraud_detection
 ```
 #### Step 2. Install dependencies
 
-Download the [dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) and place it in `./dataset`.
+Download the [dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/) and place it in `financial_fraud_detection/dataset`.
 
 Next, install the dependencies required by the application.
 
@@ -65,7 +69,7 @@ Next, install the dependencies required by the application.
 pip install -r requirements.txt
 ```
 
-After that, run the following script to preprocess the data and config the application.
+After that, run the following script to preprocess the data and configure the application.
 ```
 bash CCF_data_split_gen.sh
 bash CCF_job_config_gen.sh
@@ -78,6 +82,23 @@ Make sure that the NVFLARE environment is set up correctly after installation, y
 ```
 cd tree-based/
 nvflare simulator jobs/creditcard_5_bagging_IID_split_uniform_lr -w ${PWD}/workspaces/xgboost_workspace_5_bagging_exponential_split_scaled_lr -n 5 -t 5
+```
+
+You will see the execution as shown in the picture.
+![execution](./figures/execution.png)
+
+Each client loads the global model and starts local training. The application will periodically print the train-auc (AUC calculated from the training dataset) and valid-auc (AUC calculated from the validation dataset).
+After the federated learning phase finishes, the server will store the global model.
+![execution](./figures/store_model.png)
+
+#### Step 4. Prediction by the global model
+
+This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the inputs yourself based on your needs.
+![execution](./figures/GM_predict.png)
+
+```
+cd ..
+python GM_predict.py
 ```
 
 ###### Command Usage
@@ -105,6 +126,8 @@ maximum number of clients
 
 ## Reference
 Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 
+
+For more detailed information, please refer to the [nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

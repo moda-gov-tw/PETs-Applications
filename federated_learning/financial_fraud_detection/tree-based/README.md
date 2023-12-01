@@ -38,7 +38,7 @@ bash run_experiment_centralized.sh
 ```
 This will train several models w/ and w/o random forest settings. The results are shown below.
 
-![Centralized validation curve](./figs/Centralized.png)
+![Centralized validation curve](./figures/Centralized.png)
 
 As shown, random forest may not yield significant performance gain,
 and can even make the accuracy worse if subsample rate is too low (e.g. 0.05).
@@ -54,8 +54,8 @@ python3 ./utils/plot_tensorboard_events.py
 ```
 The resulting validation AUC curves (no smoothing) are shown below:
 
-![5 clients validation curve](./figs/5_client.png)
-![20 clients validation curve](./figs/20_client.png)
+![5 clients validation curve](./figures/5_client.png)
+![20 clients validation curve](./figures/20_client.png)
 
 As illustrated, we can have the following observations:
 - cyclic training performs ok under uniform split (the purple curve), however under non-uniform split, it will have significant performance drop (the brown curve)

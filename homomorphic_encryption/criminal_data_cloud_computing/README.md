@@ -1,5 +1,7 @@
 # Criminal Data Cloud Computing
 
+> :exclamation: Please refer [here](https://hackmd.io/@petworks/SJ3i2nq0n) for the Chinese version of the scenario description.
+
 In recent years, the Executive Yuan has organized units across Taiwan to promote the “centralization of information resources,” which means that many units’ servers and other ICT equipment are not managed by themselves but by higher-level units or information management units. Although the centralization method can make the ICT system easier to manage, it also means that the information management unit can easily access the data of the managed servers, creating the possibility of privacy leakage.  
 As mentioned above, if the various ministries and agencies of the Executive Yuan also want to promote the centralization plan, they will face the same problem. Therefore, we hope to simulate the centralization plan implemented by the crime investigation authority, which will centralize the criminal data to another institution, such as a co-constructed computer room, for management and apply fully homomorphic encryption technology to privacy protection in this simulation scenario. The data to be centralized is encrypted so that the centralizing party cannot obtain the plaintext content of the data and uses the characteristics of fully homomorphic encryption to allow the centralizing party to perform various operations without knowing the plaintext content. In this way, we can solve the above problem and make the centralization plan and privacy protection go hand in hand. In our simulation scenario, we will use the mechanism of fully homomorphic encryption to encrypt all the plaintext crime data of the crime investigation agency (starting now referred to as the client side) and then send it to the co-constructed computer room (starting now referred to as the server side) for storage and computation by the operation agency.
 ## Dataset
@@ -97,10 +99,6 @@ npm install
 node TTC.js
 ```
 
-## Reference
-
-
-Please refer to [here](https://hackmd.io/@petworks/SJ3i2nq0n) for the Chinese version of this documentation. 
 
 ## Disclaimer
 

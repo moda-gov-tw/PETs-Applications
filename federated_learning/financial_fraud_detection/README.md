@@ -1,6 +1,8 @@
 
 # Privacy-Preserving Research Data Sharing
 
+> :exclamation: Please refer [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of the scenario description.
+
 Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks and individuals. To effectively deal with this problem, Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks, so the joint machine learning training method can achieve collaboration while protecting privacy. Through federated learning, multiple financial institutions cooperate on the basis of a shared model, reducing the risk of sensitive data exposure while obtaining superior model performance.
 
 ## Dataset
@@ -91,6 +93,8 @@ Each client loads the global model and starts local training. The application wi
 After the federated learning phase finishes, the server will store the global model.
 ![execution](./figures/store_model.png)
 
+For more information, please refer to the [nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
+
 #### Step 4. Prediction by the global model
 
 This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the inputs yourself based on your needs.
@@ -123,11 +127,6 @@ list of GPU Device Ids, comma separated
 -m MAX_CLIENTS, --max_clients MAX_CLIENTS
 maximum number of clients
 ```
-
-## Reference
-Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 
-
-For more detailed information, please refer to the [nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

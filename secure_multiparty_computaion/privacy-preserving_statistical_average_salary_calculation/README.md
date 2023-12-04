@@ -1,5 +1,7 @@
 # Privacy-Preserving Statistical Average Salary Calculation
 
+> :exclamation: Please refer [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of the scenario description.
+
 Gender wage gap refers to the disparity in earnings that arises due to gender within the same job positions or similar roles. This phenomenon is prevalent in many countries and across various industries, but the specific extent of the gap can vary based on factors such as region, industry, education level, and job position.
 
 This case study is based on the Boston Women's Workforce Council's use of Secure Multi-Party Computation (SMPC) in 2015, 2016, 2017, 2019, and 2021 to investigate gender wage gaps among approximately one-sixth of Boston's salaried employees.
@@ -245,11 +247,6 @@ python3 Client/Stop_provider/average_salary_finish.py <the number of SMPC nodes>
 
 ##### Step 4. SMPC node 0 will output the result.
 SMPC node 0 shares the result with Data providers.
-
-
-## Reference
-
-Please refer to [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of this documentation. 
 
 ## Disclaimer
 

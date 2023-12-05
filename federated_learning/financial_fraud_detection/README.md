@@ -1,27 +1,25 @@
 
 # Privacy-Preserving Research Data Sharing
 
-Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks, and individuals. To effectively deal with this problem, the Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks, so the federated machine learning training method can achieve collaboration while protecting privacy. Through federated learning, multiple financial institutions cooperate based on a shared model, reducing the risk of sensitive data exposure while obtaining superior model performance.
+Credit card fraud is a growing concern worldwide, causing huge financial losses to businesses, banks, and individuals. To effectively deal with this problem, the Fraud Detection System (FDS) plays an important role. Traditional centralized methods have privacy and security risks. Thus, federated learning can achieve collaborative learning among distinct data providers in a decentralized fashion without exposing training data during training phases. Privacy protection-oriented federated learning is particularly useful for multiple financial institutions to train a shared model to reduce the risk of sensitive data exposure while obtaining superior model performance. Here, we adopt a credit card transactions dataset for the application of credit card fraud detection by federated learning as follows.
 
 ## Dataset
 
 [Credit Card Fraud Detection dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-contains credit card transactions made by European cardholders in September 2013. Due to strict confidentiality considerations, the public data set cannot reveal specific attributes of the original data or provide comprehensive background information. Certain fields, V1, V2, …V28, of data are converted into numerical values by principal components analysis (PCA) to protect the transaction data containing customers’ personal sensitive information and provide better training results in machine learning.
-Principal component analysis (PCA) is fundamentally a dimensionality reduction technique designed to preserve the most critical data characteristics while reducing the overall number of dimensions. Therefore, the 28 variables represented by V1 to V28 can be viewed as condensed representations of a wider range of variables, including customer details, transaction amounts, transaction locations, etc.
-
+contains credit card transactions made by European cardholders in September 2013. Due to strict confidentiality considerations, the public data set cannot reveal specific attributes of the original data or provide comprehensive background information. Certain fields, V1, V2, …V28, of data are converted into numerical values by principal components analysis (PCA) to protect the transaction data containing customers’ personal sensitive information and provide better training results in machine learning. Principal component analysis (PCA) is fundamentally a dimensionality reduction technique designed to preserve the most critical data characteristics while reducing the overall number of dimensions. Therefore, the 28 variables represented by V1 to V28 can be viewed as condensed representations of a wider range of variables, including customer details, transaction amounts, transaction locations, etc.
 
 Dataset field:
-- Time: The number of seconds elapsed between each transaction and the first transaction in the dataset
-- V1, V2, …, V28: Results transformed by PCA (may contain private data)
-- Amount: Transaction amount
-- Class: 1 in case of fraud, 0 otherwise (target variable for prediction)
-
+- Time: It represents the number of seconds from the first transaction to each transaction in the dataset.
+- V1, V2, …, V28: They represent the PCA of each distinct feature data that might contain sensitive personal data.
+- Amount: It represents the transaction amount.
+- Class: This field represents indicates the label of each transaction. If the transaction is a case of fraud, the label is as 1. Otherwise, it is labeled as 0.
+- 
 ![](https://hackmd.io/_uploads/rkfjVI0a2.jpg)
 
 
 ## Used PETs
 
-There are several privacy protection technologies in the current federated learning, which can be adjusted according to the needs of users to meet the security requirements in different environments. Here, the federated learning of the fraud detection system is used as an example for illustration.
+There are several privacy protection technologies, which can be adopted for privacy-preserving federated learning depending on the privacy protection requirements in various application scenarios. Here, we take the construction of a fraud detection system by the AI models trained by federated learning with the transaction data from distinct financial institutes as a prototype example.
 
 * Federated Learning
 Through collaborative machine learning, credit card transaction data from various financial institutions, which is distributed across multiple entities, can be utilized to train a shared fraud detection model. Each financial institution trains its own local model using its data and subsequently uploads these local model parameters to a central server for global model aggregation and updates. This approach avoids the need to transmit data to a central server, ensuring the privacy of transaction data for each financial institution.

@@ -57,12 +57,14 @@ int main(int argc , char* argv[])
 
 void help()
 {
-	std::cout << "Usage: ./cleint [options] ...\n";
+	std::cout << "Usage: ./client [options] ...\n";
 	std::cout << "Options:\n";
-	std::cout << "\t-h, --help\t\tdisplay this help and exit.\n";
-	std::cout << "\t-k, --keygen\t\tgenerate a secret key (\"secretKey\"), the associated public keys (\"myKey,\" \"rfKey,\" and \"ksKey\"), and the system parameters (\"CC\").\n";
-	std::cout << "\t-n, --name NAME\t\tgenerate a query for the criminal data associated with NAME.\n";
-	std::cout << "\t-d, --decrypt FILENAME\tdecrypt FILENAME.zip and show the result.\n";
-	std::cout << "\t-e, --encrypt OUTPUT\tencrypt \"data.csv\" and save the result to OUTPUT.zip\n";
+	std::cout << "\t-h, --help\t\tshow this page and exit.\n";
+	std::cout << "\t-k, --keygen\t\tgenerate keys.\n";
+	std::cout << "\t-e, --encrypt FILENAME\t\tencrypt the data (named \"data.csv\") and names it FILENAME.\n";
+	std::cout << "\t-n, --name NAME\t\tgenerate a file that can query by NAME(at most 8 characters).\n";
+	std::cout << "\t-a, --add\t\tencrypt the data want to add (named \"data.csv\").\n";
+	std::cout << "\t-d, --decrypt FILENAME\tdecrypt the query result which is named FILENAME and show it.\n";
+	std::cout << "\t-c, --decryptCount FILENAME\tdecrypt the count result which is named FILENAME and show it.\n";
 	return;
 }

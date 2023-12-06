@@ -100,7 +100,7 @@ cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical
 
 ##### Step 4. Install `gmpy2`
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ### Computation Stage
 ##### Step 1. SMPC nodes start SMPC protocol.
@@ -201,7 +201,7 @@ cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical
 ```
 ##### Step 2: Install `gmpy2`
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ##### Step 3. Setup Certificate: receive `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all SMPC nodes' `*.pem`); move them to `Player-Data/`
 ```
@@ -218,7 +218,7 @@ cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical
 ```
 ##### Step 2: Install `gmpy2`
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ##### Step 3. Setup Certificate: receive `C0.pem`,`C0.key`,`P*.pem`(all SMPC nodes' `*.pem`); move them to `Player-Data/`
 ```

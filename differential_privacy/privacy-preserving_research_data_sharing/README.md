@@ -42,9 +42,9 @@ Please ensure the Python version is greater than `3.7.1` and less than `3.11`.
 Then, install the following dependencies.
 
 ```
-pip install smartnoise-synth
-pip install openDP
-pip install swifter
+pip install smartnoise-synth=="1.0.3"
+pip install openDP=="0.8.0"
+pip install swifter=="1.4.0"
 ```
 
 #### Step 2. Clone the application

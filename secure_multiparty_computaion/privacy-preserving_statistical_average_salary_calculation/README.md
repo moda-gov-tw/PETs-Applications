@@ -59,7 +59,11 @@ The fundamental operation of secure multi-Party computation (SMPC) involves part
 
 In the current context, each employee is responsible for providing their salary (secret input), so they need to process their salary in a way that cannot be deciphered before handing it over to the deployed SMPC nodes for computation. The detailed process is as illustrated in the diagram below:
 
-![](https://github.com/B08902060/secure_multiparty_computaion/blob/main/image/001.png)
+![](image/001.png)
+
+> The above image is referenced from [^1].
+
+[^1]: G. Tsaloli, G. Banegas, and A. Mitrokotsa, “Practical and provably secure distributed aggregation: Verifiable additive homomorphic secret sharing,” Cryptography, vol. 4, no. 3, Art. no. 25, 2020, doi: 10.3390/cryptography4030025.
 
 In this example, we utilize secret sharing techniques to enable employees to transform their own salaries into multiple "shares." This ensures that individual SMPC nodes cannot independently decipher a specific employee's salary. After a set period of time, a Stop Provider will send a termination signal to each SMPC node. At this point, the SMPC nodes can commence secure multi-party computation, ultimately resulting in the publication of the average salaries for each gender.
 

@@ -99,7 +99,7 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 
 ##### Step 3. Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
+cp PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 
 ##### Step 4. Install gmpy2
@@ -114,7 +114,7 @@ Scripts/compile-run.py -E shamir average_gender_salary
 
 ##### Step 2. Data providers connect and sent data(secret input) to SMPC nodes.
 ```
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 cp -r ../../../Player-Data/ .
 python3 Client/Data_provider/average_salary.py 3 14000 localhost localhost localhost
 ```
@@ -183,7 +183,7 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 ```
 ##### Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
+cp PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 ##### Step 4. Compile SMPC file
 ```
@@ -201,7 +201,7 @@ c_rehash Player-Data/
 ##### Step 1: Clone Client/Data_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 ```
 ##### Step 2: Install gmpy2
 ```
@@ -218,7 +218,7 @@ mv /path/to/file/P*.pem Player-Data/
 ##### Step 1: Clone Client/Stop_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 ```
 ##### Step 2: Install gmpy2
 ```

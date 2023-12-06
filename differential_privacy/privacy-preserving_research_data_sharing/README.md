@@ -37,7 +37,7 @@ For the NHANES dataset to be released in a way to satisfy differential privacy, 
 ## Quick Start
 #### Step 1. Install dependencies
 
-Please ensure the Python version is greater than `3.7.1` and less than `3.11`.
+Please ensure the Python version is greater than 3.7.1 and less than 3.11.
 
 Then, install the following dependencies.
 

@@ -98,7 +98,7 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 
-##### Step 4. Install `gmpy2`
+##### Step 4. Install gmpy2
 ```
 pip3 install gmpy2=="2.1.5"
 ```
@@ -199,7 +199,7 @@ c_rehash Player-Data/
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
 cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
 ```
-##### Step 2: Install `gmpy2`
+##### Step 2: Install gmpy2
 ```
 pip3 install gmpy2=="2.1.5"
 ```
@@ -216,7 +216,7 @@ mv /path/to/file/P*.pem Player-Data/
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
 cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
 ```
-##### Step 2: Install `gmpy2`
+##### Step 2: Install gmpy2
 ```
 pip3 install gmpy2=="2.1.5"
 ```

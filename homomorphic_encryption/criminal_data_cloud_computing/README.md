@@ -37,7 +37,7 @@ The application listed here only serves as the minimum demonstration of using PE
 
 ## Quick Start
 
-The application has been tested using OpenFHE v1.1.0 and nodejs 20.10.0 on Ubuntu 22.04.3 with Intel(R) Core(TM) i7-10700KF and 32 GB memory.
+The application has been tested using OpenFHE v1.1.1 and nodejs 20.10.0 on Ubuntu 22.04.3 with Intel(R) Core(TM) i7-10700KF and 32 GB memory.
 
 ### Build The Server And Client
 
@@ -66,16 +66,7 @@ Copy the dataset to the current directory.
 cp ../testing/data.csv .
 ```
 
-#### Step 3.  Run the executables
-
-Use `-h` to see the help text of the server and client executables.
-
-```
-./server -h
-./client -h
-```
-
-### Use The Network Service
+### Build The Network Service
 
 #### Step 1. Prepare the server executable
 
@@ -95,12 +86,87 @@ sudo apt install npm
 npm install
 ```
 
-#### Step 3.  Run the service
+#### Step 3.  Start the service
 ```
 node TTC.js
 ```
 
+### Upload The Dataset And Use The Web Service
+
+#### Step 1. Generate private and public keys
+
+Generate the private key(`myKey`), the associated public keys(`rfKey` and `ksKey`), and the public parameters(`CC`).
+
+```
+cd ../tfhe-police/build
+./client -k
+```
+
+#### Step 2. Encrypt the dataset
+
+Encrypt the dataset and output the result as `encData.zip`.
+```
+./client -e encData
+```
+
+#### Step 3. Prepare the encrypted name data, `cts.zip`
+
+For example, if we want to search for Bryan in the dataset:
+```
+./client -n Bryan
+```
+
+#### Step 4. Upload files to the webpage
+
+Connect to the webpage with a browser and upload the files accordingly.
+
+<img src="https://i.imgur.com/3dgRuRl.png" width="600"/>
+
+#### Step 5. Choose the function `query` or `count` on the webpage
+
++ Use `query` to find the data corresponding to the name.
+
+<img src="https://i.imgur.com/ty3pu7l.png" width="600"/>
+
++ Use `count` to count the number of the name appearing in the dataset. 
+
+<img src="https://i.imgur.com/c4CzFiX.png" width="600"/>
+
+
+#### Step 6. Click `UPLOAD & RUN`
+
+Click the `UPLOAD & RUN` button to start.
+
+<img src="https://i.imgur.com/wTmnOIg.png" width="600"/>
+
+Once a dialog pops up, the process successfully finishes.
+
+<img src="https://i.imgur.com/q9tft9i.png" width="600"/>
+
+<img src="https://i.imgur.com/sJRmZd0.png" width="600"/>
+
+
+#### Step 7. Decrypt the returned result
+
+Click `DOWNLOAD` to download the result and move it to your working directory.
+
+<img src="https://i.imgur.com/467qPiK.png" width="600"/>
+
+If you choose the `query` function, decrypt the result with:
+```
+./client -d queryData
+```
+
+<img src="https://i.imgur.com/nS4nqkl.png" width="600"/>
+
+
+Otherwise, if you choose the `count` function, decrypt the result with:
+```
+./client -c countResult
+```
+
+<img src="https://i.imgur.com/JyubT36.png" width="600"/>
 
 ## Disclaimer
 
-The application listed here only serves as the minimum demonstrations of using PETs. The source code should not be directly deployed for production use.
+The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

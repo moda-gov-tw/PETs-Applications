@@ -36,21 +36,23 @@ To create a synthetic dataset from the NHANES dataset for release, it's crucial 
 
 ## Quick Start
 
-#### Step 1. Install dependencies
+The application has been tested using Python 3.9.6 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
 
-Please ensure the Python version is greater than `3.8` and less than `3.12`.
-
-Then, install `SDV` by using the following command.
-```
-pip install sdv
-```
-
-#### Step 2. Clone the application
+#### Step 1. Clone the application
 
 Clone the repo and go to the application directory.
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications
 cd PETs-Applications/synthetic_data/privacy-preserving_research_data_sharing/
+```
+
+#### Step 2. Install dependencies
+
+Please ensure the Python version is greater than `3.8` and less than `3.12`.
+
+Then, install the dependencies required by the application.
+```
+pip install -r requirements.txt
 ```
 
 #### Step 3. Run the application

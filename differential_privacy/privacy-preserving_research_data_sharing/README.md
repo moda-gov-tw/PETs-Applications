@@ -35,6 +35,9 @@ To protect the information of participants involved in the NHANES data collectio
 For the NHANES dataset to be released in a way to satisfy differential privacy, we must first find a way to generate the data. Noise is injected into the output of functions involving statistical computations. An intuitive approach is to convert the data distribution into a contingency table and then inject DP noise into each count value. The noisy contingency table is converted back to the releasable dataset by sampling according to the new but noisy statistical distribution. The figure below shows an overall procedure of the differentially private data synthesis. We note that the in the figure below, the post-processing techniques such as integrality, non-negativity, and consistency are also included to enhance the quality of the synthetic dataset. However, such post-processing techniques are optional.
 
 ## Quick Start
+
+The application has been tested using Python 3.10.11 on Windows 11 with Intel(R) Core(TM) i7-1165G7 and 16 GB memory.
+
 #### Step 1. Install dependencies
 
 Please ensure the Python version is greater than 3.7.1 and less than 3.11.

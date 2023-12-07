@@ -35,8 +35,9 @@ The operation of fully homomorphic encryption is shown in the figure below. Let'
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.
 
 
-
 ## Quick Start
+
+The application has been tested using OpenFHE v1.1.0 and nodejs 20.10.0 on Ubuntu 22.04.3 with Intel(R) Core(TM) i7-10700KF and 32 GB memory.
 
 ### Build The Server And Client
 

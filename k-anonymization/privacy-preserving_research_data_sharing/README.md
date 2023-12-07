@@ -36,7 +36,10 @@ To release the NHANES dataset in compliance with k-anonymity, it's crucial first
 
 ## Quick Start
 
+The application has been tested using Python 3.9.6 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
+
 #### Step 1. Install dependencies
+
 
 Install [PETWorks-framework](https://github.com/moda-gov-tw/PETWorks-framework) by using the following command.
 

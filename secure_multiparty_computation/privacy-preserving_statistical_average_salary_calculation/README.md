@@ -70,6 +70,9 @@ In this example, we utilize secret sharing techniques to enable employees to tra
 Furthermore, since MP-SPDZ uses openssl to establish a secure channel, we need to create certificates and distribute them to each SMPC node, Data Providers, and the Stop Provider(Assume that this step has already been completed by default). This is done to ensure the security of the transmission.
 
 ## Quick Start for Local Test
+
+The application has been tested using Python 3.9.6 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
+
 ### Deployment Stage
 ##### Step 1. Clone MP-SPDZ
 ```

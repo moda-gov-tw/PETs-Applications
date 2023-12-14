@@ -103,6 +103,8 @@ cd ../tfhe-police/build
 ./client -k
 ```
 
+<img src="https://i.imgur.com/Gn9mlRK.png" width="800"/>
+
 #### Step 2. Encrypt the dataset
 
 Encrypt the dataset and output the result as `encData.zip`.
@@ -110,12 +112,16 @@ Encrypt the dataset and output the result as `encData.zip`.
 ./client -e encData
 ```
 
+<img src="https://i.imgur.com/fliMyTk.png" width="800"/>
+
 #### Step 3. Prepare the encrypted name data, `cts.zip`
 
 For example, if we want to search for Bryan in the dataset:
 ```
 ./client -n Bryan
 ```
+
+<img src="https://i.imgur.com/fpQDPE4.png" width="800"/>
 
 #### Step 4. Upload files to the webpage
 

@@ -49,8 +49,6 @@ In the privacy-enhanced federated learning architecture, each financial institut
 
 ## Quick Start
 
-#### Environment requirement
-
 This application has been tested using Python 3.8 on MacOS Sonoma 14.1.1 with M2 CPU and 16 GB memory.
 
 #### Step 1. Clone the application

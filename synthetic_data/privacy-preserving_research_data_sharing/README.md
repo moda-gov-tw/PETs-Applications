@@ -1,5 +1,7 @@
 # Shared Diabetes Prediction Research Data
 
+> :exclamation: Please refer [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of the scenario description.
+
 In this case, we have two roles, which are a data owner and multiple data analysts. The data owner (e.g., NIH) is in possession of a sensitive dataset (e.g., diabetes dataset). The analysts are all interested in the diabetes dataset. Unfortunately, the sensitive dataset cannot be released directly due to privacy concerns. Thus, a common goal shared by the data owner and data analysts is to have a surrogate dataset such that the diabetes dataset will not be leaked but the analysts can still derive some statistics or build up machine learning models. 
 
 ## Dataset
@@ -34,21 +36,23 @@ To create a synthetic dataset from the NHANES dataset for release, it's crucial 
 
 ## Quick Start
 
-#### Step 1. Install dependencies
+The application has been tested using Python 3.9.6 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
 
-Please ensure the Python version is greater than `3.8` and less than `3.12`.
-
-Then, install `SDV` by using the following command.
-```
-pip install sdv
-```
-
-#### Step 2. Clone the application
+#### Step 1. Clone the application
 
 Clone the repo and go to the application directory.
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications
 cd PETs-Applications/synthetic_data/privacy-preserving_research_data_sharing/
+```
+
+#### Step 2. Install dependencies
+
+Please ensure the Python version is greater than `3.8` and less than `3.12`.
+
+Then, install the dependencies required by the application.
+```
+pip install -r requirements.txt
 ```
 
 #### Step 3. Run the application
@@ -58,9 +62,6 @@ Run the following script to process the original data, `NHANES.csv`, with synthe
 ```
 python3 example_SD.py
 ```
-
-## Reference
-Please refer to [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of this documentation. 
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

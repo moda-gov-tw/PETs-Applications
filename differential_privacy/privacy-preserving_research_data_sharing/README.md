@@ -1,5 +1,7 @@
 # Shared Diabetes Prediction Research Data
 
+> :exclamation: Please refer [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of the scenario description.
+
 In this case, we have two roles, which are a data owner and multiple data analysts. The data owner (e.g., NIH) is in possession of a sensitive dataset (e.g., diabetes dataset). The analysts are all interested in the diabetes dataset. Unfortunately, the sensitive dataset cannot be released directly due to privacy concerns. Thus, a common goal shared by the data owner and data analysts is to have a surrogate dataset such that the diabetes dataset will not be leaked but the analysts can still derive some statistics or build up machine learning models. 
 
 ## Dataset
@@ -33,16 +35,19 @@ To protect the information of participants involved in the NHANES data collectio
 For the NHANES dataset to be released in a way to satisfy differential privacy, we must first find a way to generate the data. Noise is injected into the output of functions involving statistical computations. An intuitive approach is to convert the data distribution into a contingency table and then inject DP noise into each count value. The noisy contingency table is converted back to the releasable dataset by sampling according to the new but noisy statistical distribution. The figure below shows an overall procedure of the differentially private data synthesis. We note that the in the figure below, the post-processing techniques such as integrality, non-negativity, and consistency are also included to enhance the quality of the synthetic dataset. However, such post-processing techniques are optional.
 
 ## Quick Start
+
+The application has been tested using Python 3.10.11 on Windows 11 with Intel(R) Core(TM) i7-1165G7 and 16 GB memory.
+
 #### Step 1. Install dependencies
 
-Please ensure the Python version is greater than `3.7.1` and less than `3.11`.
+Please ensure the Python version is greater than 3.7.1 and less than 3.11.
 
 Then, install the following dependencies.
 
 ```
-pip install smartnoise-synth
-pip install openDP
-pip install swifter
+pip install smartnoise-synth=="1.0.3"
+pip install openDP=="0.8.0"
+pip install swifter=="1.4.0"
 ```
 
 #### Step 2. Clone the application
@@ -60,9 +65,6 @@ Run the following script to process the original data, `NHANES.csv`, with differ
 ```
 python3 example_DP.py
 ```
-
-## Reference
-Please refer to [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of this documentation. 
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

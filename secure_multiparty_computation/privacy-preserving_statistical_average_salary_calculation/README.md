@@ -1,5 +1,7 @@
 # Privacy-Preserving Statistical Average Salary Calculation
 
+> :exclamation: Please refer [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of the scenario description.
+
 Gender wage gap refers to the disparity in earnings that arises due to gender within the same job positions or similar roles. This phenomenon is prevalent in many countries and across various industries, but the specific extent of the gap can vary based on factors such as region, industry, education level, and job position.
 
 This case study is based on the Boston Women's Workforce Council's use of Secure Multi-Party Computation (SMPC) in 2015, 2016, 2017, 2019, and 2021 to investigate gender wage gaps among approximately one-sixth of Boston's salaried employees.
@@ -57,13 +59,20 @@ The fundamental operation of secure multi-Party computation (SMPC) involves part
 
 In the current context, each employee is responsible for providing their salary (secret input), so they need to process their salary in a way that cannot be deciphered before handing it over to the deployed SMPC nodes for computation. The detailed process is as illustrated in the diagram below:
 
-![](https://github.com/B08902060/secure_multiparty_computaion/blob/main/image/001.png)
+![](image/001.png)
+
+> The above image is referenced from [^1].
+
+[^1]: G. Tsaloli, G. Banegas, and A. Mitrokotsa, “Practical and provably secure distributed aggregation: Verifiable additive homomorphic secret sharing,” Cryptography, vol. 4, no. 3, Art. no. 25, 2020, doi: 10.3390/cryptography4030025.
 
 In this example, we utilize secret sharing techniques to enable employees to transform their own salaries into multiple "shares." This ensures that individual SMPC nodes cannot independently decipher a specific employee's salary. After a set period of time, a Stop Provider will send a termination signal to each SMPC node. At this point, the SMPC nodes can commence secure multi-party computation, ultimately resulting in the publication of the average salaries for each gender.
 
 Furthermore, since MP-SPDZ uses openssl to establish a secure channel, we need to create certificates and distribute them to each SMPC node, Data Providers, and the Stop Provider(Assume that this step has already been completed by default). This is done to ensure the security of the transmission.
 
 ## Quick Start for Local Test
+
+The application has been tested using Python 3.9.6 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
+
 ### Deployment Stage
 ##### Step 1. Clone MP-SPDZ
 ```
@@ -93,12 +102,12 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 
 ##### Step 3. Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
+cp PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 
-##### Step 4. Install `gmpy2`
+##### Step 4. Install gmpy2
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ### Computation Stage
 ##### Step 1. SMPC nodes start SMPC protocol.
@@ -108,7 +117,7 @@ Scripts/compile-run.py -E shamir average_gender_salary
 
 ##### Step 2. Data providers connect and sent data(secret input) to SMPC nodes.
 ```
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 cp -r ../../../Player-Data/ .
 python3 Client/Data_provider/average_salary.py 3 14000 localhost localhost localhost
 ```
@@ -177,7 +186,7 @@ git clone https://github.com/moda-gov-tw/PETs-Applications.git
 ```
 ##### Step 3: Copy and move `average_gender_salary.mpc` to `Program/Source/`
 ```
-cp PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
+cp PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/MPC_node/average_gender_salary.mpc Programs/Source/
 ```
 ##### Step 4. Compile SMPC file
 ```
@@ -195,11 +204,11 @@ c_rehash Player-Data/
 ##### Step 1: Clone Client/Data_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 ```
-##### Step 2: Install `gmpy2`
+##### Step 2: Install gmpy2
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ##### Step 3. Setup Certificate: receive `Ci.pem`,`Ci.key`(`i` is the ID of Data provider),`P*.pem`(all SMPC nodes' `*.pem`); move them to `Player-Data/`
 ```
@@ -212,11 +221,11 @@ mv /path/to/file/P*.pem Player-Data/
 ##### Step 1: Clone Client/Stop_provider
 ```
 git clone https://github.com/moda-gov-tw/PETs-Applications.git
-cd PETs-Applications/secure_multiparty_computaion/privacy-preserving_statistical_average_salary_calculation/
+cd PETs-Applications/secure_multiparty_computation/privacy-preserving_statistical_average_salary_calculation/
 ```
-##### Step 2: Install `gmpy2`
+##### Step 2: Install gmpy2
 ```
-pip3 install gmpy2
+pip3 install gmpy2=="2.1.5"
 ```
 ##### Step 3. Setup Certificate: receive `C0.pem`,`C0.key`,`P*.pem`(all SMPC nodes' `*.pem`); move them to `Player-Data/`
 ```
@@ -245,11 +254,6 @@ python3 Client/Stop_provider/average_salary_finish.py <the number of SMPC nodes>
 
 ##### Step 4. SMPC node 0 will output the result.
 SMPC node 0 shares the result with Data providers.
-
-
-## Reference
-
-Please refer to [here](https://hackmd.io/@petworks/SyQChh9A2) for the Chinese version of this documentation. 
 
 ## Disclaimer
 

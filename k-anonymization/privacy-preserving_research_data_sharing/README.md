@@ -1,5 +1,7 @@
 # Shared Diabetes Prediction Research Data
 
+> :exclamation: Please refer [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of the scenario description.
+
 In this case, we have two roles, which are a data owner and multiple data analysts. The data owner (e.g., NIH) is in possession of a sensitive dataset (e.g., diabetes dataset). The analysts are all interested in the diabetes dataset. Unfortunately, the sensitive dataset cannot be released directly due to privacy concerns. Thus, a common goal shared by the data owner and data analysts is to have a surrogate dataset such that the diabetes dataset will not be leaked but the analysts can still derive some statistics or build up machine learning models. 
 
 ## Dataset
@@ -34,9 +36,11 @@ To release the NHANES dataset in compliance with k-anonymity, it's crucial first
 
 ## Quick Start
 
+The application has been tested using Python 3.9.6 and Java 17.0.2 on MacOS Sonoma 14.1.2 with M2 CPU and 16 GB memory.
+
 #### Step 1. Install dependencies
 
-Install [PETWorks-framework](https://github.com/moda-gov-tw/PETWorks-framework) by using the following command.
+Install [PETWorks-framework](https://github.com/moda-gov-tw/PETWorks-framework) by using the following command. The tool requires the Java Runtime Environment (JRE) package (Java 8 or later versions) installed.
 
 ```
 git clone https://github.com/moda-gov-tw/PETWorks-framework.git
@@ -65,9 +69,6 @@ Run the following script to process the original data, `NHANES.csv`, with k-anon
 ```
 python3 example_k.py
 ```
-
-## Reference
-Please refer to [here](https://hackmd.io/Wyxi11CrQpelLfnRdoCBtA) for the Chinese version of this documentation. 
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

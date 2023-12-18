@@ -97,13 +97,14 @@ For more information, please refer to the [nvflare documentation](https://nvflar
 
 #### Step 4. Prediction by the global model
 
-This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the inputs yourself based on your needs.
-![execution](./figures/GM_predict.png)
-
 ```
 cd ..
 python GM_predict.py
 ```
+
+This is a simple example that utilizes a specific piece of data from the dataset to confirm that the prediction result is consistent with the ground truth. Additionally, you have the flexibility to modify the inputs yourself based on your needs.
+
+![execution](./figures/GM_predict.png)
 
 ###### Command Usage
 ```

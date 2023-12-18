@@ -92,6 +92,7 @@ Each client loads the global model and starts local training. The application wi
 After the federated learning phase finishes, the server will store the global model.
 ![execution](./figures/store_model.png)
 
+For more information, please refer to [the nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
 
 #### Step 4. Prediction by the global model
 
@@ -125,12 +126,6 @@ list of GPU Device Ids, comma separated
 -m MAX_CLIENTS, --max_clients MAX_CLIENTS
 maximum number of clients
 ```
-
-## Reference
-Please refer to [here](https://hackmd.io/@petworks/S1mOhh90n) for the Chinese version of this documentation. 
-
-For more detailed information, please refer to the [nvflare documentation](https://nvflare.readthedocs.io/en/main/index.html).
-
 
 ## Disclaimer
 The application listed here only serves as the minimum demonstration of using PETs. The source code should not be directly deployed for production use.

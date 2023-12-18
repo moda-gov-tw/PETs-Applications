@@ -91,7 +91,7 @@ def _get_src_job_dir(training_mode, DP):
     if DP == "None":
         strDP = ""
     elif DP == "DP":
-        strDP = "_dp"
+        strDP = "_DP"
     base_job_map = {
         "bagging": "bagging_base",
         "cyclic": "cyclic_base",

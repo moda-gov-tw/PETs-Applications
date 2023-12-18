@@ -33,14 +33,22 @@ if __name__ == "__main__":
     # validation
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.1, stratify=y)
 
-    inputs = X_val[2:3]
-    label = y_val[2:3]
+    label0 = y_val.query("Class == 0")[0:5] # normal case
+    label1 = y_val.query("Class == 1")[0:5] # fraud case
+    label = pd.concat([label0, label1])
+    inputs = X_val.loc[label.index]
 
     print("input: ")
     print(inputs)
     print("Ground truth: ")
     print(label)
-    pred = xgb.DMatrix(inputs)
+    pred = xgb.DMatrix(inputs) # predict 5 normal case and 5 fraud case
     predict_result = model_xgb.predict(pred)
     predict_result = np.round(predict_result)
-    print("predict_result: ", int(predict_result[0]))
+    print("predict_result: ", predict_result)
+
+    # Precision of validation
+    fail = label.to_numpy().flatten() - predict_result # if ground truth equal to prediction give 0
+    precision = np.mean([1 if v == 0 else 0 for v in fail]) # measure precision by count right / fail case
+    print("precision of predict result: ", precision)
+    

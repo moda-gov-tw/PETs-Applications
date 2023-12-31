@@ -59,7 +59,7 @@ The fundamental operation of secure multi-Party computation (SMPC) involves part
 
 In the current context, each employee is responsible for providing their salary (secret input), so they need to process their salary in a way that cannot be deciphered before handing it over to the deployed SMPC nodes for computation. The detailed process is as illustrated in the diagram below:
 
-![](image/001.png)
+![](image/001.jpg)
 
 > The above image is referenced from [^1].
 
